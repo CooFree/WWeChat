@@ -20,7 +20,7 @@
 		4BBD93FE1C5A1B750057FAC5 /* FoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93FD1C5A1B750057FAC5 /* FoundViewController.m */; };
 		4BBD94041C5A1B860057FAC5 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD94031C5A1B860057FAC5 /* MeViewController.m */; };
 		4BBD94071C5A2BC90057FAC5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD94061C5A2BC90057FAC5 /* BaseViewController.m */; };
-		4BBD940B1C5A2BF60057FAC5 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD940A1C5A2BF60057FAC5 /* ChatViewController.m */; };
+		4BBD94121C5A34D30057FAC5 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD94111C5A34D30057FAC5 /* ChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,8 @@
 		4BBD94031C5A1B860057FAC5 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		4BBD94051C5A2BC90057FAC5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4BBD94061C5A2BC90057FAC5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		4BBD94091C5A2BF60057FAC5 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		4BBD940A1C5A2BF60057FAC5 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		4BBD94101C5A34D30057FAC5 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		4BBD94111C5A34D30057FAC5 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +119,10 @@
 		4BBD93B21C5A17160057FAC5 /* WWeChat */ = {
 			isa = PBXGroup;
 			children = (
+				4BBD940C1C5A34D30057FAC5 /* Chat */,
 				4BBD94081C5A2BD20057FAC5 /* Main */,
 				4BBD93E61C5A18420057FAC5 /* Addressbook */,
 				4BBD93EA1C5A18420057FAC5 /* Found */,
-				4BBD93EE1C5A18420057FAC5 /* Chat */,
 				4BBD93F21C5A18420057FAC5 /* Me */,
 				4BBD93B61C5A17160057FAC5 /* AppDelegate.h */,
 				4BBD93B71C5A17160057FAC5 /* AppDelegate.m */,
@@ -229,40 +229,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		4BBD93EE1C5A18420057FAC5 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				4BBD93EF1C5A18420057FAC5 /* Model */,
-				4BBD93F01C5A18420057FAC5 /* View */,
-				4BBD93F11C5A18420057FAC5 /* ViewController */,
-			);
-			name = Chat;
-			path = Main;
-			sourceTree = "<group>";
-		};
-		4BBD93EF1C5A18420057FAC5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4BBD93F01C5A18420057FAC5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4BBD93F11C5A18420057FAC5 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4BBD94091C5A2BF60057FAC5 /* ChatViewController.h */,
-				4BBD940A1C5A2BF60057FAC5 /* ChatViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		4BBD93F21C5A18420057FAC5 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +271,39 @@
 				4BBD93F71C5A1AB10057FAC5 /* TabBarViewController.m */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		4BBD940C1C5A34D30057FAC5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				4BBD940D1C5A34D30057FAC5 /* Model */,
+				4BBD940E1C5A34D30057FAC5 /* View */,
+				4BBD940F1C5A34D30057FAC5 /* ViewController */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		4BBD940D1C5A34D30057FAC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4BBD940E1C5A34D30057FAC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4BBD940F1C5A34D30057FAC5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4BBD94101C5A34D30057FAC5 /* ChatViewController.h */,
+				4BBD94111C5A34D30057FAC5 /* ChatViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,7 +444,7 @@
 				4BBD93B51C5A17160057FAC5 /* main.m in Sources */,
 				4BBD94041C5A1B860057FAC5 /* MeViewController.m in Sources */,
 				4BBD93FE1C5A1B750057FAC5 /* FoundViewController.m in Sources */,
-				4BBD940B1C5A2BF60057FAC5 /* ChatViewController.m in Sources */,
+				4BBD94121C5A34D30057FAC5 /* ChatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +668,7 @@
 				4BBD93DF1C5A17160057FAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BBD93E01C5A17160057FAC5 /* Build configuration list for PBXNativeTarget "WWeChatTests" */ = {
 			isa = XCConfigurationList;
@@ -677,6 +677,7 @@
 				4BBD93E21C5A17160057FAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BBD93E31C5A17160057FAC5 /* Build configuration list for PBXNativeTarget "WWeChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -685,6 +686,7 @@
 				4BBD93E51C5A17160057FAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
