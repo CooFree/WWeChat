@@ -16,7 +16,6 @@
 
 @interface TabBarViewController ()
 
-@property (nonatomic,assign)NSInteger num;
 
 @end
 
