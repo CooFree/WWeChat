@@ -8,7 +8,12 @@
 
 #import "ChatViewController.h"
 
-@interface ChatViewController ()
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+/**
+ *  tableView
+ */
+//@property(nonatomic,strong)UITableView * _tableView;
 
 @end
 
@@ -16,7 +21,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self addRightBtnWithImgName:@"chat_add" andSelector:@selector(rightBtnClick:)];
+}
+
+- (void)rightBtnClick:(UIButton *)sender
+{
+    NSLog(@"点击了");
+}
+
+- (void)createTableView
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
