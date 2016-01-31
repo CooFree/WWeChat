@@ -14,11 +14,12 @@
 ####更新日志
  * 2016.1.28 完成基本框架
  * 2016.1.29 搭建三个界面的UI
+ * 2016.1.31 完成全部主界面UI
  <div>
  </div>
  
 ####当前进度
- ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0129.gif)
+ ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
 <div>
 </div>
 
