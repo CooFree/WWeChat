@@ -21,7 +21,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setNeedsUpdateConstraints
+
+//更改约束
+- (void)changeConstraints
 {
     _avaterImgViewHeight.constant = WGiveHeight(45);
     _avaterImgViewWidth.constant = WGiveHeight(45);
@@ -29,8 +31,8 @@
 
 - (void)setModel:(ChatModel *)model
 {
-    //更新约束
-    [self setNeedsUpdateConstraints];
+    
+    [self changeConstraints];
     
     [self.avaterImgView setImageWithURL:[NSURL URLWithString:_model.avatar] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         
