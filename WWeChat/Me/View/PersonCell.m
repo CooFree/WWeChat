@@ -7,7 +7,7 @@
 //
 
 #import "PersonCell.h"
-
+#import "UIImageView+WebCache.h"
 @implementation PersonCell
 
 - (void)awakeFromNib {
@@ -25,13 +25,15 @@
     
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    self.avaterImgView.image = [UIImage imageNamed:model.avater];
+    [self.avaterImgView setImageWithURL:[NSURL URLWithString:_model.avater] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+    }];
     
     self.userNameLabel.text = model.nickName;
     
     self.weIDLabel.text = [NSString stringWithFormat:@"微信号: %@",model.weID];
     
-    self.wmImgView.image = [UIImage imageNamed:@""];
+    self.wmImgView.image = [UIImage imageNamed:@"me_wm"];
     self.wmImgView.backgroundColor = [UIColor grayColor];
     
 }

@@ -9,13 +9,18 @@
 #import "AddressBookViewController.h"
 #import "NSString+PinYin.h"
 
-@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating>
 
 @property(nonatomic,strong)NSMutableArray * dataArr;
 
 @property(nonatomic,strong)UITableView * tableView;
 
+@property(nonatomic,strong)UISearchController * searchController;
+
 @property(nonatomic,copy)NSArray * sectionArr;
+
+@property(nonatomic,strong)NSMutableArray * searchArr;
+
 @end
 
 @implementation AddressBookViewController
@@ -33,6 +38,8 @@
 - (void)preData
 {
     _dataArr = [[NSMutableArray alloc]init];
+    
+    _searchArr = [[NSMutableArray alloc]init];
     
     _sectionArr = @[
                     @{
@@ -217,7 +224,7 @@
 {
     if (section == 0)
     {
-        return WGiveHeight(15);
+        return WGiveHeight(43);
     }
     return WGiveHeight(20);
 }
@@ -250,7 +257,21 @@
     //搜索框
     else
     {
+        self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
         
+        //self.searchController.searchResultsUpdater = self;
+        
+        self.searchController.dimsBackgroundDuringPresentation = YES;
+        
+        [self.searchController.searchBar sizeToFit];
+        
+        //self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+        
+        self.searchController.searchBar.backgroundImage = [[UIImage alloc]init];
+        
+        self.searchController.searchBar.placeholder = @"搜索";
+        
+        return self.searchController.searchBar;
     }
     return nil;
 }
@@ -280,6 +301,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+}
+
+#pragma mark - searchController delegate
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.searchController.active) {
+        self.searchController.active = NO;
+        [self.searchController.searchBar removeFromSuperview];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
