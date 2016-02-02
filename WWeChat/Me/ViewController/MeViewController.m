@@ -51,7 +51,7 @@
                 ];
     
     _model = [[PersonModel alloc]init];
-    _model.avater = @"avater.jpg";
+    _model.avater = @"";
     _model.nickName = @"WzxJiang";
     _model.weID =@"wzx";
     
