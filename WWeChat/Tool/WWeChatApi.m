@@ -49,13 +49,30 @@
     
     user[@"passWord"] = passWord;
     
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (successBlock)
-        {
-            successBlock(nil);
-        }
-        else
-        {
+    AVQuery *query = [AVQuery queryWithClassName:@"_User"];
+    
+    [query whereKey:@"username" equalTo:userName];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 0)
+            {
+                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (successBlock)
+                    {
+                        successBlock(nil);
+                    }
+                    else
+                    {
+                        failureBlock(error);
+                    }
+                }];
+            }
+            else
+            {
+                failureBlock(nil);
+            }
+        } else {
             failureBlock(error);
         }
     }];

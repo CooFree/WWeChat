@@ -36,20 +36,27 @@
 
 - (void)preData
 {
-    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
-        NSLog(@"登录成功%@",response);
-    } andFailure:^(NSError *error) {
-        NSLog(@"登录失败%@",error);
-    }];
-    
-//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
-//        
-//        NSLog(@"注册成功");
-//        
-//    } andFailure:^(NSError * error)
-//    {
-//        NSLog(@"注册失败:%@",error.localizedDescription);
+//    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
+//        NSLog(@"登录成功%@",response);
+//    } andFailure:^(NSError *error) {
+//        NSLog(@"登录失败%@",error);
 //    }];
+    
+    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
+        
+        NSLog(@"注册成功");
+        
+    } andFailure:^(NSError * error)
+    {
+        if (error == nil)
+        {
+            NSLog(@"该昵称已被使用");
+        }
+        else
+        {
+            NSLog(@"注册失败:%@",error.localizedDescription);
+        }
+    }];
     
     ChatModel * model = [[ChatModel alloc]init];
     model.avatar = @"";
