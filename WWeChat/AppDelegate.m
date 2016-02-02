@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+
+//learncloud
+#import <AVOSCloud/AVOSCloud.h>
+
 #import "TabBarViewController.h"
 @interface AppDelegate ()
 
@@ -23,6 +27,9 @@
     self.window.rootViewController = [[TabBarViewController alloc]init];
 
     [self changeNav];
+    
+    [AVOSCloud setApplicationId:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz"
+                      clientKey:@"nPIl7IkH9LtvsnUK7b8hxlS4"];
     return YES;
 }
 

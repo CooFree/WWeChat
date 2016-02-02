@@ -8,6 +8,8 @@
 
 #import "ChatViewController.h"
 #import "ChatCell.h"
+
+#import "WWeChatApi.h"
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 /**
@@ -17,6 +19,8 @@
 
 
 @property(nonatomic,copy)NSArray * dataArr;
+
+@property(nonatomic,strong)UISearchController * searchController;
 
 @end
 
@@ -32,6 +36,21 @@
 
 - (void)preData
 {
+    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
+        NSLog(@"登录成功%@",response);
+    } andFailure:^(NSError *error) {
+        NSLog(@"登录失败%@",error);
+    }];
+    
+//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
+//        
+//        NSLog(@"注册成功");
+//        
+//    } andFailure:^(NSError * error)
+//    {
+//        NSLog(@"注册失败:%@",error.localizedDescription);
+//    }];
+    
     ChatModel * model = [[ChatModel alloc]init];
     model.avatar = @"";
     model.userName = @"wzx";
@@ -93,6 +112,33 @@
     ChatCell * chatCell = (ChatCell *)cell;
     
     [chatCell setModel:_dataArr[indexPath.row]];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    //self.searchController.searchResultsUpdater = self;
+    
+    self.searchController.dimsBackgroundDuringPresentation = YES;
+    
+    [self.searchController.searchBar sizeToFit];
+    
+    //self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    
+    self.searchController.searchBar.backgroundImage = [[UIImage alloc]init];
+    
+    self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
+    
+    self.searchController.searchBar.placeholder = @"搜索";
+    
+    return self.searchController.searchBar;
+}
+
+//设置头视图高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+        return WGiveHeight(43);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -65,6 +65,13 @@
 		4BF31B651C5B667000B4100A /* avater.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31B641C5B667000B4100A /* avater.jpg */; };
 		4BF31BAE1C5DB29500B4100A /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF31BAC1C5DB29500B4100A /* ChatCell.m */; };
 		4BF31BAF1C5DB29500B4100A /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31BAD1C5DB29500B4100A /* ChatCell.xib */; };
+		690BE0F31C60C3AB00DDC8AA /* WWeChatApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */; };
+		690BE0F71C60C54D00DDC8AA /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; };
+		690BE0F81C60C54D00DDC8AA /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; };
+		690BE0F91C60C56900DDC8AA /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; };
+		690BE0FA1C60C56900DDC8AA /* AVOSCloud.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		690BE0FB1C60C56900DDC8AA /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; };
+		690BE0FC1C60C56900DDC8AA /* AVOSCloudIM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +90,21 @@
 			remoteInfo = WWeChat;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		690BE0FD1C60C56900DDC8AA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				690BE0FA1C60C56900DDC8AA /* AVOSCloud.framework in Embed Frameworks */,
+				690BE0FC1C60C56900DDC8AA /* AVOSCloudIM.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4BBD93B01C5A17160057FAC5 /* WWeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +222,10 @@
 		4BF31BAB1C5DB29500B4100A /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		4BF31BAC1C5DB29500B4100A /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		4BF31BAD1C5DB29500B4100A /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		690BE0F11C60C3AB00DDC8AA /* WWeChatApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWeChatApi.h; sourceTree = "<group>"; };
+		690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWeChatApi.m; sourceTree = "<group>"; };
+		690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
+		690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudIM.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +233,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				690BE0F71C60C54D00DDC8AA /* AVOSCloud.framework in Frameworks */,
+				690BE0F81C60C54D00DDC8AA /* AVOSCloudIM.framework in Frameworks */,
+				690BE0F91C60C56900DDC8AA /* AVOSCloud.framework in Frameworks */,
+				690BE0FB1C60C56900DDC8AA /* AVOSCloudIM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +483,8 @@
 			isa = PBXGroup;
 			children = (
 				4BF31ADE1C5B36AD00B4100A /* lib */,
+				690BE0F11C60C3AB00DDC8AA /* WWeChatApi.h */,
+				690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -460,6 +492,7 @@
 		4BF31ADE1C5B36AD00B4100A /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				690BE0F41C60C54D00DDC8AA /* AVOSCloud */,
 				4BF31B571C5B376500B4100A /* NSString+PinYin */,
 				4BF31ADF1C5B36AD00B4100A /* AFNetworking */,
 				4BF31B091C5B36AD00B4100A /* SDWebImage */,
@@ -596,6 +629,15 @@
 			path = "NSString+PinYin";
 			sourceTree = "<group>";
 		};
+		690BE0F41C60C54D00DDC8AA /* AVOSCloud */ = {
+			isa = PBXGroup;
+			children = (
+				690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */,
+				690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */,
+			);
+			path = AVOSCloud;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -606,6 +648,8 @@
 				4BBD93AC1C5A17160057FAC5 /* Sources */,
 				4BBD93AD1C5A17160057FAC5 /* Frameworks */,
 				4BBD93AE1C5A17160057FAC5 /* Resources */,
+				690BE0FD1C60C56900DDC8AA /* Embed Frameworks */,
+				690BE0FE1C60C57D00DDC8AA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -726,6 +770,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		690BE0FE1C60C57D00DDC8AA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK; do\nEXTRACTED_ARCHS=()\n\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nfor ARCH in $ARCHS; do\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\n\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\n/usr/bin/codesign -f -s \"${CODE_SIGN_IDENTITY}\" $FRAMEWORK\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4BBD93AC1C5A17160057FAC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -752,6 +812,7 @@
 				4BF31B2F1C5B36AD00B4100A /* AFHTTPRequestOperation.m in Sources */,
 				4BF31B411C5B36AD00B4100A /* UIWebView+AFNetworking.m in Sources */,
 				4BF31B311C5B36AD00B4100A /* AFHTTPSessionManager.m in Sources */,
+				690BE0F31C60C3AB00DDC8AA /* WWeChatApi.m in Sources */,
 				4BF31BAE1C5DB29500B4100A /* ChatCell.m in Sources */,
 				4BF31B471C5B36AD00B4100A /* THProgressView.m in Sources */,
 				4BF31B501C5B36AD00B4100A /* UIImage+GIF.m in Sources */,
@@ -918,6 +979,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WWeChat/Tool/lib/AVOSCloud",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WWeChat/Tool/pchFile.pch";
 				INFOPLIST_FILE = WWeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -932,6 +997,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WWeChat/Tool/lib/AVOSCloud",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WWeChat/Tool/pchFile.pch";
 				INFOPLIST_FILE = WWeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
