@@ -41,7 +41,7 @@
                  @[@"购物",@"游戏"]
                  ];
     
-    _imgArr = @[@[@"found_quan"],
+    _imgArr = @[@[@"found_refresh"],
                 @[@"found_saoyisao",@"found_yao"],
                 @[@"found_nearby"],
                 @[@"found_shop",@"found_game"]];

@@ -16,23 +16,35 @@
 
 @property(nonatomic,strong)NSMutableArray * dataArr;
 
+//刷新控件
+@property(nonatomic,strong)UIImageView * refreshView;
+
+//刷新控件
+@property(nonatomic,assign)BOOL isRefrsh;
+
+//刷新控件
+@property(nonatomic,strong)NSTimer * timer;
+
 @end
 
 @implementation QuanViewController
 
+{
+   // NSInteger _num;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"朋友圈";
     self.view.backgroundColor = [UIColor colorWithRed:34/255.0 green:37/255.0 blue:38/255.0 alpha:1];
     
-    
-    
     [self preData];
 }
 
 - (void)preData
 {
+  //  _num = 0;
+    _isRefrsh = NO;
     _dataArr = [[NSMutableArray alloc]init];
     for (int i = 0; i < 100; i++)
     {
@@ -116,13 +128,66 @@
 #pragma mark -- scrollview --
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"旋转吧，皮卡丘!");
+    if (_isRefrsh == NO)
+    {
+        CGFloat tran =  scrollView.contentOffset.y;
+        NSLog(@"%f",tran);
+        CGRect frame = self.refreshView.frame;
+        CGFloat nowY = 64 - WGiveHeight(28) - tran;
+        if (nowY > 64 + WGiveHeight(16))
+        {
+            nowY = 64 + WGiveHeight(16);
+        }
+        frame.origin.y = nowY;
+        self.refreshView.frame = frame;
+    }
 }
 
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//{
-//    NSLog(@"end");
-//}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+     _isRefrsh = YES;
+    
+   // [self startRefresh];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self stopRefresh];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.refreshView.frame = CGRectMake(WGiveWidth(20),64 - WGiveHeight(28), WGiveHeight(28), WGiveHeight(28));
+        } completion:^(BOOL finished) {
+            _isRefrsh = NO;
+        }];
+
+    });
+    
+}
+
+- (UIImageView *)refreshView
+{
+    if (!_refreshView)
+    {
+        _refreshView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(20),64 - WGiveHeight(28), WGiveHeight(28), WGiveHeight(28))];
+        _refreshView.image = [UIImage imageNamed:@"found_quan"];
+        [self.view addSubview:_refreshView];
+    }
+    return _refreshView;
+}
+
+- (void)startRefresh
+{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
+}
+
+- (void)refresh
+{
+    
+}
+
+- (void)stopRefresh
+{
+    [_timer invalidate];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
