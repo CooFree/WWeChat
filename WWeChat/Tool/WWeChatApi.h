@@ -25,4 +25,9 @@
  *  注册
  */
 - (void)registerWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
+
+/**
+ *  上传图片
+ */
+- (void)updataAvaterWithImg:(UIImage *)img andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
 @end

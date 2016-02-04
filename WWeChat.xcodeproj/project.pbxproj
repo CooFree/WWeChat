@@ -72,6 +72,9 @@
 		690BE0FA1C60C56900DDC8AA /* AVOSCloud.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		690BE0FB1C60C56900DDC8AA /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; };
 		690BE0FC1C60C56900DDC8AA /* AVOSCloudIM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		694B020E1C62249B009333C4 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694B020D1C62249B009333C4 /* PersonViewController.m */; };
+		698EFFE61C6373CB005618E6 /* QuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698EFFE51C6373CB005618E6 /* QuanViewController.m */; };
+		698EFFE81C637E20005618E6 /* Quan.png in Resources */ = {isa = PBXBuildFile; fileRef = 698EFFE71C637E20005618E6 /* Quan.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +229,11 @@
 		690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWeChatApi.m; sourceTree = "<group>"; };
 		690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
 		690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudIM.framework; sourceTree = "<group>"; };
+		694B020C1C62249B009333C4 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
+		694B020D1C62249B009333C4 /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
+		698EFFE41C6373CB005618E6 /* QuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuanViewController.h; sourceTree = "<group>"; };
+		698EFFE51C6373CB005618E6 /* QuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuanViewController.m; sourceTree = "<group>"; };
+		698EFFE71C637E20005618E6 /* Quan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Quan.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +288,7 @@
 		4BBD93B21C5A17160057FAC5 /* WWeChat */ = {
 			isa = PBXGroup;
 			children = (
+				698EFFE71C637E20005618E6 /* Quan.png */,
 				4BF31B641C5B667000B4100A /* avater.jpg */,
 				4BF31ADD1C5B36AD00B4100A /* Tool */,
 				4BBD94081C5A2BD20057FAC5 /* Main */,
@@ -389,6 +398,8 @@
 			children = (
 				4BBD93FC1C5A1B750057FAC5 /* FoundViewController.h */,
 				4BBD93FD1C5A1B750057FAC5 /* FoundViewController.m */,
+				698EFFE41C6373CB005618E6 /* QuanViewController.h */,
+				698EFFE51C6373CB005618E6 /* QuanViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -426,6 +437,8 @@
 			children = (
 				4BBD94021C5A1B860057FAC5 /* MeViewController.h */,
 				4BBD94031C5A1B860057FAC5 /* MeViewController.m */,
+				694B020C1C62249B009333C4 /* PersonViewController.h */,
+				694B020D1C62249B009333C4 /* PersonViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -743,6 +756,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				698EFFE81C637E20005618E6 /* Quan.png in Resources */,
 				4BBD93C31C5A17160057FAC5 /* LaunchScreen.storyboard in Resources */,
 				4BF31B451C5B36AD00B4100A /* remind_noimage.png in Resources */,
 				4BF31B461C5B36AD00B4100A /* remind_noimage@2x.png in Resources */,
@@ -826,6 +840,8 @@
 				4BF31B521C5B36AD00B4100A /* UIImage+WebP.m in Sources */,
 				4BF31B511C5B36AD00B4100A /* UIImage+MultiFormat.m in Sources */,
 				4BF31B301C5B36AD00B4100A /* AFHTTPRequestOperationManager.m in Sources */,
+				698EFFE61C6373CB005618E6 /* QuanViewController.m in Sources */,
+				694B020E1C62249B009333C4 /* PersonViewController.m in Sources */,
 				4BBD93FB1C5A1B6B0057FAC5 /* AddressBookViewController.m in Sources */,
 				4BF31B441C5B36AD00B4100A /* SDImageCache.m in Sources */,
 				4BF31B491C5B36AD00B4100A /* SDWebImageCompat.m in Sources */,

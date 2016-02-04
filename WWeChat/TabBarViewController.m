@@ -13,7 +13,7 @@
 #import "ChatViewController.h"
 #import "MeViewController.h"
 
-
+#import "WWeChatApi.h"
 @interface TabBarViewController ()
 
 
@@ -26,7 +26,8 @@
     
     
     ChatViewController * chatVC = [[ChatViewController alloc]init];
-    chatVC.title = @"微信";
+    chatVC.tabBarItem.title = @"微信";
+    chatVC.navigationItem.title = @"微信(未连接)";
     
     AddressBookViewController * addbkVC = [[AddressBookViewController alloc]init];
     addbkVC.title = @"通讯录";
@@ -48,6 +49,7 @@
                              ];
     
     self.tabBar.tintColor = [UIColor colorWithRed:9/255.0 green:187/255.0 blue:7/255.0 alpha:1];
+    
 }
 
 /**
@@ -66,7 +68,8 @@
 {
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
-    nav.tabBarItem = [[UITabBarItem alloc]initWithTitle:VC.title image:[self removeRendering:imgName] selectedImage:[self removeRendering:selectImgName]];
+    nav.tabBarItem = [[UITabBarItem alloc]initWithTitle:VC.tabBarItem.title image:[self removeRendering:imgName] selectedImage:[self removeRendering:selectImgName]];
+    
     return nav;
 }
 

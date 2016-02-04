@@ -10,6 +10,8 @@
 #import "PersonCell.h"
 #import "PersonModel.h"
 
+#import "PersonViewController.h"
+
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView * tableView;
@@ -24,12 +26,15 @@
 
 @implementation MeViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self preData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    [self preData];
     
     [self createTableView];
 }
@@ -164,7 +169,9 @@
         //个人中心
         if (indexPath.row == 0)
         {
-            
+            PersonViewController * personVC = [[PersonViewController alloc]init];
+             personVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:personVC animated:YES];
         }
     }
     else if(indexPath.section == 1)

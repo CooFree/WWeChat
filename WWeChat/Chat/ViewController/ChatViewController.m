@@ -36,27 +36,37 @@
 
 - (void)preData
 {
-//    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
-//        NSLog(@"登录成功%@",response);
+    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
+        NSLog(@"登录成功%@",response);
+        self.navigationItem.title = @"微信";
+    } andFailure:^(NSError *error) {
+        NSLog(@"登录失败%@",error);
+        self.navigationItem.title = @"微信(未连接)";
+    }];
+    
+//    [[WWeChatApi giveMeApi]updataAvaterWithImg:[UIImage imageNamed:@"avater.jpg"] andSuccess:^(id response) {
+//        NSLog(@"保存图片成功");
 //    } andFailure:^(NSError *error) {
-//        NSLog(@"登录失败%@",error);
+//        NSLog(@"error:%@",error.localizedDescription);
 //    }];
     
-    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
-        
-        NSLog(@"注册成功");
-        
-    } andFailure:^(NSError * error)
-    {
-        if (error == nil)
-        {
-            NSLog(@"该昵称已被使用");
-        }
-        else
-        {
-            NSLog(@"注册失败:%@",error.localizedDescription);
-        }
-    }];
+//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
+//        
+//        NSLog(@"注册成功");
+//        
+//    } andFailure:^(NSError * error)
+//    {
+//        if (error == nil)
+//        {
+//            NSLog(@"该昵称已被使用");
+//        }
+//        else
+//        {
+//            NSLog(@"注册失败:%@",error.localizedDescription);
+//        }
+//    }];
+   
+    
     
     ChatModel * model = [[ChatModel alloc]init];
     model.avatar = @"";

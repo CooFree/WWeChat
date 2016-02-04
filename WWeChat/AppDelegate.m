@@ -42,8 +42,11 @@
      [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:54/255.0 green:53/255.0 blue:58/255.0 alpha:1]];
      //@{}代表Dictionary
      [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //不设置这个无法修改状态栏字体颜色
+     //不设置这个无法修改状态栏字体颜色
      [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    
+    //返回按钮的颜色
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 }
 
 

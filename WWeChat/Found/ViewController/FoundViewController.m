@@ -8,7 +8,7 @@
 
 #import "FoundViewController.h"
 
-
+#import "QuanViewController.h"
 @interface FoundViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView * tableView;
@@ -133,7 +133,9 @@
         //朋友圈
         if (indexPath.row == 0)
         {
-            
+            QuanViewController * quan = [[QuanViewController alloc]init];
+            quan.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:quan animated:YES];
         }
     }
     else if(indexPath.section == 1)
