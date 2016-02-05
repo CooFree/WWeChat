@@ -10,6 +10,8 @@
 #import "PersonCell.h"
 #import "PersonModel.h"
 
+#import "UserInfoManager.h"
+
 #import "PersonViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -56,10 +58,14 @@
                 ];
     
     _model = [[PersonModel alloc]init];
-    _model.avater = @"";
-    _model.nickName = @"WzxJiang";
-    _model.weID =@"wzx";
+    _model.avater = [[UserInfoManager manager]avaterUrl];
+    _model.nickName = [[UserInfoManager manager]userName];
+    _model.weID = [[UserInfoManager manager]wxID];
     
+    if(_tableView)
+    {
+        [_tableView reloadData];
+    }
 }
 
 //创建tableView

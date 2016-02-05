@@ -30,4 +30,16 @@
  *  上传图片
  */
 - (void)updataAvaterWithImg:(UIImage *)img andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
+
+/**
+ *  更改性别
+ */
+- (void)updataSexWithIsMan:(BOOL)isMan andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
+
+/**
+ *  更改用户名
+ */
+- (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
+
+
 @end

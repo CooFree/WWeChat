@@ -21,23 +21,27 @@
 
 - (void)loginWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
 {
-    AVQuery *query = [AVQuery queryWithClassName:wUserClass];
-    
-    [query whereKey:@"username" equalTo:userName];
-    
-    [query whereKey:@"passWord" equalTo:passWord];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if (objects.count>0)
-            {
-                //存入userID
-                NSString * userID = [objects[0] objectForKey:@"objectId"];
-                [[NSUserDefaults standardUserDefaults]setObject:userID forKey:wUserID];
-                NSLog(@"userID:%@",userID);
-                successBlock(nil);
-            }
-        } else
+    [AVUser logInWithUsernameInBackground:userName password:passWord block:^(AVUser *user, NSError *error) {
+        if (user != nil)
+        {
+            //存入objectId
+            NSString * objectId = [user objectForKey:@"objectId"];
+            [[NSUserDefaults standardUserDefaults]setObject:objectId forKey:wUserID];
+            NSLog(@"objectId:%@",objectId);
+
+            NSDictionary * userDic = @{
+                                       @"username":user.username,
+                                       @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
+                                       @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
+                                       @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"]
+                                    };
+
+            [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
+            
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            successBlock(nil);
+        }
+        else
         {
             failureBlock(error);
         }
@@ -46,38 +50,17 @@
 
 - (void)registerWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock
 {
-    AVObject * user = [AVObject objectWithClassName:wUserClass];
-    
-    user[@"username"] = userName;
-    
-    user[@"password"] = @"123";
-    
-    user[@"passWord"] = passWord;
-    
-    AVQuery *query = [AVQuery queryWithClassName:wUserClass];
-    
-    [query whereKey:@"username" equalTo:userName];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if (objects.count == 0)
-            {
-                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (successBlock)
-                    {
-                        successBlock(nil);
-                    }
-                    else
-                    {
-                        failureBlock(error);
-                    }
-                }];
-            }
-            else
-            {
-                failureBlock(nil);
-            }
-        } else {
+    AVUser * user = [AVUser user];
+    user.username = userName;
+    user.password = passWord;
+
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded)
+        {
+            successBlock(nil);
+        }
+        else
+        {
             failureBlock(error);
         }
     }];
@@ -85,15 +68,54 @@
 
 - (void)updataAvaterWithImg:(UIImage *)img andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
 {
-    NSString * userId = [[NSUserDefaults standardUserDefaults]objectForKey:wUserID];
     
     NSData *imageData = UIImagePNGRepresentation(img);
     AVFile *imageFile = [AVFile fileWithName:@"image.png" data:imageData];
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     
+        if (succeeded)
+        {
+            AVUser *currentUser = [AVUser currentUser];
+            currentUser[@"avaterUrl"] = imageFile.url;
+            [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+             {
+                if (succeeded)
+                {
+                    successBlock(imageFile.url);
+                }
+                else
+                {
+                    failureBlock(error);
+                }
+            }];
+
+        }
+        
     } progressBlock:^(NSInteger percentDone) {
         
     }];
+    
+}
+
+- (void)updataSexWithIsMan:(BOOL)isMan andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
+{
+    AVUser *currentUser = [AVUser currentUser];
+    currentUser[@"sex"] = [NSNumber numberWithInt:isMan];
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded)
+        {
+            NSLog(@"更改性别成功");
+        }
+        else
+        {
+            failureBlock(error);
+        }
+    }];
+    
+}
+
+- (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
+{
     
 }
 @end

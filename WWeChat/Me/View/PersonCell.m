@@ -22,10 +22,9 @@
 
 - (void)setModel:(PersonModel *)model
 {
-    
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    [self.avaterImgView setImageWithURL:[NSURL URLWithString:_model.avater] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [self.avaterImgView setImageWithURL:[NSURL URLWithString:model.avater] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         
     }];
     

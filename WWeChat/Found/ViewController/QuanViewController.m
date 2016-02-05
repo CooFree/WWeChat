@@ -7,6 +7,8 @@
 //
 
 #import "QuanViewController.h"
+#import "UserInfoManager.h"
+#import "UIImageView+WebCache.h"
 
 @interface QuanViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -109,14 +111,18 @@
     [realView addSubview:avaterBackGroundView];
     
     UIImageView * avaterImgView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(2), WGiveWidth(2), WGiveHeight(75) - WGiveWidth(4), WGiveHeight(75) - WGiveWidth(4))];
-    avaterImgView.image = [UIImage imageNamed:@"avater.jpg"];
+        
+    [avaterImgView setImageWithURL:[NSURL URLWithString:[[UserInfoManager manager]avaterUrl]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+    }];
+        
     [avaterBackGroundView addSubview:avaterImgView];
     }
     
     //名字部分
     {
         UILabel * userNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, WGiveHeight(276), WGiveWidth(218), WGiveHeight(44))];
-        userNameLabel.text = @"WzxJiang";
+        userNameLabel.text = [[UserInfoManager manager]userName];
         userNameLabel.font = [UIFont boldSystemFontOfSize:17];
         userNameLabel.textColor = [UIColor whiteColor];
         userNameLabel.textAlignment = NSTextAlignmentRight;

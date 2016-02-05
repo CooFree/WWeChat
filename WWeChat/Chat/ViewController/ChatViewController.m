@@ -36,7 +36,7 @@
 
 - (void)preData
 {
-    [[WWeChatApi giveMeApi]loginWithUserName:@"Wzxhaha" andPassWord:@"123456" andSuccess:^(id response) {
+    [[WWeChatApi giveMeApi]loginWithUserName:@"WzxJiang1" andPassWord:@"123456" andSuccess:^(id response) {
         NSLog(@"登录成功%@",response);
         self.navigationItem.title = @"微信";
     } andFailure:^(NSError *error) {
@@ -44,13 +44,20 @@
         self.navigationItem.title = @"微信(未连接)";
     }];
     
-//    [[WWeChatApi giveMeApi]updataAvaterWithImg:[UIImage imageNamed:@"avater.jpg"] andSuccess:^(id response) {
+//    [[WWeChatApi giveMeApi]updataSexWithIsMan:NO andSuccess:^(id response) {
+//        
+//    } andFailure:^(NSError *error) {
+//        
+//    }];
+    
+    
+//    [[WWeChatApi giveMeApi]updataAvaterWithImg:[UIImage imageNamed:@"Quan"] andSuccess:^(id response) {
 //        NSLog(@"保存图片成功");
 //    } andFailure:^(NSError *error) {
 //        NSLog(@"error:%@",error.localizedDescription);
 //    }];
     
-//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang" andPassWord:@"123456" andSuccess:^(id response) {
+//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang1" andPassWord:@"123456" andSuccess:^(id response) {
 //        
 //        NSLog(@"注册成功");
 //        
