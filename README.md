@@ -17,10 +17,14 @@
  * 2016.1.31 完成全部主界面UI
  * 2016.2.02 导入```LearnCloud```动态库做服务器，完成登录注册接口
  * 2016.2.04 完成部分朋友圈，以及修复一点小问题
+ * 2016.2.05 完成更改头像功能，以及写好了其他资料更新的方法
  <div>
  </div>
  
 ####当前进度
+ ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat205.gif)
+<div>
+</div>
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
 <div>
 </div>
