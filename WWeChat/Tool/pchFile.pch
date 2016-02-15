@@ -32,3 +32,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 //userinfo
 #define wUserInfo @"wUserInfo"
+
+#import "MBProgressHUD.h"
+#import "UIImageView+WebCache.h"

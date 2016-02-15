@@ -19,4 +19,9 @@
  *  添加nav上右按钮，字符串
  */
 - (void)addRightBtnWithStr:(NSString *)str andSelector:(SEL)sel;
+
+/**
+ *  添加nav上左按钮，字符串
+ */
+- (void)addLeftBtnWithStr:(NSString *)str andSelector:(SEL)sel;
 @end

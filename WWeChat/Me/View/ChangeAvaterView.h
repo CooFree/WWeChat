@@ -16,14 +16,11 @@
 @property(nonatomic,strong)UIView * popView;
 
 /**
- *  弹出的view
+ *  thisTag 50000
  */
-@property(nonatomic,strong)UIButton * cameraBtn;
+@property(nonatomic,assign)NSInteger  thisTag;
 
-/**
- *  弹出的view
- */
-@property(nonatomic,strong)UIButton * photoBtn;
+- (instancetype)initWithFrame:(CGRect)frame andBtnArr:(NSArray *)btnArr;
 
 - (void)show;
 

@@ -30,10 +30,15 @@
             NSLog(@"objectId:%@",objectId);
 
             NSDictionary * userDic = @{
-                                       @"username":user.username,
+                                       @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
+                                       
                                        @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
+                                       
                                        @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
-                                       @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"]
+                                       
+                                       @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"],
+                                       
+                                        @"sign":[user objectForKey:@"sign"] == nil?@"":[user objectForKey:@"sign"]
                                     };
 
             [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
@@ -81,6 +86,12 @@
              {
                 if (succeeded)
                 {
+                    NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+                    NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+                    [muDic setObject:imageFile.url forKey:@"avaterUrl"];
+                    [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                    
                     successBlock(imageFile.url);
                 }
                 else
@@ -104,7 +115,13 @@
     [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded)
         {
+            NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+            NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+            [muDic setObject:[NSNumber numberWithInt:isMan] forKey:@"sex"];
+            [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
+            [[NSUserDefaults standardUserDefaults]synchronize];
             NSLog(@"更改性别成功");
+            successBlock(nil);
         }
         else
         {
@@ -116,6 +133,23 @@
 
 - (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
 {
-    
+    AVUser *currentUser = [AVUser currentUser];
+    currentUser[@"nickName"] = name;
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded)
+        {
+            NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+            NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+            [muDic setObject:name forKey:@"nickName"];
+            [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            NSLog(@"更改昵称成功");
+            successBlock(nil);
+        }
+        else
+        {
+            failureBlock(error);
+        }
+    }];
 }
 @end

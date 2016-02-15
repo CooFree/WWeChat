@@ -32,5 +32,8 @@
  */
 - (BOOL)sex;
 
-
+/**
+ *  个性签名
+ */
+- (NSString *)sign;
 @end

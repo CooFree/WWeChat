@@ -10,14 +10,9 @@
 
 #import "UserInfoManager.h"
 
-#import "UIImageView+WebCache.h"
+#import "ChangeDataViewController.h"
 
-#import "ChangeAvaterView.h"
-
-#import "WWeChatApi.h"
-
-#import "MBProgressHUD.h"
-@interface PersonViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface PersonViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView * tableView;
 
@@ -25,12 +20,12 @@
 
 @property(nonatomic,copy)NSArray * valueArr;
 
-@property(nonatomic,strong)ChangeAvaterView * changeView;
-
 @end
 
 @implementation PersonViewController
-
+{
+    UIImage * _avaterImg;
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [self preData];
@@ -74,7 +69,7 @@
                   @[
                       [[UserInfoManager manager]sex]==YES?@"男":@"女",
                       @"上海 杨浦",
-                      @"iOS Coder.GitHub:Wzxhaha"
+                      [[UserInfoManager manager]sign]
                       ]
                   
                   ];
@@ -82,7 +77,6 @@
     if (_tableView)
     {
         [_tableView reloadData];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     else
     {
@@ -125,13 +119,21 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.textLabel.text = _titleArr[indexPath.section][indexPath.row];
+    
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         for (UIView * view in cell.contentView.subviews)
@@ -141,9 +143,9 @@
         
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(220), (cell.frame.size.height - WGiveHeight(64))/2.0, WGiveHeight(64), WGiveHeight(64))];
         
-        [imageView setImageWithURL:[NSURL URLWithString:_valueArr[indexPath.section][indexPath.row]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            
-        }];
+            [imageView setImageWithURL:[NSURL URLWithString:_valueArr[indexPath.section][indexPath.row]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                _avaterImg = image;
+            }];
         
         imageView.layer.cornerRadius = 5;
         imageView.clipsToBounds = YES;
@@ -156,7 +158,6 @@
         {
             [view removeFromSuperview];
         }
-
         
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(270), (cell.frame.size.height - WGiveHeight(18))/2.0, WGiveHeight(18), WGiveHeight(18))];
         
@@ -164,8 +165,23 @@
         
         [cell.contentView addSubview:imageView];
     }
+    else if(indexPath.section == 1 && indexPath.row == 2)
+    {
+        for (UIView * view in cell.contentView.subviews)
+        {
+            [view removeFromSuperview];
+        }
+        UILabel * signLabel = [[UILabel alloc]initWithFrame:CGRectMake(WGiveWidth(148), 0, WGiveWidth(145), cell.frame.size.height)];
+        signLabel.text = [[UserInfoManager manager]sign];
+        signLabel.backgroundColor = [UIColor whiteColor];
+        signLabel.textAlignment = NSTextAlignmentRight;
+        signLabel.textColor = [UIColor grayColor];
+        signLabel.numberOfLines = 0;
+        [cell.contentView addSubview:signLabel];
+    }
     else
     {
+        NSLog(@"font%@  color%@",cell.textLabel.font,cell.textLabel.textColor);
         cell.detailTextLabel.text = _valueArr[indexPath.section][indexPath.row];
     }
 }
@@ -175,6 +191,10 @@
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         return WGiveHeight(80);
+    }
+    else if(indexPath.section == 1 && indexPath.row == 2)
+    {
+        return [self giveMeHeightWithStr:[[UserInfoManager manager]sign]]<WGiveHeight(44)?WGiveHeight(44):[self giveMeHeightWithStr:[[UserInfoManager manager]sign]];
     }
     else
     {
@@ -206,31 +226,21 @@
         //修改头像
         if (indexPath.row == 0)
         {
-            if (!_changeView)
-            {
-                _changeView = [[ChangeAvaterView alloc]initWithFrame:self.view.bounds];
-                [[UIApplication sharedApplication].keyWindow addSubview:_changeView];
-                [_changeView.cameraBtn addTarget:self action:@selector(cameraBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                [_changeView.photoBtn addTarget:self action:@selector(photoClick:) forControlEvents:UIControlEventTouchUpInside];
-                [_changeView show];
-            }
-            else
-            {
-                [[UIApplication sharedApplication].keyWindow addSubview:_changeView];
-                [_changeView show];
-            }
+            ChangeDataViewController * changeDataVC = [[ChangeDataViewController alloc]initWithType:ChangeAvater];
+            changeDataVC.avaterView.image = _avaterImg;
+            [self.navigationController pushViewController:changeDataVC animated:YES];
         }
         //修改用户名
         else if(indexPath.row == 1)
         {
-            
+            [self.navigationController pushViewController:[[ChangeDataViewController alloc]initWithType:ChangeNickName] animated:YES];
         }
         //微信号（不能修改）
         else if(indexPath.row == 2)
         {
             
         }
-        //二维码
+        //二维码 
         else if(indexPath.row == 3)
         {
             
@@ -238,7 +248,7 @@
         //地址
         else if(indexPath.row == 4)
         {
-            
+             [self.navigationController pushViewController:[[ChangeDataViewController alloc]initWithType:ChangeAddress] animated:YES];
         }
     }
     else
@@ -246,106 +256,35 @@
         //性别
         if (indexPath.row == 0)
         {
-            
+             [self.navigationController pushViewController:[[ChangeDataViewController alloc]initWithType:ChangeSex] animated:YES];
         }
         //地区
         else if(indexPath.row == 1)
         {
-            
+             [self.navigationController pushViewController:[[ChangeDataViewController alloc]initWithType:ChangePath] animated:YES];
         }
         //个性签名
         else if(indexPath.row == 2)
         {
-            
+             [self.navigationController pushViewController:[[ChangeDataViewController alloc]initWithType:ChangeSign] animated:YES];
         }
     }
 }
 
-- (void)cameraBtnClick:(UIButton *)sender
+- (CGFloat)giveMeHeightWithStr:(NSString *)str
 {
-    [_changeView hide];
-    NSLog(@"拍照");
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
-    {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        //设置拍照后的图片可被编辑
-        picker.allowsEditing = YES;
-        picker.sourceType = sourceType;
-        [self presentViewController:picker animated:YES completion:^{
-            
-        }];
-    }else
-    {
-        NSLog(@"模拟其中无法打开照相机,请在真机中使用");
-    }
-}
-
-- (void)photoClick:(UIButton *)sender
-{
-    [_changeView hide];
-    NSLog(@"相册");
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:17]};
     
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    //设置选择后的图片可被编辑
-    picker.allowsEditing = YES;
-    [self presentViewController:picker animated:YES completion:^{
-        
-    }];
-}
-
-//当选择一张图片后进入这里
--(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-
-{
+    CGSize retSize = [str boundingRectWithSize:CGSizeMake(WGiveWidth(145), MAXFLOAT)
+                                             options:\
+                      NSStringDrawingTruncatesLastVisibleLine |
+                      NSStringDrawingUsesLineFragmentOrigin |
+                      NSStringDrawingUsesFontLeading
+                                          attributes:attribute
+                                             context:nil].size;
     
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
-    {
-//        //先把图片转成NSData
-        UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        UIImage * smallImage = [self imageWithImageSimple:image scaledToSize:CGSizeMake(128, 128)];
-//        //关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:^{
-            
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.label.text = @"正在上传头像";
-            [[WWeChatApi giveMeApi]updataAvaterWithImg:smallImage andSuccess:^(id response) {
-            
-                NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
-                NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
-                [muDic setObject:response forKey:@"avaterUrl"];
-                [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
-                [[NSUserDefaults standardUserDefaults]synchronize];
-                
-                
-                [self preData];
-                
-            } andFailure:^(NSError *error) {
-                
-                NSLog(@"error:%@",error.localizedDescription);
-                
-            }];
-            
-        }];
-        
-    }
-    
+    return retSize.height;
 }
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    NSLog(@"您取消了选择图片");
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -353,25 +292,7 @@
 }
 
 
-//压缩图片方法
-- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
-{
-    // Create a graphics image context
-    UIGraphicsBeginImageContext(newSize);
-    
-    // Tell the old image to draw in this new context, with the desired
-    // new size
-    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    
-    // Get the new image from the context
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // End the context
-    UIGraphicsEndImageContext();
-    
-    // Return the new image.
-    return newImage;
-}
+
 /*
 #pragma mark - Navigation
 

@@ -33,6 +33,10 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:str style:UIBarButtonItemStylePlain target:self action:sel];
 }
 
+- (void)addLeftBtnWithStr:(NSString *)str andSelector:(SEL)sel
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:str style:UIBarButtonItemStylePlain target:self action:sel];
+}
 
 - (void)addRightBtnWithImgName:(NSString *)imgName andSelector:(SEL)sel
 {

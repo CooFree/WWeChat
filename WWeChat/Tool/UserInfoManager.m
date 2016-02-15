@@ -23,7 +23,7 @@
 - (NSString *)userName
 {
     NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
-    return dic[@"username"];
+    return dic[@"nickName"];
 }
 
 - (NSString *)wxID
@@ -44,4 +44,9 @@
     return [dic[@"sex"]boolValue];
 }
 
+- (NSString *)sign
+{
+    NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+    return dic[@"sign"];
+}
 @end

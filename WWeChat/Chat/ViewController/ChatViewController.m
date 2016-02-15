@@ -36,14 +36,14 @@
 
 - (void)preData
 {
-    [[WWeChatApi giveMeApi]loginWithUserName:@"WzxJiang1" andPassWord:@"123456" andSuccess:^(id response) {
+    [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
         NSLog(@"登录成功%@",response);
         self.navigationItem.title = @"微信";
     } andFailure:^(NSError *error) {
         NSLog(@"登录失败%@",error);
         self.navigationItem.title = @"微信(未连接)";
     }];
-    
+    NSLog(@"%@",NSHomeDirectory());
 //    [[WWeChatApi giveMeApi]updataSexWithIsMan:NO andSuccess:^(id response) {
 //        
 //    } andFailure:^(NSError *error) {

@@ -65,6 +65,7 @@
 		4BF31B651C5B667000B4100A /* avater.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31B641C5B667000B4100A /* avater.jpg */; };
 		4BF31BAE1C5DB29500B4100A /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF31BAC1C5DB29500B4100A /* ChatCell.m */; };
 		4BF31BAF1C5DB29500B4100A /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31BAD1C5DB29500B4100A /* ChatCell.xib */; };
+		4BF31C331C7172C900B4100A /* ChangeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF31C321C7172C900B4100A /* ChangeDataViewController.m */; };
 		690BE0F31C60C3AB00DDC8AA /* WWeChatApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */; };
 		690BE0F71C60C54D00DDC8AA /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; };
 		690BE0F81C60C54D00DDC8AA /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; };
@@ -228,6 +229,8 @@
 		4BF31BAB1C5DB29500B4100A /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		4BF31BAC1C5DB29500B4100A /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		4BF31BAD1C5DB29500B4100A /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		4BF31C311C7172C900B4100A /* ChangeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeDataViewController.h; sourceTree = "<group>"; };
+		4BF31C321C7172C900B4100A /* ChangeDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeDataViewController.m; sourceTree = "<group>"; };
 		690BE0F11C60C3AB00DDC8AA /* WWeChatApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWeChatApi.h; sourceTree = "<group>"; };
 		690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWeChatApi.m; sourceTree = "<group>"; };
 		690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 				4BBD94031C5A1B860057FAC5 /* MeViewController.m */,
 				694B020C1C62249B009333C4 /* PersonViewController.h */,
 				694B020D1C62249B009333C4 /* PersonViewController.m */,
+				4BF31C311C7172C900B4100A /* ChangeDataViewController.h */,
+				4BF31C321C7172C900B4100A /* ChangeDataViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -862,6 +867,7 @@
 				4BBD93B81C5A17160057FAC5 /* AppDelegate.m in Sources */,
 				4BF31B4F1C5B36AD00B4100A /* UIButton+WebCache.m in Sources */,
 				4BF31B531C5B36AD00B4100A /* UIImageView+WebCache.m in Sources */,
+				4BF31C331C7172C900B4100A /* ChangeDataViewController.m in Sources */,
 				4BF31B4B1C5B36AD00B4100A /* SDWebImageDownloader.m in Sources */,
 				4BF31B521C5B36AD00B4100A /* UIImage+WebP.m in Sources */,
 				4BF31B511C5B36AD00B4100A /* UIImage+MultiFormat.m in Sources */,
