@@ -162,7 +162,7 @@
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(270), (cell.frame.size.height - WGiveHeight(18))/2.0, WGiveHeight(18), WGiveHeight(18))];
         
         imageView.image = [UIImage imageNamed:@"me_wm"];
-        
+
         [cell.contentView addSubview:imageView];
     }
     else if(indexPath.section == 1 && indexPath.row == 2)

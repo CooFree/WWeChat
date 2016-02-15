@@ -33,8 +33,6 @@
     self.weIDLabel.text = [NSString stringWithFormat:@"微信号: %@",model.weID];
     
     self.wmImgView.image = [UIImage imageNamed:@"me_wm"];
-    self.wmImgView.backgroundColor = [UIColor grayColor];
-    
 }
 
 //懒加载
