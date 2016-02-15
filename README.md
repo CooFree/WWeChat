@@ -26,7 +26,7 @@
  </div>
  
 ####当前进度
- ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat205.gif)
+ ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
 <div>
 </div>
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
