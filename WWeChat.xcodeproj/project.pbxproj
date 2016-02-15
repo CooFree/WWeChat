@@ -12,7 +12,6 @@
 		4BBD93BB1C5A17160057FAC5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93BA1C5A17160057FAC5 /* ViewController.m */; };
 		4BBD93BE1C5A17160057FAC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BBD93BC1C5A17160057FAC5 /* Main.storyboard */; };
 		4BBD93C01C5A17160057FAC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BBD93BF1C5A17160057FAC5 /* Assets.xcassets */; };
-		4BBD93C31C5A17160057FAC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BBD93C11C5A17160057FAC5 /* LaunchScreen.storyboard */; };
 		4BBD93CE1C5A17160057FAC5 /* WWeChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93CD1C5A17160057FAC5 /* WWeChatTests.m */; };
 		4BBD93D91C5A17160057FAC5 /* WWeChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93D81C5A17160057FAC5 /* WWeChatUITests.m */; };
 		4BBD93F81C5A1AB10057FAC5 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93F71C5A1AB10057FAC5 /* TabBarViewController.m */; };
@@ -66,6 +65,7 @@
 		4BF31BAE1C5DB29500B4100A /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF31BAC1C5DB29500B4100A /* ChatCell.m */; };
 		4BF31BAF1C5DB29500B4100A /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31BAD1C5DB29500B4100A /* ChatCell.xib */; };
 		4BF31C331C7172C900B4100A /* ChangeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF31C321C7172C900B4100A /* ChangeDataViewController.m */; };
+		4BF31C351C71DC5200B4100A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BF31C341C71DC5200B4100A /* LaunchScreen.storyboard */; };
 		690BE0F31C60C3AB00DDC8AA /* WWeChatApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */; };
 		690BE0F71C60C54D00DDC8AA /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */; };
 		690BE0F81C60C54D00DDC8AA /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690BE0F61C60C54D00DDC8AA /* AVOSCloudIM.framework */; };
@@ -122,7 +122,6 @@
 		4BBD93BA1C5A17160057FAC5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4BBD93BD1C5A17160057FAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BBD93BF1C5A17160057FAC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4BBD93C21C5A17160057FAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BBD93C41C5A17160057FAC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BBD93C91C5A17160057FAC5 /* WWeChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWeChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BBD93CD1C5A17160057FAC5 /* WWeChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WWeChatTests.m; sourceTree = "<group>"; };
@@ -231,6 +230,7 @@
 		4BF31BAD1C5DB29500B4100A /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		4BF31C311C7172C900B4100A /* ChangeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeDataViewController.h; sourceTree = "<group>"; };
 		4BF31C321C7172C900B4100A /* ChangeDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeDataViewController.m; sourceTree = "<group>"; };
+		4BF31C341C71DC5200B4100A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		690BE0F11C60C3AB00DDC8AA /* WWeChatApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWeChatApi.h; sourceTree = "<group>"; };
 		690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWeChatApi.m; sourceTree = "<group>"; };
 		690BE0F51C60C54D00DDC8AA /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
@@ -321,10 +321,10 @@
 		4BBD93B31C5A17160057FAC5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BF31C341C71DC5200B4100A /* LaunchScreen.storyboard */,
+				4BBD93BF1C5A17160057FAC5 /* Assets.xcassets */,
 				4BF31B5B1C5B520E00B4100A /* pchFile.pch */,
 				4BBD93C41C5A17160057FAC5 /* Info.plist */,
-				4BBD93BF1C5A17160057FAC5 /* Assets.xcassets */,
-				4BBD93C11C5A17160057FAC5 /* LaunchScreen.storyboard */,
 				4BBD93B41C5A17160057FAC5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -748,7 +748,6 @@
 				TargetAttributes = {
 					4BBD93AF1C5A17160057FAC5 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 52TXXFTT5L;
 					};
 					4BBD93C81C5A17160057FAC5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -785,8 +784,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF31C351C71DC5200B4100A /* LaunchScreen.storyboard in Resources */,
 				698EFFE81C637E20005618E6 /* Quan.png in Resources */,
-				4BBD93C31C5A17160057FAC5 /* LaunchScreen.storyboard in Resources */,
 				4BF31B451C5B36AD00B4100A /* remind_noimage.png in Resources */,
 				4BF31B461C5B36AD00B4100A /* remind_noimage@2x.png in Resources */,
 				4BBD93C01C5A17160057FAC5 /* Assets.xcassets in Resources */,
@@ -932,14 +931,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		4BBD93C11C5A17160057FAC5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BBD93C21C5A17160057FAC5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1038,7 +1029,7 @@
 				INFOPLIST_FILE = WWeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.WWeChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NULL.WWeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1059,7 +1050,7 @@
 				INFOPLIST_FILE = WWeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.WWeChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NULL.WWeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

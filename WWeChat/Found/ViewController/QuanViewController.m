@@ -146,6 +146,11 @@
         }
         frame.origin.y = nowY;
         self.refreshView.frame = frame;
+        
+        CGFloat angle = tran * (M_PI/180);
+        
+        self.refreshView.backgroundColor = [UIColor blackColor];
+        self.refreshView.transform = CGAffineTransformMakeRotation(angle);
     }
 }
 
