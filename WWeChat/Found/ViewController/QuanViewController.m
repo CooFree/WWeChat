@@ -147,10 +147,10 @@
         frame.origin.y = nowY;
         self.refreshView.frame = frame;
         
-        CGFloat angle = tran * (M_PI/180);
         
-        self.refreshView.backgroundColor = [UIColor blackColor];
-        self.refreshView.transform = CGAffineTransformMakeRotation(angle);
+        [UIView animateWithDuration:5 animations:^{
+            self.refreshView.layer.transform = CATransform3DRotate(self.refreshView.layer.transform, M_PI, 0, 0, 1);
+        }];
     }
 }
 
@@ -158,11 +158,12 @@
 {
      _isRefrsh = YES;
     
-   // [self startRefresh];
+    [self startRefresh];
+    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        
-//        [self stopRefresh];
+        [self stopRefresh];
         [UIView animateWithDuration:0.5 animations:^{
             self.refreshView.frame = CGRectMake(WGiveWidth(20),64 - WGiveHeight(28), WGiveHeight(28), WGiveHeight(28));
         } completion:^(BOOL finished) {
@@ -186,7 +187,10 @@
 
 - (void)startRefresh
 {
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
+    //_timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
+    [UIView animateWithDuration:1 animations:^{
+        self.refreshView.layer.transform = CATransform3DRotate(self.refreshView.layer.transform, M_PI, 0, 0, 1);
+    }];
 }
 
 - (void)refresh
