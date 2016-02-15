@@ -173,7 +173,6 @@
         }
         UILabel * signLabel = [[UILabel alloc]initWithFrame:CGRectMake(WGiveWidth(148), 0, WGiveWidth(145), cell.frame.size.height)];
         signLabel.text = [[UserInfoManager manager]sign];
-        signLabel.backgroundColor = [UIColor whiteColor];
         signLabel.textAlignment = NSTextAlignmentRight;
         signLabel.textColor = [UIColor grayColor];
         signLabel.numberOfLines = 0;
