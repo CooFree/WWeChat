@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GlassView.h"
 @interface BaseViewController : UIViewController
+
+/**
+ *  毛玻璃效果view
+ */
+@property (nonatomic,strong)GlassView * glassView;
 
 /**
  *  添加nav上右按钮，图片

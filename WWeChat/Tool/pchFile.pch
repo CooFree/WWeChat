@@ -35,7 +35,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #import "UIImageView+WebCache.h"
 
 
-
+//微信绿
+#define WXGreen [UIColor colorWithRed:36/255.0 green:186/255.0 blue:36/255.0 alpha:1]
 
 #endif /* PrefixHeader_pch */
 

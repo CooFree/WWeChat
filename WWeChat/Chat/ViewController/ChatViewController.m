@@ -9,8 +9,9 @@
 #import "ChatViewController.h"
 #import "ChatCell.h"
 
+#import "GlassView.h"
 #import "WWeChatApi.h"
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate>
 
 /**
  *  tableView
@@ -143,22 +144,34 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     
     //self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
     
-    self.searchController.dimsBackgroundDuringPresentation = YES;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
     
     [self.searchController.searchBar sizeToFit];
-    
-    //self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
     
     self.searchController.searchBar.backgroundImage = [[UIImage alloc]init];
     
     self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
     
+    self.searchController.searchBar.tintColor = WXGreen;
+    
     self.searchController.searchBar.placeholder = @"搜索";
+    
+   
     
     return self.searchController.searchBar;
 }
 
+- (void)willPresentSearchController:(UISearchController *)searchController
+{
+    [self.glassView showToView:self.view];
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController
+{
+    [self.glassView hide];
+}
 //设置头视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

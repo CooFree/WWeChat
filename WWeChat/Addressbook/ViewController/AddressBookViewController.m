@@ -10,7 +10,7 @@
 #import "NSString+PinYin.h"
 
 #import "AddFriendViewController.h"
-@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating>
+@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 
 @property(nonatomic,strong)NSMutableArray * dataArr;
 
@@ -264,19 +264,32 @@
         
         //self.searchController.searchResultsUpdater = self;
         
-        self.searchController.dimsBackgroundDuringPresentation = YES;
+        self.searchController.dimsBackgroundDuringPresentation = NO;
         
         [self.searchController.searchBar sizeToFit];
         
         //self.searchController.searchBar.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
         
+        self.searchController.delegate = self;
+        
         self.searchController.searchBar.backgroundImage = [[UIImage alloc]init];
         
         self.searchController.searchBar.placeholder = @"搜索";
         
+        self.searchController.searchBar.tintColor = WXGreen;
         return self.searchController.searchBar;
     }
     return nil;
+}
+
+- (void)willPresentSearchController:(UISearchController *)searchController
+{
+    [self.glassView showToView:self.view];
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController
+{
+    [self.glassView hide];
 }
 
 //加索引
