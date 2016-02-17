@@ -9,8 +9,6 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#endif /* PrefixHeader_pch */
-
 //按比例获取高度
 #define  WGiveHeight(HEIGHT) HEIGHT * [UIScreen mainScreen].bounds.size.height/568.0
 
@@ -35,3 +33,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
+
+
+
+
+#endif /* PrefixHeader_pch */
+

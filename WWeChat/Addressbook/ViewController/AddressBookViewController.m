@@ -9,6 +9,7 @@
 #import "AddressBookViewController.h"
 #import "NSString+PinYin.h"
 
+#import "AddFriendViewController.h"
 @interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating>
 
 @property(nonatomic,strong)NSMutableArray * dataArr;
@@ -135,7 +136,9 @@
 
 - (void)rightBtnClick:(UIButton *)sender
 {
-    NSLog(@"点击了");
+    AddFriendViewController * addVC = [[AddFriendViewController alloc]init];
+    addVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 #pragma mark --tableView--
