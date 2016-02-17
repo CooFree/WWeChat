@@ -26,7 +26,7 @@
  <div>
  </div>
  
-####当前进度
+####当前进度(重大进展才以gif图展示效果)
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
 <div>
 </div>
