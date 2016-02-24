@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B8107771C74142B004EE23E /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8107761C74142B004EE23E /* AddFriendViewController.m */; };
+		4BA26DC01C7D992300BE0880 /* WZXChatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA26DBF1C7D992300BE0880 /* WZXChatTool.m */; };
 		4BAA6AE51C7476BD00785F4C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA6AE41C7476BD00785F4C /* SearchViewController.m */; };
 		4BAA6AE81C74779300785F4C /* GlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA6AE71C74779300785F4C /* GlassView.m */; };
 		4BBD93B51C5A17160057FAC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93B41C5A17160057FAC5 /* main.m */; };
@@ -119,6 +120,8 @@
 /* Begin PBXFileReference section */
 		4B8107751C74142B004EE23E /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		4B8107761C74142B004EE23E /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		4BA26DBE1C7D992300BE0880 /* WZXChatTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WZXChatTool.h; path = lib/WZXChatTool.h; sourceTree = "<group>"; };
+		4BA26DBF1C7D992300BE0880 /* WZXChatTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WZXChatTool.m; path = lib/WZXChatTool.m; sourceTree = "<group>"; };
 		4BAA6AE31C7476BD00785F4C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		4BAA6AE41C7476BD00785F4C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4BAA6AE61C74779300785F4C /* GlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlassView.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 			isa = PBXGroup;
 			children = (
 				4BF31ADE1C5B36AD00B4100A /* lib */,
+				4BA26DBE1C7D992300BE0880 /* WZXChatTool.h */,
+				4BA26DBF1C7D992300BE0880 /* WZXChatTool.m */,
 				690BE0F11C60C3AB00DDC8AA /* WWeChatApi.h */,
 				690BE0F21C60C3AB00DDC8AA /* WWeChatApi.m */,
 				698EFFE91C647949005618E6 /* UserInfoManager.h */,
@@ -853,6 +858,7 @@
 				4BF31B631C5B5CF600B4100A /* PersonModel.m in Sources */,
 				4BF31B4D1C5B36AD00B4100A /* SDWebImageManager.m in Sources */,
 				4BF31B4E1C5B36AD00B4100A /* SDWebImagePrefetcher.m in Sources */,
+				4BA26DC01C7D992300BE0880 /* WZXChatTool.m in Sources */,
 				4BF31B321C5B36AD00B4100A /* AFNetworkReachabilityManager.m in Sources */,
 				4BBD94071C5A2BC90057FAC5 /* BaseViewController.m in Sources */,
 				4BF31B3F1C5B36AD00B4100A /* UIProgressView+AFNetworking.m in Sources */,

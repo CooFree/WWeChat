@@ -79,6 +79,12 @@
     }
     return _glassView;
 }
+
+#pragma mark -- im --
+// 接收消息的回调函数
+- (void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
+    NSLog(@"%@", message.text);
+}
 /*
 #pragma mark - Navigation
 

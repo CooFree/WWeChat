@@ -41,5 +41,4 @@
  */
 - (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
 
-
 @end

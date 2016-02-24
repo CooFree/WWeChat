@@ -20,6 +20,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     self.window.bounds = [UIScreen mainScreen].bounds;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

@@ -7,7 +7,7 @@
 //
 
 #import "WWeChatApi.h"
-
+#import "UserInfoManager.h"
 @implementation WWeChatApi
 
 + (WWeChatApi *)giveMeApi
@@ -30,6 +30,7 @@
             NSLog(@"objectId:%@",objectId);
 
             NSDictionary * userDic = @{
+                                       @"mid":[user objectForKey:@"username"] == nil ?@"":[user objectForKey:@"username"],
                                        @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
                                        
                                        @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
@@ -44,6 +45,9 @@
             [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
             
             [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            
+            [UserInfoManager manager].isLogin = YES;
             successBlock(nil);
         }
         else
@@ -152,4 +156,5 @@
         }
     }];
 }
+
 @end

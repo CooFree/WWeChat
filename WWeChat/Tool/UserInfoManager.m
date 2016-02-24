@@ -20,6 +20,16 @@
     return manager;
 }
 
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        _isLogin = NO;
+        _isOpenIm = NO;
+    }
+    return self;
+}
+
 - (NSString *)userName
 {
     NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
@@ -48,5 +58,11 @@
 {
     NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
     return dic[@"sign"];
+}
+
+- (NSString *)mid
+{
+    NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+    return dic[@"mid"];
 }
 @end

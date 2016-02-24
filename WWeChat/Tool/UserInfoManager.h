@@ -36,4 +36,19 @@
  *  个性签名
  */
 - (NSString *)sign;
+
+/**
+ *  真正用于登录的id
+ */
+- (NSString *)mid;
+
+/**
+ *  是否已登录
+ */
+@property(nonatomic,assign)BOOL isLogin;
+
+/**
+ *  是否打开了会话环境
+ */
+@property(nonatomic,assign)BOOL isOpenIm;
 @end

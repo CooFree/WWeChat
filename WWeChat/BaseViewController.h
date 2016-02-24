@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "GlassView.h"
+#import "WZXChatTool.h"
 @interface BaseViewController : UIViewController
 
 /**
  *  毛玻璃效果view
  */
 @property (nonatomic,strong)GlassView * glassView;
+
+/**
+ *
+ */
+@property (nonatomic,strong)AVIMClient * client;
 
 /**
  *  添加nav上右按钮，图片

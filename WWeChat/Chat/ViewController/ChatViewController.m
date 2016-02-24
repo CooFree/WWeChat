@@ -9,9 +9,11 @@
 #import "ChatViewController.h"
 #import "ChatCell.h"
 
+#import "UserInfoManager.h"
 #import "GlassView.h"
 #import "WWeChatApi.h"
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate>
+#import "WZXChatTool.h"
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate,AVIMClientDelegate>
 
 /**
  *  tableView
@@ -19,7 +21,7 @@
 @property(nonatomic,strong)UITableView * tableView;
 
 
-@property(nonatomic,copy)NSArray * dataArr;
+@property(nonatomic,copy)NSMutableArray * dataArr;
 
 @property(nonatomic,strong)UISearchController * searchController;
 
@@ -27,63 +29,116 @@
 
 @implementation ChatViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+     [self preData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self addRightBtnWithImgName:@"chat_add" andSelector:@selector(rightBtnClick:)];
-    
-    [self preData];
 }
 
 - (void)preData
 {
-    [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
-        NSLog(@"登录成功%@",response);
-        self.navigationItem.title = @"微信";
-    } andFailure:^(NSError *error) {
-        NSLog(@"登录失败%@",error);
-        self.navigationItem.title = @"微信(未连接)";
+    _dataArr = [[NSMutableArray alloc]init];
+    if ([UserInfoManager manager].isLogin == NO)
+    {
+        [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
+            NSLog(@"登录成功%@",response);
+            self.navigationItem.title = @"微信";
+            
+            if ([UserInfoManager manager].isOpenIm == NO)
+            {
+                self.client = [[AVIMClient alloc]initWithClientId:[UserInfoManager manager].mid];
+                
+                self.client.delegate = self;
+                
+                WZXChatTool * tool = [WZXChatTool shareTool];
+                [tool openWithClient:self.client andSuccessBlock:^{
+                    
+                    [self getConversationData];
+                    
+                } andFailureBlock:^{
+                    
+                } andError:^(NSError *error) {
+                    
+                }];
+            }
+
+            
+        } andFailure:^(NSError *error) {
+            NSLog(@"登录失败%@",error);
+            self.navigationItem.title = @"微信(未连接)";
+        }];
+    }
+    
+    if([UserInfoManager manager].isOpenIm == YES)
+    {
+        [self getConversationData];
+    }
+}
+
+- (void)getConversationData
+{
+    self.client = [[AVIMClient alloc]initWithClientId:[UserInfoManager manager].mid];
+    WZXChatTool * tool = [WZXChatTool shareTool];
+    
+    [tool openWithClient:self.client andSuccessBlock:^{
+        
+        [tool getConversationWithClient:self.client withMId:[UserInfoManager manager].mid andSuccessBlock:^(NSArray *conversations) {
+
+            
+            for (int i = 0; i < conversations.count; i++)
+            {
+                AVIMConversation * conversation = conversations[i];
+
+                [tool getMessageWithConversation:conversation andLimitNum:1 andSuccessBlock:^(NSArray *messages) {
+                    
+                    AVIMMessage * message = messages.lastObject;
+                    ChatModel * model = [[ChatModel alloc]init];
+                    model.avatar = @"";
+                    model.userName = conversation.name;
+                    model.message = message.content;
+                    model.time = [NSString stringWithFormat:@"%lld",message.sendTimestamp];
+                    [_dataArr addObject:model];
+                    if (_tableView)
+                    {
+                        [_tableView reloadData];
+                    }
+                    else
+                    {
+                        [self createTableView];
+                    }
+                    
+                } andFailureBlock:^{
+                    
+                } andError:^(NSError *error) {
+                    
+                }];
+                
+            }
+             [tool sendTextMessage:@"你好啊" withConversation:conversations[0] andSuccessBlock:^{
+                 
+             } andFailureBlock:^{
+                 
+             } andError:^(NSError *error) {
+                 
+             }];
+            
+
+        } andFailureBlock:^{
+
+        } andError:^(NSError *error) {
+
+        }];
+    } andFailureBlock:^{
+        
+    } andError:^(NSError *error) {
+        
     }];
-    NSLog(@"%@",NSHomeDirectory());
-//    [[WWeChatApi giveMeApi]updataSexWithIsMan:NO andSuccess:^(id response) {
-//        
-//    } andFailure:^(NSError *error) {
-//        
-//    }];
     
-    
-//    [[WWeChatApi giveMeApi]updataAvaterWithImg:[UIImage imageNamed:@"Quan"] andSuccess:^(id response) {
-//        NSLog(@"保存图片成功");
-//    } andFailure:^(NSError *error) {
-//        NSLog(@"error:%@",error.localizedDescription);
-//    }];
-    
-//    [[WWeChatApi giveMeApi]registerWithUserName:@"WzxJiang1" andPassWord:@"123456" andSuccess:^(id response) {
-//        
-//        NSLog(@"注册成功");
-//        
-//    } andFailure:^(NSError * error)
-//    {
-//        if (error == nil)
-//        {
-//            NSLog(@"该昵称已被使用");
-//        }
-//        else
-//        {
-//            NSLog(@"注册失败:%@",error.localizedDescription);
-//        }
-//    }];
-   
-    
-    
-    ChatModel * model = [[ChatModel alloc]init];
-    model.avatar = @"";
-    model.userName = @"wzx";
-    model.message = @"test";
-    model.time = @"昨天";
-    _dataArr = @[model,model,model,model,model,model,model,model,model];
-    
-    [self createTableView];
 }
 
 - (void)rightBtnClick:(UIButton *)sender
