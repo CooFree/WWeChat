@@ -8,11 +8,12 @@
 
 #import "ChatViewController.h"
 #import "ChatCell.h"
-
 #import "UserInfoManager.h"
 #import "GlassView.h"
 #import "WWeChatApi.h"
 #import "WZXChatTool.h"
+
+#import "WZXTimeStampToTimeTool.h"
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate,AVIMClientDelegate>
 
 /**
@@ -101,7 +102,10 @@
                     model.avatar = @"";
                     model.userName = conversation.name;
                     model.message = message.content;
-                    model.time = [NSString stringWithFormat:@"%lld",message.sendTimestamp];
+                    
+                    NSDictionary * timeDic = [[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:message.sendTimestamp andScale:3];
+                    NSString * timeStr = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:timeDic];
+                    model.time = timeStr;
                     [_dataArr addObject:model];
                     if (_tableView)
                     {
