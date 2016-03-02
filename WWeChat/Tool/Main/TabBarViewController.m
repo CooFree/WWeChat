@@ -28,7 +28,7 @@
     
     ChatViewController * chatVC = [[ChatViewController alloc]init];
     chatVC.tabBarItem.title = @"微信";
-    chatVC.navigationItem.title = @"微信(未连接)";
+    chatVC.navigationItem.title = @"微信";
     
 //    [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
 //        NSLog(@"登录成功%@",response);

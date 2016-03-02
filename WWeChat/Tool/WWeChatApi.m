@@ -19,40 +19,55 @@
     return api;
 }
 
-- (void)loginWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void (^)(id))successBlock andFailure:(void (^)(NSError *))failureBlock
+- (void)loginWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
 {
+    MBProgressHUD * hub = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     [AVUser logInWithUsernameInBackground:userName password:passWord block:^(AVUser *user, NSError *error) {
-        if (user != nil)
+        if (error)
         {
-            //存入objectId
-            NSString * objectId = [user objectForKey:@"objectId"];
-            [[NSUserDefaults standardUserDefaults]setObject:objectId forKey:wUserID];
-            NSLog(@"objectId:%@",objectId);
-
-            NSDictionary * userDic = @{
-                                       @"mid":[user objectForKey:@"username"] == nil ?@"":[user objectForKey:@"username"],
-                                       @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
-                                       
-                                       @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
-                                       
-                                       @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
-                                       
-                                       @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"],
-                                       
-                                        @"sign":[user objectForKey:@"sign"] == nil?@"":[user objectForKey:@"sign"]
-                                    };
-
-            [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
-            
-            [[NSUserDefaults standardUserDefaults]synchronize];
-            
-            
-            [UserInfoManager manager].isLogin = YES;
-            successBlock(nil);
+             NSLog(@"登录错误:%@",error.localizedDescription);
+            errorBlock(error);
+            [hub hideAnimated:YES];
         }
         else
         {
-            failureBlock(error);
+            if (user != nil)
+            {
+                //存入objectId
+                NSString * objectId = [user objectForKey:@"objectId"];
+                [[NSUserDefaults standardUserDefaults]setObject:objectId forKey:wUserID];
+                NSLog(@"objectId:%@",objectId);
+                
+                NSDictionary * userDic = @{
+                                           @"mid":[user objectForKey:@"username"] == nil ?@"":[user objectForKey:@"username"],
+                                           @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
+                                           
+                                           @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
+                                           
+                                           @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
+                                           
+                                           @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"],
+                                           
+                                           @"sign":[user objectForKey:@"sign"] == nil?@"":[user objectForKey:@"sign"]
+                                           };
+                
+                [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
+                
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
+                
+                [UserInfoManager manager].isLogin = YES;
+                
+                 NSLog(@"登录成功");
+                [hub hideAnimated:YES];
+                successBlock(nil);
+            }
+            else
+            {
+                NSLog(@"登录失败");
+                [hub hideAnimated:YES];
+                failureBlock();
+            }
         }
     }];
 }

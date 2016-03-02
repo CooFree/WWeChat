@@ -11,6 +11,7 @@
 
 @interface WWeChatApi : NSObject
 
+
 /**
  *  单例
  */
@@ -19,7 +20,9 @@
 /**
  *  登录
  */
-- (void)loginWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void(^)(id response))successBlock andFailure:(void(^)(NSError * error))failureBlock;
+- (void)loginWithUserName:(NSString *)userName andPassWord:(NSString *)passWord andSuccess:(void(^)(id response))successBlock
+    andFailure:(void(^)())failureBlock
+    andError:(void(^)(NSError * error))errorBlock;
 
 /**
  *  注册

@@ -43,42 +43,42 @@
 
 - (void)preData
 {
-    _dataArr = [[NSMutableArray alloc]init];
-    if ([UserInfoManager manager].isLogin == NO)
-    {
-        [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
-            NSLog(@"登录成功%@",response);
-            self.navigationItem.title = @"微信";
-            
-            if ([UserInfoManager manager].isOpenIm == NO)
-            {
-                self.client = [[AVIMClient alloc]initWithClientId:[UserInfoManager manager].mid];
-                
-                self.client.delegate = self;
-                
-                WZXChatTool * tool = [WZXChatTool shareTool];
-                [tool openWithClient:self.client andSuccessBlock:^{
-                    
-                    [self getConversationData];
-                    
-                } andFailureBlock:^{
-                    
-                } andError:^(NSError *error) {
-                    
-                }];
-            }
-
-            
-        } andFailure:^(NSError *error) {
-            NSLog(@"登录失败%@",error);
-            self.navigationItem.title = @"微信(未连接)";
-        }];
-    }
-    
-    if([UserInfoManager manager].isOpenIm == YES)
-    {
-        [self getConversationData];
-    }
+//    _dataArr = [[NSMutableArray alloc]init];
+//    if ([UserInfoManager manager].isLogin == NO)
+//    {
+//        [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
+//            NSLog(@"登录成功%@",response);
+//            self.navigationItem.title = @"微信";
+//            
+//            if ([UserInfoManager manager].isOpenIm == NO)
+//            {
+//                self.client = [[AVIMClient alloc]initWithClientId:[UserInfoManager manager].mid];
+//                
+//                self.client.delegate = self;
+//                
+//                WZXChatTool * tool = [WZXChatTool shareTool];
+//                [tool openWithClient:self.client andSuccessBlock:^{
+//                    
+//                    [self getConversationData];
+//                    
+//                } andFailureBlock:^{
+//                    
+//                } andError:^(NSError *error) {
+//                    
+//                }];
+//            }
+//
+//            
+//        } andFailure:^(NSError *error) {
+//            NSLog(@"登录失败%@",error);
+//            self.navigationItem.title = @"微信(未连接)";
+//        }];
+//    }
+//    
+//    if([UserInfoManager manager].isOpenIm == YES)
+//    {
+//        [self getConversationData];
+//    }
 }
 
 - (void)getConversationData

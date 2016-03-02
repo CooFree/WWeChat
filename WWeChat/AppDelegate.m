@@ -1,4 +1,4 @@
-//
+
 //  AppDelegate.m
 //  WWeChat
 //
@@ -11,7 +11,7 @@
 //learncloud
 #import <AVOSCloud/AVOSCloud.h>
 
-#import "TabBarViewController.h"
+#import "PreViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,7 +25,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[TabBarViewController alloc]init];
+    UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    PreViewController * preVC = [storyBoard instantiateViewControllerWithIdentifier:@"PreViewController"];
+    
+    self.window.rootViewController = preVC;
 
     [self changeNav];
     
