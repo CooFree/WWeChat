@@ -17,11 +17,6 @@
 @property (nonatomic,strong)GlassView * glassView;
 
 /**
- *
- */
-@property (nonatomic,strong)AVIMClient * client;
-
-/**
  *  添加nav上右按钮，图片
  */
 - (void)addRightBtnWithImgName:(NSString *)imgName andSelector:(SEL)sel;

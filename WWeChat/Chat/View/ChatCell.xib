@@ -22,10 +22,10 @@
                             <constraint firstAttribute="width" constant="45" id="vsh-gX-tMb"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fts-WT-eOb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fts-WT-eOb">
                         <rect key="frame" x="65" y="12" width="153" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6E-J9-2rz">
@@ -38,8 +38,8 @@
                         <color key="textColor" red="0.56607086489898983" green="0.56607086489898983" blue="0.56607086489898983" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-ej-Abo">
-                        <rect key="frame" x="65" y="36" width="237" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-ej-Abo">
+                        <rect key="frame" x="65" y="36" width="237" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.31788589015151514" green="0.31788589015151514" blue="0.31788589015151514" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Fts-WT-eOb" secondAttribute="trailing" constant="94" id="D1y-hs-9LI"/>
                     <constraint firstItem="O6E-J9-2rz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NBf-Pr-CAS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4MN-ej-Abo" secondAttribute="trailing" constant="10" id="Wce-lX-IfS"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="4MN-ej-Abo" secondAttribute="bottom" constant="4.5" id="Yax-yr-5lR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4MN-ej-Abo" secondAttribute="bottom" constant="0.5" id="Yax-yr-5lR"/>
                     <constraint firstItem="zrQ-eH-PtS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Zw2-6Z-LZT"/>
                     <constraint firstItem="4MN-ej-Abo" firstAttribute="top" secondItem="Fts-WT-eOb" secondAttribute="bottom" constant="3.5" id="dd1-0Y-rkh"/>
                     <constraint firstItem="Fts-WT-eOb" firstAttribute="leading" secondItem="zrQ-eH-PtS" secondAttribute="trailing" constant="10" id="ifT-J8-IPv"/>

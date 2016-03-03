@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 
-//learncloud
+//LeanCloud
 #import <AVOSCloud/AVOSCloud.h>
 
+//RongYun
+#import <RongIMLib/RongIMLib.h>
+
 #import "PreViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -25,15 +29,20 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [self changeNav];
+    
+    //注册LeanCloud
+    [self initAVOSCloud];
+    
+    //注册融云
+    [self initRongYun];
+    
+    
     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     PreViewController * preVC = [storyBoard instantiateViewControllerWithIdentifier:@"PreViewController"];
     
     self.window.rootViewController = preVC;
-
-    [self changeNav];
     
-    [AVOSCloud setApplicationId:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz"
-                      clientKey:@"nPIl7IkH9LtvsnUK7b8hxlS4"];
     return YES;
 }
 
@@ -49,11 +58,23 @@
      //不设置这个无法修改状态栏字体颜色
      [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     
-    //返回按钮的颜色
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+     //返回按钮的颜色
+     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+}
+
+#pragma mark -- 注册LeanCloud --
+- (void)initAVOSCloud
+{
+    [AVOSCloud setApplicationId:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz"
+                      clientKey:@"nPIl7IkH9LtvsnUK7b8hxlS4"];
 }
 
 
+#pragma mark -- 注册融云 --
+- (void)initRongYun
+{
+    [[RCIMClient sharedRCIMClient] init:@"x4vkb1qpvduzk"];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

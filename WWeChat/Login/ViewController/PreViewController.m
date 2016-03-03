@@ -7,7 +7,11 @@
 //
 
 #import "PreViewController.h"
+#import "UserInfoManager.h"
+#import "WWeChatApi.h"
+#import "TabBarViewController.h"
 @interface PreViewController()
+@property (weak, nonatomic) IBOutlet UIButton *languageBtn;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginBtnWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginBtnHeight;
@@ -20,6 +24,34 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @end
 @implementation PreViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if ([UserInfoManager manager].mid && [UserInfoManager manager].password)
+    {
+        [_languageBtn removeFromSuperview];
+        [_loginBtn removeFromSuperview];
+        [_registerBtn removeFromSuperview];
+        
+        [[WWeChatApi giveMeApi]loginWithUserName:[UserInfoManager manager].mid andPassWord:[UserInfoManager manager].password andSuccess:^(id response) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].keyWindow.rootViewController = [[TabBarViewController alloc]init];
+                
+            });
+            
+        } andFailure:^{
+            
+        } andError:^(NSError *error) {
+            
+        }];
+        
+    }
+    else
+    {
+        
+    }
+}
 
 - (void)viewDidLoad
 {

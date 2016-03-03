@@ -80,11 +80,41 @@
     
    NSDictionary * nowDic = [self locationTime];
     NSString * timeStr = @"";
-    if ([timeDic[@"year"] isEqualToString: nowDic[@"year"]]
-        && [timeDic[@"month"] isEqualToString: nowDic[@"month"]]
-        && [timeDic[@"day"] isEqualToString: nowDic[@"day"]])
+    
+    if([timeDic[@"year"]integerValue] < [nowDic[@"year"] integerValue])
     {
-        timeStr = [NSString stringWithFormat:@"%@:%@",timeDic[@"hour"],timeDic[@"minute"]];
+        timeStr = [NSString stringWithFormat:@"%ld年前",[nowDic[@"year"] integerValue] - [timeDic[@"year"]integerValue]];
+    }
+    else if([timeDic[@"year"]integerValue] == [nowDic[@"year"] integerValue])
+    {
+        if ([timeDic[@"month"]integerValue] < [nowDic[@"month"]integerValue])
+        {
+            timeStr = [NSString stringWithFormat:@"%ld个月前",[nowDic[@"month"] integerValue] - [timeDic[@"month"]integerValue]];
+        }
+        else if([timeDic[@"month"]integerValue] == [nowDic[@"month"]integerValue])
+        {
+            if([timeDic[@"day"]integerValue] < [nowDic[@"day"]integerValue])
+            {
+                timeStr = [NSString stringWithFormat:@"%ld天前",[nowDic[@"day"] integerValue] - [timeDic[@"day"]integerValue]];
+            }
+            else if([timeDic[@"day"]integerValue] == [nowDic[@"day"]integerValue])
+            {
+               if([timeDic[@"hour"]integerValue] == [nowDic[@"hour"]integerValue]&&
+                  [timeDic[@"minute"]integerValue] == [nowDic[@"minute"]integerValue]
+                  &&
+                  [timeDic[@"second"]integerValue] == [nowDic[@"second"]integerValue])
+               {
+                   //显示time
+                   timeStr = [NSString stringWithFormat:@"%@:%@",timeDic[@"hour"],timeDic[@"minute"]];
+               }
+                else
+                {
+                    //显示time
+                    timeStr = [NSString stringWithFormat:@"%@:%@",timeDic[@"hour"],timeDic[@"minute"]];
+                }
+            }
+        }
+
     }
     return timeStr;
 }

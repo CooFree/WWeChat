@@ -44,4 +44,13 @@
  */
 - (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
 
+/*-----------------------------用户查询-------------------------------------*/
+
+/**
+ * 查询用户名
+ */
+- (void)selectUserForMid:(NSString *)mid
+              andSuccess:(void(^)(id response))successBlock
+              andFailure:(void(^)())failureBlock
+              andError:(void(^)(NSError * error))errorBlock;
 @end

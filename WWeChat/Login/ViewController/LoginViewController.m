@@ -63,9 +63,13 @@
     
     [[WWeChatApi giveMeApi]loginWithUserName:_mobileTextfield.text andPassWord:_passwordTextfield.text andSuccess:^(id response) {
         
-        [self presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
             
-        }];
+            [self presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
+                
+            }];
+        });
+       
         
     } andFailure:^{
         

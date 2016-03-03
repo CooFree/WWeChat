@@ -65,4 +65,10 @@
     NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
     return dic[@"mid"];
 }
+
+- (NSString *)password
+{
+    NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+    return dic[@"password"];
+}
 @end

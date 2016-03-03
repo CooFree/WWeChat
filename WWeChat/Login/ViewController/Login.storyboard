@@ -80,6 +80,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="languageBtn" destination="RW7-Lt-C3y" id="Dtl-96-Uy0"/>
                         <outlet property="loginBtn" destination="oTc-Pq-AEL" id="GBP-TI-DNZ"/>
                         <outlet property="loginBtnHeight" destination="XmY-KP-lbW" id="QZz-Hp-k8T"/>
                         <outlet property="loginBtnToLeft" destination="IN4-rx-QY0" id="MFb-7X-Bkq"/>
@@ -97,7 +98,6 @@
         <!--Login View Controller-->
         <scene sceneID="AiZ-RL-xFE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k1A-3I-tFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="d5Q-Ek-ZBp" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u33-az-2Gu"/>
@@ -327,6 +327,7 @@
                         <outlet property="passwordTextfield" destination="3aO-gu-C2c" id="k8b-qu-NHH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1A-3I-tFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-314.5" y="473.5"/>
         </scene>

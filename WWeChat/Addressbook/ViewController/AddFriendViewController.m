@@ -8,7 +8,8 @@
 
 #import "AddFriendViewController.h"
 #import "UserInfoManager.h"
-#import "SearchViewController.h"
+#import "SearchFriendViewController.h"
+#import "AddressBookViewController.h"
 @interface AddFriendViewController()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)UITableView * tableView;
@@ -184,14 +185,14 @@
         
         UILabel * wxLabel = [[UILabel alloc]initWithFrame:CGRectMake(WGiveWidth(70), 0, WGiveWidth(68), WGiveHeight(30))];
         wxLabel.text = [NSString stringWithFormat:@"我的微信号:"];
-        wxLabel.font = [UIFont systemFontOfSize:16];
+        wxLabel.font = [UIFont systemFontOfSize:14];
         [headerView addSubview:wxLabel];
         
         
         UILabel * wxIDLabel = [[UILabel alloc]initWithFrame:CGRectMake(wxLabel.frame.size.width + wxLabel.frame.origin.x, 0, WGiveWidth(75), WGiveHeight(30))];
         wxIDLabel.text = [NSString stringWithFormat:@"%@",[[UserInfoManager manager]wxID]];
         wxIDLabel.textAlignment = NSTextAlignmentCenter;
-        wxIDLabel.font = [UIFont systemFontOfSize:16];
+        wxIDLabel.font = [UIFont systemFontOfSize:14];
         [headerView addSubview:wxIDLabel];
         
         
@@ -211,7 +212,9 @@
 {
     if (indexPath.section == 0)
     {
-        
+//        [self presentViewController:[[SearchFriendViewController alloc]init] animated:YES completion:^{
+//            
+//        }];
     }
     else
     {

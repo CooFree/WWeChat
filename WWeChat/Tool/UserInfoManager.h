@@ -13,7 +13,7 @@
 + (UserInfoManager *)manager;
 
 /**
- *  用户名
+ *  昵称
  */
 - (NSString *)userName;
 
@@ -41,6 +41,11 @@
  *  真正用于登录的id
  */
 - (NSString *)mid;
+
+/**
+ *  密码
+ */
+- (NSString *)password;
 
 /**
  *  是否已登录

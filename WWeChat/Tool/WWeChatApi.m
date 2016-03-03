@@ -8,6 +8,13 @@
 
 #import "WWeChatApi.h"
 #import "UserInfoManager.h"
+#import <RongIMLib/RongIMLib.h>
+
+#define TESTWang @"trEOJcU3n2+prYATwHePu8oTdBQ1Vfi4UjOp8ARQV34kcMpfp5JlUCgWImlx9C487WrTW1eOAIp0M5YM16N8NrdA9V1lxiZa"
+
+#define TESTJiang @"h8E0R+SNGb6d0o8MMPqeuMoTdBQ1Vfi4UjOp8ARQV34kcMpfp5JlUOF/TCo774kbJlx+88VAYA3zsk2EGAq01yWO2GNBwQiz"
+
+#define TEST3 @"rQOgkTMy5EJG7Dz+8PZly8oTdBQ1Vfi4UjOp8ARQV34kcMpfp5JlUGsdEq2eJaXcjbUxgIoFXXEkNnWuIuudc2ts3kq6jHJE"
 @implementation WWeChatApi
 
 + (WWeChatApi *)giveMeApi
@@ -25,7 +32,7 @@
     [AVUser logInWithUsernameInBackground:userName password:passWord block:^(AVUser *user, NSError *error) {
         if (error)
         {
-             NSLog(@"登录错误:%@",error.localizedDescription);
+             NSLog(@"LeanCloud登录错误:%@",error.localizedDescription);
             errorBlock(error);
             [hub hideAnimated:YES];
         }
@@ -39,16 +46,19 @@
                 NSLog(@"objectId:%@",objectId);
                 
                 NSDictionary * userDic = @{
-                                           @"mid":[user objectForKey:@"username"] == nil ?@"":[user objectForKey:@"username"],
-                                           @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
+            @"mid":user.username,
+            
+            @"password":user.password,
+            
+            @"nickName":[user objectForKey:@"nickName"] == nil ?@"":[user objectForKey:@"nickName"],
                                            
-                                           @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
+            @"sex":[user objectForKey:@"sex"] == nil ?@"":[user objectForKey:@"sex"],
                                            
-                                           @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
+            @"wxID":[user objectForKey:@"wxID"] == nil?@"":[user objectForKey:@"wxID"],
                                            
-                                           @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"],
+            @"avaterUrl":[user objectForKey:@"avaterUrl"] == nil?@"":[user objectForKey:@"avaterUrl"],
                                            
-                                           @"sign":[user objectForKey:@"sign"] == nil?@"":[user objectForKey:@"sign"]
+            @"sign":[user objectForKey:@"sign"] == nil?@"":[user objectForKey:@"sign"]
                                            };
                 
                 [[NSUserDefaults standardUserDefaults]setObject:userDic forKey:wUserInfo];
@@ -58,13 +68,44 @@
                 
                 [UserInfoManager manager].isLogin = YES;
                 
-                 NSLog(@"登录成功");
-                [hub hideAnimated:YES];
-                successBlock(nil);
+                 NSLog(@"LeanCloud登录成功");
+                
+                [[RCIMClient sharedRCIMClient] connectWithToken:TESTWang
+                 success:^(NSString *userId)
+                {
+                  NSLog(@"RongYun登陆成功。当前登录的用户ID：%@", userId);
+                  
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                        // 方法中有隐藏HUD这一更新UI的操作
+                        [hub hideAnimated:YES];
+                    });
+                    
+                   successBlock(nil);
+                }
+                error:^(RCConnectErrorCode status)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                        // 方法中有隐藏HUD这一更新UI的操作
+                        [hub hideAnimated:YES];
+                    });
+                    failureBlock();
+                 NSLog(@"RongYun登陆错误码为:%ld", (long)status);
+                }
+                tokenIncorrect:^{
+                    //token过期或者不正确。
+                    //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
+                    //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
+                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                        // 方法中有隐藏HUD这一更新UI的操作
+                        [hub hideAnimated:YES];
+                    });
+                    failureBlock();
+                    NSLog(@"RongYun token错误");
+                }];
             }
             else
             {
-                NSLog(@"登录失败");
+                NSLog(@"LeanCloud登录失败");
                 [hub hideAnimated:YES];
                 failureBlock();
             }
@@ -169,6 +210,44 @@
         {
             failureBlock(error);
         }
+    }];
+}
+
+
+- (void)selectUserForMid:(NSString *)mid andSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+    AVQuery *query = [AVQuery queryWithClassName:@"_User"];
+    [query whereKey:@"username" equalTo:mid];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"查询对象错误:%@",error.localizedDescription);
+            errorBlock(error);
+        }
+        else
+        {
+            if (objects.count > 0)
+            {
+                AVUser * selectUser = objects[0];
+
+                NSLog(@"查询对象成功%@",[selectUser objectForKey:@"nickName"]);
+                
+                NSDictionary * dic = @{
+                                       @"name":[selectUser objectForKey:@"nickName"],
+                                       @"avater":[selectUser objectForKey:@"avaterUrl"] == nil?@"":[selectUser objectForKey:@"avaterUrl"]
+                                       };
+                
+                successBlock(dic);
+            }
+            else
+            {
+                NSLog(@"查询对象失败:未找到");
+                failureBlock();
+            }
+        }
+        
     }];
 }
 

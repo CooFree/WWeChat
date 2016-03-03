@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <RongIMLib/RongIMLib.h>
 @interface ChatModel : NSObject
 
 /**
@@ -18,7 +18,7 @@
 /**
  *  名字
  */
-@property (nonatomic,copy)NSString * userName;
+@property (nonatomic,copy)NSString * nameID;
 
 /**
  *  信息
@@ -30,4 +30,18 @@
  */
 @property (nonatomic,copy)NSString * time;
 
+/**
+ *  未读消息数
+ */
+@property (nonatomic,assign)int noReadNum;
+
+/**
+ *  会话类型
+ */
+@property (nonatomic,assign)RCConversationType type;
+
+/**
+ *  会话id
+ */
+@property (nonatomic,copy)NSString * converseID;
 @end
