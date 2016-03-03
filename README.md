@@ -28,12 +28,12 @@
  * 2016.2.17 完成加好友页面UI，以及优化了一下各个页面的```UISearchViewContrller```
  * 2016.2.24 加入部分IM
  * 2016.3.02 补上登录注册页面(手机注册还没写)，明天可能会把融云集成进去，不用LeanCloud的IM了
- * 2016.3.03 加入部分IM以及修改部分框架，���目前能接受到信息.
+ * 2016.3.03 加入部分IM以及修改部分框架，目前能接受到信息，但是还有部分细节问题.
  <div>
  </div>
  
 ####当前进度(重大进展才以gif图展示效果)
-![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0303.gif)
+
 <div>
 </div>
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
