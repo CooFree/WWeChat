@@ -19,9 +19,10 @@
 [简书:WzxJiang](http://www.jianshu.com/users/389c20d5a244)
 <div>
 </div>
-##目录(list)
+##目录
 - [更新日志](#更新日志)
 - [Gif](#Gif)
+
 ---
 
 ##<a id="更新日志"></a>更新日志
