@@ -21,7 +21,8 @@
         self.layer.borderWidth = 1;
         self.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.2].CGColor;
         
-        [self addNofi];
+        [self addEnterNofi];
+        [self addKeyNofi];
         
         [self addSubview:self.soundBtn];
         [self addSubview:self.messageField];
@@ -31,7 +32,21 @@
     return self;
 }
 
--(void)addNofi
+- (void)addEnterNofi
+{
+    //进入前台
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(enterForeground)
+                                                 name:@"EnterForeground" object:nil];
+    //进入后台
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(enterBackground)
+                                                 name:@"EnterBackground" object:nil];
+}
+
+- (void)addKeyNofi
 {
     //使用NSNotificationCenter 鍵盤出現時
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -46,6 +61,20 @@
      
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
+
+- (void)enterForeground
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addKeyNofi];
+    });
+}
+
+- (void)enterBackground
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
 //实现当键盘出现的时候计算键盘的高度大小。用于输入框显示位置
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {

@@ -30,16 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = _name;
     self.view.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     [self createUI];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)showMessage
 {
-    [self hideMessageField];
-    [_keyView removeFromSuperview];
-    _keyView = nil;
+   
 }
 
 - (void)preData
@@ -63,11 +62,13 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         [tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideMessageField)]];
         
         tableView;
     });
-      [self.view addSubview:_tableView];
+    [self.view addSubview:_tableView];
 }
 
 - (void)hideMessageField
@@ -150,7 +151,7 @@
         
         keyView;
     });
-    [[UIApplication sharedApplication].keyWindow addSubview:_keyView];
+    [self.view addSubview:_keyView];
 }
 
 #pragma mark -- tableView --
