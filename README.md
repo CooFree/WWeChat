@@ -35,16 +35,14 @@
 
 ##<a id="Gif"></a>Gif
 
-#####<a id="IM部分"></a>IM部分
+###<a id="IM部分"></a>IM部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
-#####<a id="更改资料部分"></a>更改资料部分
+###<a id="更改资料部分"></a>更改资料部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
-#####<a id="更改资料部分"></a>更改资料部分
+###<a id="更改资料部分"></a>更改资料部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
-#####<a id="UI部分"></a>UI部分
+###<a id="UI部分"></a>UI部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
-<div>
-</div>
 
 ##<a id="联系我"></a>联系我
 如果你有建议欢迎发邮件至<a href="mailto:18516312500@163.com">我的邮箱</a>
