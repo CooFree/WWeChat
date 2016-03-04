@@ -1,4 +1,4 @@
-![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeCht.png)
+![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
 - 2016.1.28开始，仿做一个微信，将持续更新直至完成.
 - 另外请别在这个项目里面通过改头像来打广告!谢谢!
