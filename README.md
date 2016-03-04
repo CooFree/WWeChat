@@ -10,7 +10,7 @@
 
 ##目录
 - [更新日志](#更新日志)
-- [Gif](#Gif)
+- [GIF](#GIF)
   - [UI部分](#UI部分)
   - [更改资料部分](#更改资料部分)
   - [登陆注册部分](#登陆注册部分)
@@ -34,7 +34,7 @@
 
  
 
-##<a id="Gif"></a>Gif
+##<a id="GIF"></a>GIF
 
 ###<a id="IM部分"></a>IM部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
