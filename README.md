@@ -19,7 +19,12 @@
 [简书:WzxJiang](http://www.jianshu.com/users/389c20d5a244)
 <div>
 </div>
-####更新日志
+##目录(list)
+- [更新日志](#更新日志)
+- [Gif](#Gif)
+---
+
+##<a id="更新日志"></a>更新日志
  * 2016.1.28 完成基本框架
  * 2016.1.29 搭建三个界面的UI
  * 2016.1.31 完成全部主界面UI
@@ -35,7 +40,7 @@
  <div>
  </div>
  
-####当前进度(重大进展才以gif图展示效果)
+##<a id="Gif"></a>Gif
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
 <div>
 </div>
