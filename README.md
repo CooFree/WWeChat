@@ -23,7 +23,10 @@
 ##目录
 - [更新日志](#更新日志)
 - [Gif](#Gif)
-  - 123  
+  - [UI部分](#UI部分)
+  - [更改资料部分](#更改资料部分)
+  - [登陆注册部分](#登陆注册部分)
+  - [IM部分](#IM部分)
 - [联系我](#联系我) 
 
 ---
@@ -41,19 +44,18 @@
  * 2016.3.02 补上登录注册页面(手机注册还没写)，明天可能会把融云集成进去，不用LeanCloud的IM了
  * 2016.3.03 加入部分IM以及修改部分框架，目前能接受到信息，但是还有部分细节问题.
  * 2016.3.04 加入发送信息功能，可以用两个帐号测试，具体聊天记录要自己创表本地化
- <div>
- </div>
+
  
+
 ##<a id="Gif"></a>Gif
+
+#####<a id="IM部分"></a>IM部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
-<div>
-</div>
+#####<a id="更改资料部分"></a>更改资料部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
-<div>
-</div>
+#####<a id="更改资料部分"></a>更改资料部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
-<div>
-</div>
+#####<a id="UI部分"></a>UI部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
 <div>
 </div>
