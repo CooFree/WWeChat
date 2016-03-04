@@ -45,4 +45,4 @@
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
 
 ##<a id="联系我"></a>联系我
-如果你有建议欢迎发邮件至`wzxjiang@foxmail.com`.
+如果你有建议欢迎发邮件至email: wzxjiang@foxmail.com
