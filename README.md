@@ -37,7 +37,7 @@
 
 ###<a id="IM部分"></a>IM部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
-###<a id="更改资料部分"></a>更改资料部分
+###<a id="登陆注册部分"></a>登陆注册部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
 ###<a id="更改资料部分"></a>更改资料部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
