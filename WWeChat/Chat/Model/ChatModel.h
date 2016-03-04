@@ -18,7 +18,7 @@
 /**
  *  名字
  */
-@property (nonatomic,copy)NSString * nameID;
+@property (nonatomic,copy)NSString * name;
 
 /**
  *  信息
@@ -29,6 +29,11 @@
  *  时间
  */
 @property (nonatomic,copy)NSString * time;
+
+/**
+ *  时间戳
+ */
+@property (nonatomic,assign)NSInteger timestamp;
 
 /**
  *  未读消息数

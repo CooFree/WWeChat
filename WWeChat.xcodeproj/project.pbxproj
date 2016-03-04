@@ -24,6 +24,9 @@
 		4BBD94121C5A34D30057FAC5 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD94111C5A34D30057FAC5 /* ChatViewController.m */; };
 		4BD4EB691C8825B5009EB613 /* SearchFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4EB681C8825B5009EB613 /* SearchFriendViewController.m */; };
 		4BD4EB6C1C882AF7009EB613 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4EB6B1C882AF7009EB613 /* ChatDetailViewController.m */; };
+		4BD4EBAE1C89263E009EB613 /* KeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4EBAD1C89263E009EB613 /* KeyboardView.m */; };
+		4BD4EBB11C893E2A009EB613 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4EBB01C893E2A009EB613 /* MessageCell.m */; };
+		4BD4EBB31C893E3E009EB613 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BD4EBB21C893E3E009EB613 /* MessageCell.xib */; };
 		4BD96B981C86E51100D6646D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD96B951C86E51100D6646D /* BaseViewController.m */; };
 		4BD96B991C86E51100D6646D /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD96B971C86E51100D6646D /* TabBarViewController.m */; };
 		4BD96BA01C86E63B00D6646D /* PreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD96B9F1C86E63B00D6646D /* PreViewController.m */; };
@@ -182,6 +185,11 @@
 		4BD4EB681C8825B5009EB613 /* SearchFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendViewController.m; sourceTree = "<group>"; };
 		4BD4EB6A1C882AF7009EB613 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		4BD4EB6B1C882AF7009EB613 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		4BD4EBAC1C89263E009EB613 /* KeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardView.h; sourceTree = "<group>"; };
+		4BD4EBAD1C89263E009EB613 /* KeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardView.m; sourceTree = "<group>"; };
+		4BD4EBAF1C893E2A009EB613 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		4BD4EBB01C893E2A009EB613 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		4BD4EBB21C893E3E009EB613 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		4BD96B941C86E51100D6646D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4BD96B951C86E51100D6646D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		4BD96B961C86E51100D6646D /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
@@ -588,6 +596,11 @@
 				4BF31BAB1C5DB29500B4100A /* ChatCell.h */,
 				4BF31BAC1C5DB29500B4100A /* ChatCell.m */,
 				4BF31BAD1C5DB29500B4100A /* ChatCell.xib */,
+				4BD4EBAC1C89263E009EB613 /* KeyboardView.h */,
+				4BD4EBAD1C89263E009EB613 /* KeyboardView.m */,
+				4BD4EBAF1C893E2A009EB613 /* MessageCell.h */,
+				4BD4EBB01C893E2A009EB613 /* MessageCell.m */,
+				4BD4EBB21C893E3E009EB613 /* MessageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -936,6 +949,7 @@
 				TargetAttributes = {
 					4BBD93AF1C5A17160057FAC5 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 52TXXFTT5L;
 					};
 					4BBD93C81C5A17160057FAC5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -978,6 +992,7 @@
 				4BF31B451C5B36AD00B4100A /* remind_noimage.png in Resources */,
 				4BD96BF61C87EB4500D6646D /* RCConfig.plist in Resources */,
 				4BF31B461C5B36AD00B4100A /* remind_noimage@2x.png in Resources */,
+				4BD4EBB31C893E3E009EB613 /* MessageCell.xib in Resources */,
 				4BBD93C01C5A17160057FAC5 /* Assets.xcassets in Resources */,
 				4BD96BF71C87EB4500D6646D /* release_notes_ios.txt in Resources */,
 				4BF31B381C5B36AD00B4100A /* LICENSE in Resources */,
@@ -1055,6 +1070,7 @@
 				4BF31B411C5B36AD00B4100A /* UIWebView+AFNetworking.m in Sources */,
 				4BD96BA01C86E63B00D6646D /* PreViewController.m in Sources */,
 				4BF31B311C5B36AD00B4100A /* AFHTTPSessionManager.m in Sources */,
+				4BD4EBB11C893E2A009EB613 /* MessageCell.m in Sources */,
 				690BE0F31C60C3AB00DDC8AA /* WWeChatApi.m in Sources */,
 				4BF31BAE1C5DB29500B4100A /* ChatCell.m in Sources */,
 				4BF31B471C5B36AD00B4100A /* THProgressView.m in Sources */,
@@ -1067,6 +1083,7 @@
 				4BD4EB691C8825B5009EB613 /* SearchFriendViewController.m in Sources */,
 				4BF31B4F1C5B36AD00B4100A /* UIButton+WebCache.m in Sources */,
 				4BD96B981C86E51100D6646D /* BaseViewController.m in Sources */,
+				4BD4EBAE1C89263E009EB613 /* KeyboardView.m in Sources */,
 				4BF31B531C5B36AD00B4100A /* UIImageView+WebCache.m in Sources */,
 				4BF31C331C7172C900B4100A /* ChangeDataViewController.m in Sources */,
 				4BF31B4B1C5B36AD00B4100A /* SDWebImageDownloader.m in Sources */,
@@ -1248,7 +1265,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WWeChat/Tool/lib/framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NULL.WWeChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WWeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1274,7 +1291,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WWeChat/Tool/lib/framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NULL.WWeChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WWeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AVOSCloud/AVOSCloud.h>
 
+#import "ChatModel.h"
+#import <RongIMLib/RongIMLib.h>
+#import "WZXTimeStampToTimeTool.h"
 @interface WWeChatApi : NSObject
 
 
@@ -16,7 +19,7 @@
  *  单例
  */
 + (WWeChatApi *)giveMeApi;
-
+#pragma mark ---------------------- 登录 ---------------------------------
 /**
  *  登录
  */
@@ -44,7 +47,7 @@
  */
 - (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
 
-/*-----------------------------用户查询-------------------------------------*/
+#pragma mark ---------------------- 用户查询 ---------------------------------
 
 /**
  * 查询用户名
@@ -53,4 +56,26 @@
               andSuccess:(void(^)(id response))successBlock
               andFailure:(void(^)())failureBlock
               andError:(void(^)(NSError * error))errorBlock;
+
+#pragma mark ---------------------- 获取会话 ---------------------------------
+/**
+ * 获取会话列表
+ */
+- (void)getConversationListAndSuccess:(void (^)(NSArray * conversationArr))successBlock
+        andFailure:(void(^)())failureBlock
+        andError:(void(^)(NSError * error))errorBlock;
+
+///**
+// * 获取某会话内容
+// */
+//- (void)getMessages;
+
+#pragma mark ---------------------- 发送信息 ---------------------------------
+/**
+ * 发送文本信息
+ */
+- (void)sentTextMessageToTargetId:(NSString *)targetId andConversationType:(RCConversationType)conversationType andMessage:(NSString *)message
+    andSuccess:(void (^)(id response))successBlock
+    andFailure:(void(^)())failureBlock
+    andError:(void(^)(NSError * error))errorBlock;
 @end

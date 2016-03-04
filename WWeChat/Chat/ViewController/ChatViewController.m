@@ -35,83 +35,46 @@
 {
     // 设置消息接收监听
     [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
-     [self preData];
-    
-    [self changeTitle];
+    [self preData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    [self changeTitle];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self addRightBtnWithImgName:@"chat_add" andSelector:@selector(rightBtnClick:)];
 }
 
 - (void)preData
 {
-    _dataArr = [[NSMutableArray alloc]init];
     [self getConversationData];
 }
 
 //获取会话列表
 - (void)getConversationData
 {
-    NSArray *conversationList = [[RCIMClient sharedRCIMClient]
-                                 getConversationList:@[@(ConversationType_PRIVATE),
-                                                       @(ConversationType_DISCUSSION),
-                                                       @(ConversationType_GROUP),
-                                                       @(ConversationType_SYSTEM),
-                                                       @(ConversationType_APPSERVICE),
-                                                       @(ConversationType_PUBLICSERVICE)]];
-    
-    NSArray *sortedArray = [conversationList sortedArrayUsingComparator:^NSComparisonResult(RCConversation * obj1, RCConversation * obj2) {
-        if (obj1.sentTime < obj2.sentTime ) {
-            return NSOrderedDescending;
-        } else {
-            return NSOrderedAscending;
-        }
+    MBProgressHUD * hub = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    [[WWeChatApi giveMeApi]getConversationListAndSuccess:^(NSArray *conversationArr)
+    {
+         _dataArr = [[NSMutableArray alloc]initWithArray:conversationArr];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self changeTitle];
+                if (_tableView)
+                {
+                    [_tableView reloadData];
+                }
+                else
+                {
+                    [self createTableView];
+                }
+                [hub hideAnimated:YES];
+            });
+    } andFailure:^{
+        [hub hideAnimated:YES];
+    } andError:^(NSError *error) {
+        [hub hideAnimated:YES];
     }];
-    
-    
-    for (RCConversation *conversation in sortedArray) {
-        NSLog(@"会话类型：%lu，目标会话ID：%@", (unsigned long)conversation.conversationType, conversation.targetId);
-        
-
-        ChatModel * model = [[ChatModel alloc]init];
-        
-        model.nameID = conversation.targetId;
-        
-        model.time = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:conversation.sentTime andScale:3]];
-        
-        model.converseID = conversation.targetId;
-        
-        if ([conversation.lastestMessage isMemberOfClass:[RCTextMessage class]]) {
-            RCTextMessage *testMessage = (RCTextMessage *)conversation.lastestMessage;
-            NSLog(@"消息内容：%@", testMessage.content);
-            model.message = testMessage.content;
-        }
-        
-        
-        model.noReadNum = conversation.unreadMessageCount;
-        model.type = conversation.conversationType;
-        NSLog(@"sentTime %lld",conversation.sentTime);
-        
-        
-        [_dataArr addObject:model];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self changeTitle];
-            if (_tableView)
-            {
-                [_tableView reloadData];
-            }
-            else
-            {
-                [self createTableView];
-            }
-        });
-
-        
-    }
 }
 
 - (void)rightBtnClick:(UIButton *)sender
@@ -123,13 +86,13 @@
 {
     _tableView = ({
     
-        UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 44) style:UITableViewStylePlain];
+        UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 44) style:UITableViewStyleGrouped];
         
         tableview.delegate = self;
         
         tableview.dataSource = self;
         
-        tableview.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         tableview;
     });
@@ -212,11 +175,15 @@
 {
     ChatCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     
+     [tableView deselectRowAtIndexPath:indexPath animated:NO]; 
+    
     ChatModel * model = _dataArr[indexPath.row];
     ChatDetailViewController * chatDetailVC = [[ChatDetailViewController alloc]init];
     chatDetailVC.name = cell.nameLabel.text;
     chatDetailVC.converseID = model.converseID;
+    chatDetailVC.conversationType = model.type;
     chatDetailVC.hidesBottomBarWhenPushed = YES;
+    NSLog(@"%lu %@",(unsigned long)model.type,model.converseID);
     [[RCIMClient sharedRCIMClient] clearMessagesUnreadStatus:model.type targetId:model.converseID];
     [self changeTitle];
     [self.navigationController pushViewController:chatDetailVC animated:YES];

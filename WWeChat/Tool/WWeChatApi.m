@@ -70,7 +70,18 @@
                 
                  NSLog(@"LeanCloud登录成功");
                 
-                [[RCIMClient sharedRCIMClient] connectWithToken:TESTWang
+                NSString * token;
+                if ([user.username isEqualToString:@"00000000000"]) {
+                    token = TESTJiang;
+                }
+                else  if([user.username isEqualToString:@"11111111111"]) {
+                    token = TESTWang;
+                }
+                else  if([user.username isEqualToString:@"22222222222"]) {
+                    token = TEST3;
+                }
+                
+                [[RCIMClient sharedRCIMClient] connectWithToken:token
                  success:^(NSString *userId)
                 {
                   NSLog(@"RongYun登陆成功。当前登录的用户ID：%@", userId);
@@ -251,4 +262,99 @@
     }];
 }
 
+
+- (void)getConversationListAndSuccess:(void (^)(NSArray *))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+    //获取会话列表
+    NSArray *conversationList = [[RCIMClient sharedRCIMClient]
+                                 getConversationList:@[@(ConversationType_PRIVATE),
+                                                       @(ConversationType_DISCUSSION),
+                                                       @(ConversationType_GROUP),
+                                                       @(ConversationType_SYSTEM),
+                                                       @(ConversationType_APPSERVICE),
+                                                       @(ConversationType_PUBLICSERVICE)]];
+    
+    NSMutableArray * conversationArr = [[NSMutableArray alloc]init];
+    for (RCConversation *conversation in conversationList) {
+        NSLog(@"会话类型：%lu，目标会话ID：%@", (unsigned long)conversation.conversationType, conversation.targetId);
+        
+        [[WWeChatApi giveMeApi]selectUserForMid:conversation.targetId andSuccess:^(id response)
+         {
+             ChatModel * model = [[ChatModel alloc]init];
+             
+             model.name = response[@"name"];
+             
+             model.avatar = response[@"avater"];
+             
+             model.time = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:conversation.sentTime andScale:3]];
+             
+             model.converseID = conversation.targetId;
+             
+             model.timestamp = conversation.sentTime;
+             
+             if ([conversation.lastestMessage isMemberOfClass:[RCTextMessage class]]) {
+                 RCTextMessage *testMessage = (RCTextMessage *)conversation.lastestMessage;
+                 model.message = testMessage.content;
+             }
+             
+             model.noReadNum = conversation.unreadMessageCount;
+             
+             model.type = conversation.conversationType;
+             
+             [conversationArr addObject:model];
+             
+             if (conversationArr.count == conversationList.count)
+             {
+                 //时间排序后的会话列表
+                     NSArray * sortedArray = [conversationArr sortedArrayUsingComparator:^NSComparisonResult(ChatModel * obj1, ChatModel * obj2) {
+                         if (obj1.timestamp < obj2.timestamp ) {
+                             return NSOrderedDescending;
+                         } else {
+                             return NSOrderedAscending;
+                         }
+                     }];
+                 NSLog(@"获取会话列表成功");
+                 successBlock(sortedArray);
+             }
+             
+         } andFailure:^{
+             NSLog(@"获取会话列表失败");
+             failureBlock();
+             
+         } andError:^(NSError *error) {
+             NSLog(@"获取会话列表错误:%@",error.localizedDescription);
+             errorBlock(error);
+         }];
+       
+    }
+}
+
+- (void)sentTextMessageToTargetId:(NSString *)targetId andConversationType:(RCConversationType)conversationType andMessage:(NSString *)message andSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+//    [RCIMClient sharedRCIMClient].currentUserInfo.userId
+    // 构建消息的内容，这里以文本消息为例。
+    RCTextMessage *testMessage = [RCTextMessage messageWithContent:message];
+    // 调用RCIMClient的sendMessage方法进行发送，结果会通过回调进行反馈。
+    [[RCIMClient sharedRCIMClient] sendMessage:conversationType
+                                      targetId:targetId
+                                       content:testMessage
+                                   pushContent:@"你收到一条信息"
+                                      pushData:nil
+                                       success:^(long messageId) {
+                                           NSLog(@"发送成功。当前消息ID：%ld", messageId);
+                                           successBlock(nil);
+                                       } error:^(RCErrorCode nErrorCode, long messageId) {
+                                           if (nErrorCode == ERRORCODE_TIMEOUT)
+                                           {
+                                               NSLog(@"发送超时");
+                                               failureBlock();
+                                           }
+                                           else
+                                           {
+                                               NSLog(@"发送失败。消息ID：%ld， 错误码：%ld", messageId, (long)nErrorCode);
+                                               errorBlock(nil);
+                                           }
+                                       }];
+
+}
 @end

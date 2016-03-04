@@ -34,22 +34,15 @@
 {
     [self changeConstraints];
     
-    [[WWeChatApi giveMeApi]selectUserForMid:model.nameID andSuccess:^(id response)
-    {
-        self.nameLabel.text = response[@"name"];
-        [self.avaterImgView setImageWithURL:[NSURL URLWithString:response[@"avater"]] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            
-        }];
-    } andFailure:^{
-        
-    } andError:^(NSError *error) {
-        
-    }];
-
+    self.nameLabel.text = model.name;
     
     self.messagelabel.text = model.message;
     
     self.timeLabel.text = model.time;
+    
+    [self.avaterImgView setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+    }];
     
     if (model.noReadNum > 0)
     {
@@ -59,7 +52,7 @@
         {
             strWidth = WGiveHeight(15);
         }
-        UIView * redPoint = [[UIView alloc]initWithFrame:CGRectMake(self.avaterImgView.frame.size.width - strWidth + WGiveWidth(10), - WGiveHeight(5), strWidth, WGiveHeight(15))];
+        UIView * redPoint = [[UIView alloc]initWithFrame:CGRectMake(WGiveHeight(45) - strWidth/2.0, - WGiveHeight(5), strWidth, WGiveHeight(15))];
         redPoint.layer.cornerRadius  = redPoint.frame.size.height/2.0;
         redPoint.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
         
