@@ -15,6 +15,7 @@
   - [更改资料部分](#更改资料部分)
   - [登陆注册部分](#登陆注册部分)
   - [IM部分](#IM部分)
+- [Bug反馈](#Bug反馈)
 - [联系我](#联系我) 
 
 
@@ -44,6 +45,9 @@
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
 ###<a id="UI部分"></a>UI部分
  ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
+
+##<a id="Bug反馈"></a>Bug反馈
+[Bug反馈](https://github.com/Wzxhaha/WWeChat/issues/new)
 
 ##<a id="联系我"></a>联系我
 如果你有建议欢迎发邮件至email: wzxjiang@foxmail.com
