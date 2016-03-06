@@ -275,37 +275,40 @@
                                                        @(ConversationType_PUBLICSERVICE)]];
     
     NSMutableArray * conversationArr = [[NSMutableArray alloc]init];
-    for (RCConversation *conversation in conversationList) {
-        NSLog(@"会话类型：%lu，目标会话ID：%@", (unsigned long)conversation.conversationType, conversation.targetId);
-        
-        [[WWeChatApi giveMeApi]selectUserForMid:conversation.targetId andSuccess:^(id response)
-         {
-             ChatModel * model = [[ChatModel alloc]init];
-             
-             model.name = response[@"name"];
-             
-             model.avatar = response[@"avater"];
-             
-             model.time = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:conversation.sentTime andScale:3]];
-             
-             model.converseID = conversation.targetId;
-             
-             model.timestamp = conversation.sentTime;
-             
-             if ([conversation.lastestMessage isMemberOfClass:[RCTextMessage class]]) {
-                 RCTextMessage *testMessage = (RCTextMessage *)conversation.lastestMessage;
-                 model.message = testMessage.content;
-             }
-             
-             model.noReadNum = conversation.unreadMessageCount;
-             
-             model.type = conversation.conversationType;
-             
-             [conversationArr addObject:model];
-             
-             if (conversationArr.count == conversationList.count)
+    
+    if(conversationArr.count > 0)
+    {
+        for (RCConversation *conversation in conversationList) {
+            NSLog(@"会话类型：%lu，目标会话ID：%@", (unsigned long)conversation.conversationType, conversation.targetId);
+            
+            [[WWeChatApi giveMeApi]selectUserForMid:conversation.targetId andSuccess:^(id response)
              {
-                 //时间排序后的会话列表
+                 ChatModel * model = [[ChatModel alloc]init];
+                 
+                 model.name = response[@"name"];
+                 
+                 model.avatar = response[@"avater"];
+                 
+                 model.time = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:conversation.sentTime andScale:3]];
+                 
+                 model.converseID = conversation.targetId;
+                 
+                 model.timestamp = conversation.sentTime;
+                 
+                 if ([conversation.lastestMessage isMemberOfClass:[RCTextMessage class]]) {
+                     RCTextMessage *testMessage = (RCTextMessage *)conversation.lastestMessage;
+                     model.message = testMessage.content;
+                 }
+                 
+                 model.noReadNum = conversation.unreadMessageCount;
+                 
+                 model.type = conversation.conversationType;
+                 
+                 [conversationArr addObject:model];
+                 
+                 if (conversationArr.count == conversationList.count)
+                 {
+                     //时间排序后的会话列表
                      NSArray * sortedArray = [conversationArr sortedArrayUsingComparator:^NSComparisonResult(ChatModel * obj1, ChatModel * obj2) {
                          if (obj1.timestamp < obj2.timestamp ) {
                              return NSOrderedDescending;
@@ -313,20 +316,29 @@
                              return NSOrderedAscending;
                          }
                      }];
-                 NSLog(@"获取会话列表成功");
-                 successBlock(sortedArray);
-             }
-             
-         } andFailure:^{
-             NSLog(@"获取会话列表失败");
-             failureBlock();
-             
-         } andError:^(NSError *error) {
-             NSLog(@"获取会话列表错误:%@",error.localizedDescription);
-             errorBlock(error);
-         }];
-       
+                     NSLog(@"获取会话列表成功");
+                     successBlock(sortedArray);
+                 }
+                 
+             } andFailure:^{
+                 NSLog(@"获取会话列表失败");
+                 failureBlock();
+                 
+             } andError:^(NSError *error) {
+                 NSLog(@"获取会话列表错误:%@",error.localizedDescription);
+                 errorBlock(error);
+             }];
+            
+        }
+
     }
+    else
+    {
+        NSLog(@"会话列表为空");
+        failureBlock();
+    }
+    
+   
 }
 
 - (void)sentTextMessageToTargetId:(NSString *)targetId andConversationType:(RCConversationType)conversationType andMessage:(NSString *)message andSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
