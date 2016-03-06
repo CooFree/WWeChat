@@ -54,7 +54,7 @@
 //获取会话列表
 - (void)getConversationData
 {
-    MBProgressHUD * hub = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    MBProgressHUD * hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[WWeChatApi giveMeApi]getConversationListAndSuccess:^(NSArray *conversationArr)
     {
          _dataArr = [[NSMutableArray alloc]initWithArray:conversationArr];
