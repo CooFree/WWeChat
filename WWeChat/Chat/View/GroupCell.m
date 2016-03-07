@@ -6,8 +6,8 @@
 //  Copyright © 2016年 wzx. All rights reserved.
 //
 
-#import "MessageCell.h"
+#import "GroupCell.h"
 
-@implementation MessageCell
+@implementation GroupCell
 
 @end

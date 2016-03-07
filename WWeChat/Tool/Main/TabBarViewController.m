@@ -14,7 +14,6 @@
 #import "MeViewController.h"
 
 #import "WWeChatApi.h"
-#import "WZXChatTool.h"
 @interface TabBarViewController ()
 
 

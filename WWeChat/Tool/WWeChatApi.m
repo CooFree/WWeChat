@@ -8,8 +8,9 @@
 
 #import "WWeChatApi.h"
 #import "UserInfoManager.h"
+#import "MessageModel.h"
 #import <RongIMLib/RongIMLib.h>
-
+#import "WZXTimeStampToTimeTool.h"
 #define TESTWang @"trEOJcU3n2+prYATwHePu8oTdBQ1Vfi4UjOp8ARQV34kcMpfp5JlUCgWImlx9C487WrTW1eOAIp0M5YM16N8NrdA9V1lxiZa"
 
 #define TESTJiang @"h8E0R+SNGb6d0o8MMPqeuMoTdBQ1Vfi4UjOp8ARQV34kcMpfp5JlUOF/TCo774kbJlx+88VAYA3zsk2EGAq01yWO2GNBwQiz"
@@ -368,5 +369,104 @@
                                            }
                                        }];
 
+}
+
+- (void)getMessagesWithConversationID:(NSString *)conversationID andNum:(int)num andType:(RCConversationType)type AndSuccess:(void (^)(NSArray *))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+    NSArray * messageArr = [[RCIMClient sharedRCIMClient]getLatestMessages:type targetId:conversationID count:num];
+    
+    if (messageArr.count > 0)
+    {
+        NSArray * sortedArray = [messageArr sortedArrayUsingComparator:^NSComparisonResult(RCMessage * obj1, RCMessage * obj2) {
+            if (obj1.sentTime > obj2.sentTime ) {
+                return NSOrderedDescending;
+            } else {
+                return NSOrderedAscending;
+            }
+        }];
+        
+        NSMutableArray * dataArr = [[NSMutableArray alloc]init];
+        
+        int num = 0;
+        for (int i = 0; i < sortedArray.count; i++)
+        {
+            RCMessage * message = sortedArray[i];
+            
+            MessageModel * model = [[MessageModel alloc]init];
+            
+            model.sentID = message.senderUserId;
+            if ([model.sentID isEqualToString:[AVUser currentUser].username])
+            {
+                model.isMe = YES;
+            }
+            RCTextMessage * textMessage = (RCTextMessage *)message.content;
+            model.message = textMessage.content;
+            
+            NSMutableDictionary * muDic = [[NSMutableDictionary alloc]init];
+            NSMutableArray * messages = [[NSMutableArray alloc]init];
+            
+            if (i == num)
+            {
+                muDic = [[NSMutableDictionary alloc]init];
+                
+                messages = [[NSMutableArray alloc]init];
+                
+                [muDic setObject:[NSString stringWithFormat:@"%lld",message.sentTime] forKey:@"timestamp"];
+                
+                [messages addObject:model];
+                
+                if (i == messageArr.count - 1)
+                {
+                    [muDic setObject:messages forKey:@"messages"];
+                    [dataArr addObject:muDic];
+                    break;
+                }
+            }
+            else
+            {
+                continue;
+            }
+            
+            for (int j = num + 1; j < sortedArray.count; j++)
+            {
+                RCMessage * message2 = sortedArray[j];
+                MessageModel * model2 = [[MessageModel alloc]init];
+                
+                model2.sentID = message2.senderUserId;
+                if ([model2.sentID isEqualToString:[AVUser currentUser].username])
+                {
+                    model2.isMe = YES;
+                }
+                RCTextMessage * textMessage2 = (RCTextMessage *)message2.content;
+                model2.message = textMessage2.content;
+                
+                if ([[[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:message.sentTime andScale:3]] isEqualToString:[[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:message2.sentTime andScale:3]]])
+                {
+                    [messages addObject:model2];
+                    if (j == sortedArray.count - 1)
+                    {
+                        [muDic setObject:messages forKey:@"messages"];
+                        [dataArr addObject:muDic];
+                        num = (int)sortedArray.count;
+                        break;
+                    }
+                }
+                else
+                {
+                    [muDic setObject:messages forKey:@"messages"];
+                    [dataArr addObject:muDic];
+                    num = j;
+                    break;
+                }
+            }
+        }
+        
+        successBlock(dataArr);
+    }
+    else
+    {
+        failureBlock();
+    }
+    
 }
 @end

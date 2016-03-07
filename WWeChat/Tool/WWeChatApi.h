@@ -65,10 +65,12 @@
         andFailure:(void(^)())failureBlock
         andError:(void(^)(NSError * error))errorBlock;
 
-///**
-// * 获取某会话内容
-// */
-//- (void)getMessages;
+/**
+ * 获取某会话内容
+ */
+- (void)getMessagesWithConversationID:(NSString *)conversationID andNum:(int)num andType:(RCConversationType)type AndSuccess:(void (^)(NSArray * messageArr))successBlock
+        andFailure:(void(^)())failureBlock
+        andError:(void(^)(NSError * error))errorBlock;
 
 #pragma mark ---------------------- 发送信息 ---------------------------------
 /**

@@ -11,7 +11,6 @@
 #import "UserInfoManager.h"
 #import "GlassView.h"
 #import "WWeChatApi.h"
-#import "WZXChatTool.h"
 #import <RongIMLib/RongIMLib.h>
 #import "WZXTimeStampToTimeTool.h"
 #import "ChatDetailViewController.h"
@@ -183,7 +182,6 @@
     chatDetailVC.converseID = model.converseID;
     chatDetailVC.conversationType = model.type;
     chatDetailVC.hidesBottomBarWhenPushed = YES;
-    NSLog(@"%lu %@",(unsigned long)model.type,model.converseID);
     [[RCIMClient sharedRCIMClient] clearMessagesUnreadStatus:model.type targetId:model.converseID];
     [self changeTitle];
     [self.navigationController pushViewController:chatDetailVC animated:YES];
@@ -194,7 +192,7 @@
     
     if ([message.content isMemberOfClass:[RCTextMessage class]]) {
         RCTextMessage *testMessage = (RCTextMessage *)message.content;
-        NSLog(@"消息内容：%@", message.content);
+        NSLog(@"消息内容：%@", testMessage.content);
     }
     //没有未接受的消息时刷新
     if (nLeft == 0)

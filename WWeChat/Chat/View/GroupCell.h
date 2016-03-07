@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCell : UITableViewCell
+@interface GroupCell : UITableViewCell
 
 @end

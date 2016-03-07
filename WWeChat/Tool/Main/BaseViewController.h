@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "GlassView.h"
-#import "WZXChatTool.h"
 @interface BaseViewController : UIViewController
 
 /**

@@ -24,4 +24,6 @@
  *  会话类型
  */
 @property(nonatomic,assign)RCConversationType conversationType;
+
+
 @end

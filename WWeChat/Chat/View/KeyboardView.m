@@ -207,7 +207,7 @@
 {
     if (self.sentBlock)
     {
-        self.sentBlock(textField.text,MessageTypeText);
+        self.sentBlock(textField.text,SentMessageTypeText);
     }
     _messageField.text = nil;
     return YES;

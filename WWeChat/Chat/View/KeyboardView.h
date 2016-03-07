@@ -10,19 +10,19 @@
 
 @interface KeyboardView : UIView
 
-typedef NS_ENUM(NSInteger, MessageType) {
+typedef NS_ENUM(NSInteger, SentMessageType) {
     /** 文本信息 */
-    MessageTypeText ,
+    SentMessageTypeText ,
     /** 图片信息 */
-    MessageTypeImg ,
+    SentMessageTypeImg ,
     /** 语音信息 */
-    MessageTypeWav
+    SentMessageTypeWav
 };
 
 
 @property(nonatomic,copy)void (^showBlock)(NSInteger antype,CGFloat duration,CGSize kbSize);
 @property(nonatomic,copy)void (^hideBlock)(NSInteger antype,CGFloat duration,CGSize kbSize);
-@property(nonatomic,copy)void (^sentBlock)(id message,MessageType type);
+@property(nonatomic,copy)void (^sentBlock)(id message,SentMessageType type);
 //语音按钮
 @property(nonatomic,strong)UIButton * soundBtn;
 
