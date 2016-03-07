@@ -21,7 +21,7 @@
 - (void)setModel:(MessageModel *)model
 {
     CGFloat width  = model.bubbleSize.width;
-    CGFloat height = model.bubbleSize.height > 50 ? model.bubbleSize.height : 50;
+    CGFloat height = model.bubbleSize.height > 50 ? model.bubbleSize.height + 10: 50;
     
     self.backgroundColor = [UIColor clearColor];
     
