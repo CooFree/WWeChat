@@ -268,15 +268,15 @@
     //获取会话列表
     NSArray *conversationList = [[RCIMClient sharedRCIMClient]
                                  getConversationList:@[@(ConversationType_PRIVATE),
-                                                       @(ConversationType_DISCUSSION),
-                                                       @(ConversationType_GROUP),
-                                                       @(ConversationType_SYSTEM),
-                                                       @(ConversationType_APPSERVICE),
-                                                       @(ConversationType_PUBLICSERVICE)]];
+                                       @(ConversationType_DISCUSSION),
+                                       @(ConversationType_GROUP),
+                                       @(ConversationType_SYSTEM),
+                                       @(ConversationType_APPSERVICE),
+                                       @(ConversationType_PUBLICSERVICE)]];
     
     NSMutableArray * conversationArr = [[NSMutableArray alloc]init];
     
-    if(conversationArr.count > 0)
+    if(conversationList.count > 0)
     {
         for (RCConversation *conversation in conversationList) {
             NSLog(@"会话类型：%lu，目标会话ID：%@", (unsigned long)conversation.conversationType, conversation.targetId);

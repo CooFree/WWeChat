@@ -30,14 +30,6 @@
     chatVC.tabBarItem.title = @"微信";
     chatVC.navigationItem.title = @"微信";
     
-//    [[WWeChatApi giveMeApi]loginWithUserName:@"110" andPassWord:@"123456" andSuccess:^(id response) {
-//        NSLog(@"登录成功%@",response);
-//        chatVC.navigationItem.title = @"微信";
-//    } andFailure:^(NSError *error) {
-//        NSLog(@"登录失败%@",error);
-//        chatVC.navigationItem.title = @"微信(未连接)";
-//    }];
-    
     AddressBookViewController * addbkVC = [[AddressBookViewController alloc]init];
     addbkVC.title = @"通讯录";
     

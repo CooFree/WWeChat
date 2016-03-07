@@ -194,7 +194,7 @@
     
     if ([message.content isMemberOfClass:[RCTextMessage class]]) {
         RCTextMessage *testMessage = (RCTextMessage *)message.content;
-        NSLog(@"消息内容：%@", testMessage.content);
+        NSLog(@"消息内容：%@", message.content);
     }
     //没有未接受的消息时刷新
     if (nLeft == 0)
