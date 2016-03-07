@@ -34,6 +34,7 @@
  * 2016.3.03 加入部分IM以及修改部分框架，目前能接受到信息，但是还有部分细节问题.
  * 2016.3.04 加入发送信息功能，可以用两个帐号测试，具体聊天记录要自己创表本地化
  * 2016.3.06 修复BUG:消息为空时菊花一直转以及无法点击tabbar的问题
+ * 2016.3.07 文字内容能随意发送了，加入历史纪录.
 
  
 
@@ -41,6 +42,9 @@
 
 ###<a id="IM部分"></a>IM部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
+<div>
+</div>
+![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0307.gif)
 ###<a id="登陆注册部分"></a>登陆注册部分
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
 ###<a id="更改资料部分"></a>更改资料部分
