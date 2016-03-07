@@ -411,7 +411,7 @@
                 
                 messages = [[NSMutableArray alloc]init];
                 
-                [muDic setObject:[NSString stringWithFormat:@"%lld",message.sentTime] forKey:@"timestamp"];
+                [muDic setObject:@(message.sentTime) forKey:@"timestamp"];
                 
                 [messages addObject:model];
                 

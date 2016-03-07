@@ -286,9 +286,9 @@
     timeLabel.layer.cornerRadius = 5;
     timeLabel.clipsToBounds = YES;
     
-    NSInteger times = [dic[@"timestamp"]integerValue];
+    double times = [dic[@"timestamp"]doubleValue];
     
-    timeLabel.text = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:[dic[@"timestamp"] integerValue] andScale:3]];
+    timeLabel.text = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:times andScale:3]];
     
     timeLabel.font = [UIFont systemFontOfSize:12];
     
