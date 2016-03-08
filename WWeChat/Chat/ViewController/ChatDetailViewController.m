@@ -125,8 +125,6 @@
         
         [keyView setShowBlock:^(NSInteger anType, CGFloat duration, CGSize kSize) {
             
-            if (weakKeyView.frame.origin.y == self.view.frame.size.height - weakKeyView.frame.size.height)
-            {
                 [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
                     
                     
@@ -151,12 +149,9 @@
                 } completion:^(BOOL finished) {
                     
                 }];
-            }
             
         } andHideBlock:^(NSInteger anType, CGFloat duration, CGSize kSize) {
             
-            if (weakKeyView.frame.origin.y != self.view.frame.size.height - weakKeyView.frame.size.height)
-            {
                 [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
                     
                     CGRect rect = weakKeyView.frame;
@@ -174,7 +169,6 @@
                 } completion:^(BOOL finished) {
                     
                 }];
-            }
             
         }];
         
