@@ -12,6 +12,7 @@
 		4B9D88701C8D53840055D771 /* PrivateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D886E1C8D53840055D771 /* PrivateCell.m */; };
 		4B9D88711C8D53840055D771 /* PrivateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D886F1C8D53840055D771 /* PrivateCell.xib */; };
 		4B9D88741C8D54E80055D771 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D88731C8D54E80055D771 /* MessageModel.m */; };
+		4B9D88DB1C8EBA7F0055D771 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D88DA1C8EBA7F0055D771 /* SettingViewController.m */; };
 		4BAA6AE81C74779300785F4C /* GlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA6AE71C74779300785F4C /* GlassView.m */; };
 		4BBD93B51C5A17160057FAC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93B41C5A17160057FAC5 /* main.m */; };
 		4BBD93B81C5A17160057FAC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93B71C5A17160057FAC5 /* AppDelegate.m */; };
@@ -161,6 +162,8 @@
 		4B9D886F1C8D53840055D771 /* PrivateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateCell.xib; sourceTree = "<group>"; };
 		4B9D88721C8D54E80055D771 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		4B9D88731C8D54E80055D771 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		4B9D88D91C8EBA7F0055D771 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		4B9D88DA1C8EBA7F0055D771 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		4BAA6AE61C74779300785F4C /* GlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlassView.h; sourceTree = "<group>"; };
 		4BAA6AE71C74779300785F4C /* GlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlassView.m; sourceTree = "<group>"; };
 		4BBD93B01C5A17160057FAC5 /* WWeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -572,6 +575,8 @@
 				694B020D1C62249B009333C4 /* PersonViewController.m */,
 				4BF31C311C7172C900B4100A /* ChangeDataViewController.h */,
 				4BF31C321C7172C900B4100A /* ChangeDataViewController.m */,
+				4B9D88D91C8EBA7F0055D771 /* SettingViewController.h */,
+				4B9D88DA1C8EBA7F0055D771 /* SettingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1108,6 +1113,7 @@
 				698EFFEE1C64966B005618E6 /* ChangeAvaterView.m in Sources */,
 				4BF31B491C5B36AD00B4100A /* SDWebImageCompat.m in Sources */,
 				4B8107771C74142B004EE23E /* AddFriendViewController.m in Sources */,
+				4B9D88DB1C8EBA7F0055D771 /* SettingViewController.m in Sources */,
 				4BF31B391C5B36AD00B4100A /* README.md in Sources */,
 				4BF31B4A1C5B36AD00B4100A /* SDWebImageDecoder.m in Sources */,
 				4BF31B361C5B36AD00B4100A /* AFURLResponseSerialization.m in Sources */,

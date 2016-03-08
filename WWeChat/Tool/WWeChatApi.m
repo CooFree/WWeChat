@@ -225,6 +225,11 @@
     }];
 }
 
+- (void)LogoutAndSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+    [[RCIMClient sharedRCIMClient]logout];
+    successBlock(nil);
+}
 
 - (void)selectUserForMid:(NSString *)mid andSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
 {

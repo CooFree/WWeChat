@@ -11,7 +11,7 @@
 #import "PersonModel.h"
 
 #import "UserInfoManager.h"
-
+#import "SettingViewController.h"
 #import "PersonViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -211,7 +211,7 @@
         //设置
         if (indexPath.row == 0)
         {
-            
+            [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
         }
     }
 }

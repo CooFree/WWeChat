@@ -125,43 +125,56 @@
         
         [keyView setShowBlock:^(NSInteger anType, CGFloat duration, CGSize kSize) {
             
-            [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
-            
+            if (weakKeyView.frame.origin.y == self.view.frame.size.height - weakKeyView.frame.size.height)
+            {
+                [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
+                    
+                    
                     CGRect rect = weakKeyView.frame;
-            
+                    
                     rect.origin.y -= kSize.height;
-            
+                    
                     weakKeyView.frame = rect;
-                
-                CGRect tableRect = _tableView.frame;
-                
-                tableRect.size.height -= kSize.height;
-                
-                _tableView.frame = tableRect;
-                
+                    
+                    CGRect tableRect = _tableView.frame;
+                    
+                    tableRect.size.height -= kSize.height;
+                    
+                    _tableView.frame = tableRect;
+                    
+                    CGPoint pt = _tableView.contentOffset;
+                    
+                    pt.y +=  kSize.height;
+                    
+                    _tableView.contentOffset = pt;
+                    
                 } completion:^(BOOL finished) {
-                    [self refresh];
+                    
                 }];
+            }
             
         } andHideBlock:^(NSInteger anType, CGFloat duration, CGSize kSize) {
             
-            [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
-                
-                CGRect rect = weakKeyView.frame;
-                
-                rect.origin.y += kSize.height;
-                
-                weakKeyView.frame = rect;
-                
-                CGRect tableRect = _tableView.frame;
-                
-                tableRect.size.height += kSize.height;
-                
-                _tableView.frame = tableRect;
-                
-            } completion:^(BOOL finished) {
-                
-            }];
+            if (weakKeyView.frame.origin.y != self.view.frame.size.height - weakKeyView.frame.size.height)
+            {
+                [UIView animateKeyframesWithDuration:duration delay:0 options:anType animations:^{
+                    
+                    CGRect rect = weakKeyView.frame;
+                    
+                    rect.origin.y += kSize.height;
+                    
+                    weakKeyView.frame = rect;
+                    
+                    CGRect tableRect = _tableView.frame;
+                    
+                    tableRect.size.height += kSize.height;
+                    
+                    _tableView.frame = tableRect;
+                    
+                } completion:^(BOOL finished) {
+                    
+                }];
+            }
             
         }];
         

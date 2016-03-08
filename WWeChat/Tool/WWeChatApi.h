@@ -47,6 +47,13 @@
  */
 - (void)updataUserNameWithName:(NSString *)name andSuccess:(void (^)(id response))successBlock andFailure:(void (^)(NSError * error))failureBlock;
 
+/**
+ *  退出登录
+ */
+- (void)LogoutAndSuccess:(void(^)(id response))successBlock
+               andFailure:(void(^)())failureBlock
+                 andError:(void(^)(NSError * error))errorBlock;
+
 #pragma mark ---------------------- 用户查询 ---------------------------------
 
 /**
