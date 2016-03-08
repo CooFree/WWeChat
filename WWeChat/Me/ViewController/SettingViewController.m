@@ -7,7 +7,8 @@
 //
 
 #import "SettingViewController.h"
-
+#import "WWeChatApi.h"
+#import "PreViewController.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,copy)NSArray * dataArr;
@@ -80,8 +81,6 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        //右侧小箭头
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -100,6 +99,8 @@
     else
     {
         cell.textLabel.text = _dataArr[indexPath.section][indexPath.row];
+        //右侧小箭头
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 
@@ -132,9 +133,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == _dataArr.count -1)
     {
+        [[WWeChatApi giveMeApi]LogoutAndSuccess:^(id response) {
+            NSLog(@"退出登录成功");
+            NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
+            NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+            [muDic setObject:@"" forKey:@"mid"];
+            [muDic setObject:@"" forKey:@"password"];
+            [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
+            [[NSUserDefaults standardUserDefaults]synchronize];
         
+            UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            PreViewController * preVC = [storyBoard instantiateViewControllerWithIdentifier:@"PreViewController"];
+            [UIView animateWithDuration:1 animations:^{
+                [UIApplication sharedApplication].keyWindow.rootViewController = preVC;
+            }];
+        } andFailure:^{
+            NSLog(@"退出登录失败");
+        } andError:^(NSError *error) {
+            NSLog(@"退出登录错误");
+        }];
     }
 }
 /*

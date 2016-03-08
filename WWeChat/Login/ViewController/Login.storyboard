@@ -367,9 +367,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家/地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZW-pi-lZC">
-                                <rect key="frame" x="12" y="140" width="69.5" height="20"/>
+                                <rect key="frame" x="12" y="140" width="75" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="69.5" id="ezT-gq-55i"/>
+                                    <constraint firstAttribute="width" constant="75" id="ezT-gq-55i"/>
                                     <constraint firstAttribute="height" constant="20" id="ztZ-w6-GQI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -377,7 +377,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG3-tL-XW5">
-                                <rect key="frame" x="104" y="140" width="275" height="20"/>
+                                <rect key="frame" x="109.5" y="140" width="269.5" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="LKI-Fw-7c6"/>
                                 </constraints>
@@ -454,7 +454,7 @@
                                     <color key="titleColor" red="0.38423459343436861" green="0.56202372410215906" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjx-WQ-wws">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjx-WQ-wws">
                                 <rect key="frame" x="92" y="169" width="287" height="45"/>
                                 <color key="tintColor" red="0.14117647058823529" green="0.72941176470588232" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

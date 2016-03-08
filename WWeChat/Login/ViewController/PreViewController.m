@@ -27,30 +27,30 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    if ([UserInfoManager manager].mid && [UserInfoManager manager].password)
-//    {
-//        [_languageBtn removeFromSuperview];
-//        [_loginBtn removeFromSuperview];
-//        [_registerBtn removeFromSuperview];
-//        
-//        [[WWeChatApi giveMeApi]loginWithUserName:[UserInfoManager manager].mid andPassWord:[UserInfoManager manager].password andSuccess:^(id response) {
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [UIApplication sharedApplication].keyWindow.rootViewController = [[TabBarViewController alloc]init];
-//                
-//            });
-//            
-//        } andFailure:^{
-//            
-//        } andError:^(NSError *error) {
-//            
-//        }];
-//        
-//    }
-//    else
-//    {
-//        
-//    }
+    if ([UserInfoManager manager].mid.length > 0 && [UserInfoManager manager].password.length > 0)
+    {
+        [_languageBtn removeFromSuperview];
+        [_loginBtn removeFromSuperview];
+        [_registerBtn removeFromSuperview];
+        
+        [[WWeChatApi giveMeApi]loginWithUserName:[UserInfoManager manager].mid andPassWord:[UserInfoManager manager].password andSuccess:^(id response) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].keyWindow.rootViewController = [[TabBarViewController alloc]init];
+                
+            });
+            
+        } andFailure:^{
+            
+        } andError:^(NSError *error) {
+            
+        }];
+        
+    }
+    else
+    {
+        
+    }
 }
 
 - (void)viewDidLoad
