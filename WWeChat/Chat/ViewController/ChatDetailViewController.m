@@ -140,9 +140,31 @@
                     
                     _tableView.frame = tableRect;
                     
+                    CGFloat contentY = 0;
+                    
+                    for (NSDictionary * messageDic in _dataArr)
+                    {
+                        NSArray * modelArr = messageDic[@"messages"];
+                        for (int i = 0; i < modelArr.count; i++)
+                        {
+                            MessageModel * model = modelArr[i];
+                            if (i != modelArr.count - 1&& i != modelArr.count - 2)
+                            {
+                               contentY += model.bubbleSize.height > 40 ? model.bubbleSize.height + 20: 40+20;
+                            }
+                        }
+                    }
+                    
                     CGPoint pt = _tableView.contentOffset;
                     
-                    pt.y +=  kSize.height;
+                    if (contentY > kSize.height)
+                    {
+                        pt.y += kSize.height;
+                    }
+                    else
+                    {
+                        pt.y = contentY - 40;
+                    }
                     
                     _tableView.contentOffset = pt;
                     
