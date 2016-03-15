@@ -32,7 +32,6 @@
 //    NSTimeZone *zone = [NSTimeZone systemTimeZone];
 //    NSInteger interval = [zone secondsFromGMTForDate:datenow];
 //    NSDate   *localeDate = [confromTimesp  dateByAddingTimeInterval: interval];
-    
     return [self strToDicWithStr:[self.formatter stringFromDate:confromTimesp]];
 }
 

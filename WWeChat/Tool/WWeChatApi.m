@@ -253,7 +253,8 @@
                 
                 NSDictionary * dic = @{
                                        @"name":[selectUser objectForKey:@"nickName"],
-                                       @"avater":[selectUser objectForKey:@"avaterUrl"] == nil?@"":[selectUser objectForKey:@"avaterUrl"]
+                                       @"avater":[selectUser objectForKey:@"avaterUrl"] == nil?@"":[selectUser objectForKey:@"avaterUrl"],
+                                       @"objectID":selectUser.objectId
                                        };
                 
                 successBlock(dic);
@@ -473,5 +474,54 @@
         failureBlock();
     }
     
+}
+
+- (void)askForFriendAndSuccess:(void (^)(id))successBlock andFailure:(void (^)())failureBlock andError:(void (^)(NSError *))errorBlock
+{
+    AVUser * user = [AVUser currentUser];
+    
+    AVQuery *query = [AVQuery queryWithClassName:@"Friend"];
+    [query whereKey:@"manName" equalTo:user.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"查询好友列表错误:%@",error.localizedDescription);
+            errorBlock(error);
+        }
+        else
+        {
+            if (objects.count > 0)
+            {
+                NSMutableArray * muArr = [[NSMutableArray alloc]init];
+                for (AVObject * selectObject in objects)
+                {
+                    NSString * mid = selectObject[@"uID"];
+                   [self selectUserForMid:mid andSuccess:^(id response) {
+                       [muArr addObject:response];
+                       if(muArr.count == objects.count)
+                       {
+                           NSLog(@"查询好友列表成功");
+                           successBlock(muArr);
+                       }
+                       
+                   } andFailure:^{
+        
+                   } andError:^(NSError *error) {
+                       
+                   }];
+                }
+                
+            }
+            else
+            {
+                NSLog(@"查询好友列表失败:未找到");
+                failureBlock();
+            }
+        }
+        
+    }];
+
 }
 @end

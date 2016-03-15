@@ -87,4 +87,12 @@
     andSuccess:(void (^)(id response))successBlock
     andFailure:(void(^)())failureBlock
     andError:(void(^)(NSError * error))errorBlock;
+
+#pragma mark ---------------------- 好友 ---------------------------------
+/**
+ *  查询好友
+ */
+- (void)askForFriendAndSuccess:(void (^)(id response))successBlock
+                    andFailure:(void(^)())failureBlock
+                    andError:(void(^)(NSError * error))errorBlock;
 @end

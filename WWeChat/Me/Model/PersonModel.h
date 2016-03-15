@@ -25,4 +25,9 @@
  */
 @property (nonatomic,copy)NSString * weID;
 
+/**
+ *  ObjectID
+ */
+@property (nonatomic,copy)NSString * ObjectID;
+
 @end

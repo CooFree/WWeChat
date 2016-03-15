@@ -8,7 +8,8 @@
 
 #import "AddressBookViewController.h"
 #import "NSString+PinYin.h"
-
+#import "WWeChatApi.h"
+#import "PersonModel.h"
 #import "AddFriendViewController.h"
 @interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 
@@ -61,59 +62,62 @@
                      }
                     ];
     
-    NSArray * nameArr = @[
-                          @{
-                              @"name":@"马化腾",
-                              @"imgName":@"avater.jpg"
-                              },
-                          @{
-                              @"name":@"张小龙",
-                              @"imgName":@"avater.jpg"
-                              },
-                          @{
-                              @"name":@"乔帮主",
-                              @"imgName":@"avater.jpg"
-                              },
-                          @{
-                              @"name":@"库里",
-                              @"imgName":@"avater.jpg"
-                              }
-                          ];
+    NSMutableArray * nameArr = [[NSMutableArray alloc]init];
     
-    for(char i = 'A';i <= 'Z';i++)
-    {
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
-        for (int j = 0; j < nameArr.count; j++)
+    [[WWeChatApi giveMeApi]askForFriendAndSuccess:^(id response) {
+        
+        for (NSDictionary * dic in response)
         {
-            NSDictionary * nameDic = nameArr[j];
-            NSString * name = nameDic[@"name"];
-            NSString * imgName = nameDic[@"imgName"];
-            NSString * sectionName = [NSString stringWithFormat:@"%c",i];
-            
-            //属于这个组的nameArr
-            NSMutableArray * currNameArr = [[NSMutableArray alloc]init];
-            if ([[name getFirstLetter] isEqualToString:sectionName])
-            {
-                NSDictionary * currDic = @{
-                                           @"name":name,
-                                           @"imgName":imgName
-                                           };
-                
-                [currNameArr addObject:currDic];
-            }
-            
-            if (currNameArr.count > 0)
-            {
-                [dic setObject:currNameArr forKey:@"nameArr"];
-                [dic setObject:sectionName forKey:@"sectionName"];
-                [_dataArr addObject:dic];
-            }
+            PersonModel * model = [[PersonModel alloc]init];
+            model.nickName = dic[@"name"];
+            model.avater = dic[@"avater"];
+            model.ObjectID = dic[@"objectID"];
+            [nameArr addObject:model];
         }
         
-    }
-    NSLog(@"%@",_dataArr);
+        for(char i = 'A';i <= 'Z';i++)
+        {
+            NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+            for (int j = 0; j < nameArr.count; j++)
+            {
+                PersonModel * model = nameArr[j];
+                NSString * name = model.nickName;
+                NSString * imgName = model.avater;
+                NSString * sectionName = [NSString stringWithFormat:@"%c",i];
+                
+                //属于这个组的nameArr
+                NSMutableArray * currNameArr = [[NSMutableArray alloc]init];
+                if ([[name getFirstLetter] isEqualToString:sectionName])
+                {
+                    NSDictionary * currDic = @{
+                                               @"name":name,
+                                               @"imgName":imgName
+                                               };
+                    
+                    [currNameArr addObject:currDic];
+                }
+                
+                if (currNameArr.count > 0)
+                {
+                    [dic setObject:currNameArr forKey:@"nameArr"];
+                    [dic setObject:sectionName forKey:@"sectionName"];
+                    [_dataArr addObject:dic];
+                }
+            }
+            
+        }
+        NSLog(@"%@",_dataArr);
+        
+        [self createTableView];
+        
+    } andFailure:^{
+        
+    } andError:^(NSError *error) {
+        
+    }];
     
-    [self createTableView];
+    
+   
 }
 
 - (void)createTableView
@@ -197,11 +201,13 @@
         //当前cell的信息
         NSDictionary * rowDic = arr[indexPath.row];
         
-        cell.imageView.image = [UIImage imageNamed:rowDic[@"imgName"]];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:rowDic[@"imgName"]] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+        }];
         
         cell.textLabel.text = rowDic[@"name"];
         
-        UIImage *icon = [UIImage imageNamed:rowDic[@"imgName"]];
+        UIImage *icon = cell.imageView.image;
         
         //修改icon尺寸
         CGSize itemSize = CGSizeMake(WGiveWidth(36), WGiveWidth(36));
