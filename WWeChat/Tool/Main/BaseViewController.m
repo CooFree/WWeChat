@@ -24,6 +24,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.hidesBottomBarWhenPushed = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
