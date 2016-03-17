@@ -10,6 +10,8 @@
 #import "UserInfoManager.h"
 #import "UIImageView+WebCache.h"
 
+
+#import "QuanCell.h"
 @interface QuanViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 
@@ -23,9 +25,6 @@
 
 /** 是否刷新 */
 @property(nonatomic,assign)BOOL isRefrsh;
-
-/**  */
-@property(nonatomic,strong)NSTimer * timer;
 
 /** 是否在旋转 */
 @property(nonatomic,assign)BOOL isRevolve;
@@ -52,6 +51,7 @@
     _isRevolve = NO;
     _isRefrsh = NO;
     _dataArr = [[NSMutableArray alloc]init];
+    
     for (int i = 0; i < 100; i++)
     {
         [_dataArr addObject:@""];
@@ -83,32 +83,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * identifier = @"QuanCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    QuanCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QuanCell"];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[NSBundle mainBundle]loadNibNamed:@"QuanCell" owner:self options:nil][0];
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return WGiveHeight(256);
+    return WGiveHeight(300);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, WGiveHeight(256))];
-    
+    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, WGiveHeight(300))];
     //背景部分
-    UIImageView * realView = [[UIImageView alloc]initWithFrame:CGRectMake(0, - WGiveHeight(64), self.view.frame.size.width, WGiveHeight(320))];
+    UIImageView * realView = [[UIImageView alloc]initWithFrame:CGRectMake(0, - WGiveHeight(64), self.view.frame.size.width, WGiveHeight(330))];
     realView.image = [UIImage imageNamed:@"Quan"];
     [view addSubview:realView];
     
     //头像部分
     {
-    UIView * avaterBackGroundView = [[UIView alloc]initWithFrame:CGRectMake(WGiveWidth(236), WGiveHeight(269), WGiveHeight(75), WGiveHeight(75))];
+    UIView * avaterBackGroundView = [[UIView alloc]initWithFrame:CGRectMake(WGiveWidth(236), WGiveHeight(270), WGiveHeight(75), WGiveHeight(75))];
     avaterBackGroundView.backgroundColor = [UIColor whiteColor];
     avaterBackGroundView.layer.borderColor = [UIColor grayColor].CGColor;
     avaterBackGroundView.layer.borderWidth = 0.5;
@@ -125,13 +123,15 @@
     
     //名字部分
     {
-        UILabel * userNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, WGiveHeight(276), WGiveWidth(218), WGiveHeight(44))];
+        UILabel * userNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, WGiveHeight(285), WGiveWidth(218), WGiveHeight(44))];
         userNameLabel.text = [[UserInfoManager manager]userName];
         userNameLabel.font = [UIFont boldSystemFontOfSize:17];
         userNameLabel.textColor = [UIColor whiteColor];
         userNameLabel.textAlignment = NSTextAlignmentRight;
         [realView addSubview:userNameLabel];
     }
+    
+    view.backgroundColor = [UIColor whiteColor];
     return view;
 }
 
@@ -172,8 +172,7 @@
     
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-        [self stopRefresh];
+//
         [UIView animateWithDuration:0.5 animations:^{
             self.refreshView.frame = CGRectMake(WGiveWidth(20),64 - WGiveHeight(28), WGiveHeight(28), WGiveHeight(28));
         } completion:^(BOOL finished) {
@@ -197,21 +196,12 @@
 
 - (void)startRefresh
 {
-    //_timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
     [UIView animateWithDuration:1 animations:^{
         self.refreshView.layer.transform = CATransform3DRotate(self.refreshView.layer.transform, M_PI, 0, 0, 1);
     }];
 }
 
-- (void)refresh
-{
-    
-}
 
-- (void)stopRefresh
-{
-    [_timer invalidate];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

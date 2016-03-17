@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4B04FF111C814B0F00C40F64 /* WZXTimeStampToTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B04FF101C814B0F00C40F64 /* WZXTimeStampToTimeTool.m */; };
+		4B25B6771C9AACAA00C7A1B1 /* QuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25B6751C9AACAA00C7A1B1 /* QuanCell.m */; };
+		4B25B6781C9AACAA00C7A1B1 /* QuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B25B6761C9AACAA00C7A1B1 /* QuanCell.xib */; };
+		4B25B67B1C9AACD200C7A1B1 /* QuanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25B67A1C9AACD200C7A1B1 /* QuanModel.m */; };
 		4B8107771C74142B004EE23E /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8107761C74142B004EE23E /* AddFriendViewController.m */; };
 		4B9D88701C8D53840055D771 /* PrivateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D886E1C8D53840055D771 /* PrivateCell.m */; };
 		4B9D88711C8D53840055D771 /* PrivateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D886F1C8D53840055D771 /* PrivateCell.xib */; };
@@ -155,6 +158,11 @@
 /* Begin PBXFileReference section */
 		4B04FF0F1C814B0F00C40F64 /* WZXTimeStampToTimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZXTimeStampToTimeTool.h; sourceTree = "<group>"; };
 		4B04FF101C814B0F00C40F64 /* WZXTimeStampToTimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZXTimeStampToTimeTool.m; sourceTree = "<group>"; };
+		4B25B6741C9AACAA00C7A1B1 /* QuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuanCell.h; sourceTree = "<group>"; };
+		4B25B6751C9AACAA00C7A1B1 /* QuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuanCell.m; sourceTree = "<group>"; };
+		4B25B6761C9AACAA00C7A1B1 /* QuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuanCell.xib; sourceTree = "<group>"; };
+		4B25B6791C9AACD200C7A1B1 /* QuanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuanModel.h; sourceTree = "<group>"; };
+		4B25B67A1C9AACD200C7A1B1 /* QuanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuanModel.m; sourceTree = "<group>"; };
 		4B8107751C74142B004EE23E /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		4B8107761C74142B004EE23E /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
 		4B9D886D1C8D53840055D771 /* PrivateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateCell.h; sourceTree = "<group>"; };
@@ -393,6 +401,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B25B6721C9AAC8800C7A1B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B25B6791C9AACD200C7A1B1 /* QuanModel.h */,
+				4B25B67A1C9AACD200C7A1B1 /* QuanModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B25B6731C9AAC8800C7A1B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B25B6741C9AACAA00C7A1B1 /* QuanCell.h */,
+				4B25B6751C9AACAA00C7A1B1 /* QuanCell.m */,
+				4B25B6761C9AACAA00C7A1B1 /* QuanCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4BBD93A71C5A17160057FAC5 = {
 			isa = PBXGroup;
 			children = (
@@ -504,25 +531,11 @@
 		4BBD93EA1C5A18420057FAC5 /* Found */ = {
 			isa = PBXGroup;
 			children = (
-				4BBD93EB1C5A18420057FAC5 /* Model */,
-				4BBD93EC1C5A18420057FAC5 /* View */,
+				4B25B6721C9AAC8800C7A1B1 /* Model */,
+				4B25B6731C9AAC8800C7A1B1 /* View */,
 				4BBD93ED1C5A18420057FAC5 /* ViewController */,
 			);
 			path = Found;
-			sourceTree = "<group>";
-		};
-		4BBD93EB1C5A18420057FAC5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4BBD93EC1C5A18420057FAC5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4BBD93ED1C5A18420057FAC5 /* ViewController */ = {
@@ -1010,6 +1023,7 @@
 				4BD96BF71C87EB4500D6646D /* release_notes_ios.txt in Resources */,
 				4B9D88711C8D53840055D771 /* PrivateCell.xib in Resources */,
 				4BF31B381C5B36AD00B4100A /* LICENSE in Resources */,
+				4B25B6781C9AACAA00C7A1B1 /* QuanCell.xib in Resources */,
 				4BD96BF81C87EB4500D6646D /* RongCloud.bundle in Resources */,
 				4BF31BAF1C5DB29500B4100A /* ChatCell.xib in Resources */,
 				4BF31B651C5B667000B4100A /* avater.jpg in Resources */,
@@ -1069,6 +1083,7 @@
 				4BF31B3C1C5B36AD00B4100A /* UIAlertView+AFNetworking.m in Sources */,
 				4B9D88741C8D54E80055D771 /* MessageModel.m in Sources */,
 				4BF31B5A1C5B376500B4100A /* NSString+PinYin.m in Sources */,
+				4B25B6771C9AACAA00C7A1B1 /* QuanCell.m in Sources */,
 				4BF31B4C1C5B36AD00B4100A /* SDWebImageDownloaderOperation.m in Sources */,
 				4BF31B3A1C5B36AD00B4100A /* AFNetworkActivityIndicatorManager.m in Sources */,
 				69DB39121C64E4D500E6B90E /* MBProgressHUD.m in Sources */,
@@ -1100,6 +1115,7 @@
 				4BD4EBAE1C89263E009EB613 /* KeyboardView.m in Sources */,
 				4BF31B531C5B36AD00B4100A /* UIImageView+WebCache.m in Sources */,
 				4BF31C331C7172C900B4100A /* ChangeDataViewController.m in Sources */,
+				4B25B67B1C9AACD200C7A1B1 /* QuanModel.m in Sources */,
 				4BF31B4B1C5B36AD00B4100A /* SDWebImageDownloader.m in Sources */,
 				4BF31B521C5B36AD00B4100A /* UIImage+WebP.m in Sources */,
 				4BD4EB6C1C882AF7009EB613 /* ChatDetailViewController.m in Sources */,

@@ -95,6 +95,15 @@
             if([timeDic[@"day"]integerValue] < [nowDic[@"day"]integerValue])
             {
                 timeStr = [NSString stringWithFormat:@"%ld天前",[nowDic[@"day"] integerValue] - [timeDic[@"day"]integerValue]];
+                if ([timeStr isEqualToString:@"一天前"])
+                {
+                    timeStr = @"昨天";
+                }
+                if ([timeStr isEqualToString:@"两天前"])
+                {
+                    timeStr = @"前天";
+                }
+                
             }
             else if([timeDic[@"day"]integerValue] == [nowDic[@"day"]integerValue])
             {
