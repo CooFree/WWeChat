@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ViewToTopLayout;
+@property (weak, nonatomic) IBOutlet UIView *centerView;
 
 @end
 
@@ -24,10 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addKeyBoardNoti];
+    
     [self btnSetting];
     
     [_mobileTextfield addTarget:self action:@selector(judgement) forControlEvents:UIControlEventEditingChanged];
     [_passwordTextfield addTarget:self action:@selector(judgement) forControlEvents:UIControlEventEditingChanged];
+    [_centerView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyBoard)]];
+}
+
+- (void)hideKeyBoard
+{
+    [self.view endEditing:YES];
 }
 
 - (void)judgement
@@ -78,6 +88,46 @@
     }];
 }
 
+- (void)addKeyBoardNoti
+{
+    //使用NSNotificationCenter 鍵盤出現時
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    //使用NSNotificationCenter 鍵盤隐藏時
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+//    //持续时间
+//    CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey]floatValue];
+//    //动画类型
+//    NSInteger anType = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey]integerValue];
+    
+//    [UIView animateKeyframesWithDuration:2 delay:0 options:anType animations:^{
+//        
+        _ViewToTopLayout.constant -= WGiveHeight(50);
+//        
+//    } completion:^(BOOL finished) {
+//    }];
+    
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+        _ViewToTopLayout.constant += WGiveHeight(50);
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 
