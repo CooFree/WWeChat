@@ -65,9 +65,12 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)dismissBtnClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.view endEditing:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    });
 }
 - (IBAction)loginBtnClick:(id)sender {
     
@@ -90,15 +93,19 @@
 
 - (void)addKeyBoardNoti
 {
-    //使用NSNotificationCenter 鍵盤出現時
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    
-    //使用NSNotificationCenter 鍵盤隐藏時
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+    // iPhone 6之前的
+    if([UIScreen mainScreen].bounds.size.height < 667)
+    {
+        //使用NSNotificationCenter 鍵盤出現時
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWasShown:)
+                                                     name:UIKeyboardWillShowNotification object:nil];
+        
+        //使用NSNotificationCenter 鍵盤隐藏時
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillBeHidden:)
+                                                     name:UIKeyboardWillHideNotification object:nil];
+    }
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
