@@ -211,7 +211,9 @@
         //设置
         if (indexPath.row == 0)
         {
-            [self.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
+            SettingViewController * settingVC = [[SettingViewController alloc]init];
+            settingVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:settingVC animated:YES];
         }
     }
 }
