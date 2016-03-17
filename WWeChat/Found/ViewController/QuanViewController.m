@@ -21,11 +21,14 @@
 //刷新控件
 @property(nonatomic,strong)UIImageView * refreshView;
 
-//刷新控件
+/** 是否刷新 */
 @property(nonatomic,assign)BOOL isRefrsh;
 
-//刷新控件
+/**  */
 @property(nonatomic,strong)NSTimer * timer;
+
+/** 是否在旋转 */
+@property(nonatomic,assign)BOOL isRevolve;
 
 @end
 
@@ -46,6 +49,7 @@
 - (void)preData
 {
   //  _num = 0;
+    _isRevolve = NO;
     _isRefrsh = NO;
     _dataArr = [[NSMutableArray alloc]init];
     for (int i = 0; i < 100; i++)
@@ -148,9 +152,15 @@
         self.refreshView.frame = frame;
         
         
-        [UIView animateWithDuration:5 animations:^{
-            self.refreshView.layer.transform = CATransform3DRotate(self.refreshView.layer.transform, M_PI, 0, 0, 1);
-        }];
+        if (_isRevolve == NO)
+        {
+            [UIView animateWithDuration:1 animations:^{
+                _isRevolve = YES;
+                self.refreshView.layer.transform = CATransform3DRotate(self.refreshView.layer.transform, M_PI, 0, 0, 1);
+            }completion:^(BOOL finished) {
+                _isRevolve = NO;
+            }];
+        }
     }
 }
 

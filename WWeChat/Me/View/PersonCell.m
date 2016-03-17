@@ -96,7 +96,7 @@
     {
         _wmImgView = ({
         
-            UIImageView * wmImgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width - WGiveWidth(50),((self.frame.size.height - WGiveHeight(35/2.0))/2.0), WGiveWidth(35/2.0), WGiveWidth(35/2.0))];
+            UIImageView * wmImgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width - (50),((self.frame.size.height - (35/2.0))/2.0),35/2.0,35/2.0)];
             
             wmImgView;
         });
