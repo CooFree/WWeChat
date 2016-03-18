@@ -63,7 +63,13 @@
         
     }];
     
+    //获取会话信息
     [[WWeChatApi giveMeApi]getMessagesWithConversationID:_converseID andNum:20 andType:_conversationType AndSuccess:^(NSArray *messageArr) {
+        
+        for (NSDictionary * dic in messageArr)
+        {
+            NSLog(@"%@",dic);
+        }
         
         _dataArr = messageArr;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

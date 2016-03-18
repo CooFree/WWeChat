@@ -7,7 +7,6 @@
 //
 
 #import "MessageModel.h"
-
 @implementation MessageModel
 
 - (void)setMessage:(NSString *)message
@@ -27,6 +26,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@",self.message];
+    return [NSString stringWithFormat:@"%d %@",self.isMe,self.message];
 }
 @end

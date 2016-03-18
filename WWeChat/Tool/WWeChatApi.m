@@ -400,11 +400,14 @@
             
             MessageModel * model = [[MessageModel alloc]init];
             
+           
             model.sentID = message.senderUserId;
-            if ([model.sentID isEqualToString:[AVUser currentUser].username])
+            
+            if (message.messageDirection == MessageDirection_SEND)
             {
                 model.isMe = YES;
             }
+            
             RCTextMessage * textMessage = (RCTextMessage *)message.content;
             model.message = textMessage.content;
             

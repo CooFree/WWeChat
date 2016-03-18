@@ -16,6 +16,7 @@
 		4B9D88711C8D53840055D771 /* PrivateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D886F1C8D53840055D771 /* PrivateCell.xib */; };
 		4B9D88741C8D54E80055D771 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D88731C8D54E80055D771 /* MessageModel.m */; };
 		4B9D88DB1C8EBA7F0055D771 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D88DA1C8EBA7F0055D771 /* SettingViewController.m */; };
+		4BA046491C9C03D600EC88DC /* NSObject+WZXModelTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA046471C9C03D600EC88DC /* NSObject+WZXModelTools.m */; };
 		4BAA6AE81C74779300785F4C /* GlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA6AE71C74779300785F4C /* GlassView.m */; };
 		4BBD93B51C5A17160057FAC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93B41C5A17160057FAC5 /* main.m */; };
 		4BBD93B81C5A17160057FAC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD93B71C5A17160057FAC5 /* AppDelegate.m */; };
@@ -172,6 +173,9 @@
 		4B9D88731C8D54E80055D771 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		4B9D88D91C8EBA7F0055D771 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		4B9D88DA1C8EBA7F0055D771 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		4BA046461C9C03D600EC88DC /* NSObject+WZXModelTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WZXModelTools.h"; sourceTree = "<group>"; };
+		4BA046471C9C03D600EC88DC /* NSObject+WZXModelTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WZXModelTools.m"; sourceTree = "<group>"; };
+		4BA046481C9C03D600EC88DC /* WZXModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZXModel.h; sourceTree = "<group>"; };
 		4BAA6AE61C74779300785F4C /* GlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlassView.h; sourceTree = "<group>"; };
 		4BAA6AE71C74779300785F4C /* GlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlassView.m; sourceTree = "<group>"; };
 		4BBD93B01C5A17160057FAC5 /* WWeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,6 +422,16 @@
 				4B25B6761C9AACAA00C7A1B1 /* QuanCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4BA046451C9C03D600EC88DC /* WZXModel */ = {
+			isa = PBXGroup;
+			children = (
+				4BA046461C9C03D600EC88DC /* NSObject+WZXModelTools.h */,
+				4BA046471C9C03D600EC88DC /* NSObject+WZXModelTools.m */,
+				4BA046481C9C03D600EC88DC /* WZXModel.h */,
+			);
+			path = WZXModel;
 			sourceTree = "<group>";
 		};
 		4BBD93A71C5A17160057FAC5 = {
@@ -748,6 +762,7 @@
 		4BF31ADE1C5B36AD00B4100A /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				4BA046451C9C03D600EC88DC /* WZXModel */,
 				4BD96BE81C87EB4400D6646D /* RongYun */,
 				69DB39131C64E4D800E6B90E /* MBProgressHUD */,
 				690BE0F41C60C54D00DDC8AA /* AVOSCloud */,
@@ -1072,6 +1087,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B04FF111C814B0F00C40F64 /* WZXTimeStampToTimeTool.m in Sources */,
+				4BA046491C9C03D600EC88DC /* NSObject+WZXModelTools.m in Sources */,
 				4BF31B331C5B36AD00B4100A /* AFSecurityPolicy.m in Sources */,
 				4BF31B631C5B5CF600B4100A /* PersonModel.m in Sources */,
 				4BF31B4D1C5B36AD00B4100A /* SDWebImageManager.m in Sources */,

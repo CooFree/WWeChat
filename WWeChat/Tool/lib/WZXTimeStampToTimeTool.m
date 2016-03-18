@@ -103,7 +103,6 @@
                 {
                     timeStr = @"前天";
                 }
-                
             }
             else if([timeDic[@"day"]integerValue] == [nowDic[@"day"]integerValue])
             {
