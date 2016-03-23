@@ -56,4 +56,13 @@
  *  是否打开了会话环境
  */
 @property(nonatomic,assign)BOOL isOpenIm;
+
+/**
+ *  缓存的头像
+ */
+- (UIImage *)avater;
+/**
+ *  保存img
+ */
+- (void)saveImgDataWithImg:(UIImage *)img;
 @end

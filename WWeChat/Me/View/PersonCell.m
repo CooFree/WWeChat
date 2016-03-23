@@ -8,6 +8,7 @@
 
 #import "PersonCell.h"
 #import "UIImageView+WebCache.h"
+#import "UserInfoManager.h"
 @implementation PersonCell
 
 - (void)awakeFromNib {
@@ -24,7 +25,9 @@
 {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    [self.avaterImgView setImageWithURL:[NSURL URLWithString:model.avater] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [self.avaterImgView setImageWithURL:[NSURL URLWithString:model.avater] placeholderImage:[[UserInfoManager manager]avater ] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+        [[UserInfoManager manager]saveImgDataWithImg:image];
         
     }];
     

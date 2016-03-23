@@ -27,6 +27,11 @@
 
 @implementation AddressBookViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self preData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -35,11 +40,12 @@
     [self addRightBtnWithImgName:@"book_addfriend" andSelector:@selector(rightBtnClick:)];
     //准备数据
     [self preData];
+    
+    [self createTableView];
 }
 
 - (void)preData
 {
-    _dataArr = [[NSMutableArray alloc]init];
     
     _searchArr = [[NSMutableArray alloc]init];
     
@@ -65,6 +71,7 @@
     NSMutableArray * nameArr = [[NSMutableArray alloc]init];
     
     [[WWeChatApi giveMeApi]askForFriendAndSuccess:^(id response) {
+        _dataArr = [[NSMutableArray alloc]init];
         
         for (NSDictionary * dic in response)
         {
@@ -75,26 +82,25 @@
             [nameArr addObject:model];
         }
         
+        // #数组
+        NSMutableArray * otherArr = [[NSMutableArray alloc]initWithArray:nameArr];
+        // 已经被添加的数组
+        NSMutableArray * addArr = [[NSMutableArray alloc]init];
+        
         for(char i = 'A';i <= 'Z';i++)
         {
             NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
             for (int j = 0; j < nameArr.count; j++)
             {
                 PersonModel * model = nameArr[j];
-                NSString * name = model.nickName;
-                NSString * imgName = model.avater;
                 NSString * sectionName = [NSString stringWithFormat:@"%c",i];
                 
                 //属于这个组的nameArr
                 NSMutableArray * currNameArr = [[NSMutableArray alloc]init];
-                if ([[name getFirstLetter] isEqualToString:sectionName])
+                if ([[model.nickName getFirstLetter] isEqualToString:sectionName])
                 {
-                    NSDictionary * currDic = @{
-                                               @"name":name,
-                                               @"imgName":imgName
-                                               };
-                    
-                    [currNameArr addObject:currDic];
+                    [currNameArr addObject:model];
+                    [addArr addObject:model];
                 }
                 
                 if (currNameArr.count > 0)
@@ -104,11 +110,21 @@
                     [_dataArr addObject:dic];
                 }
             }
-            
         }
+        
+        [otherArr removeObjectsInArray:addArr];
+        
+        [_dataArr addObject:@{
+                              @"nameArr" : otherArr,
+                              @"sectionName" : @"#"
+                              }];
+        
         NSLog(@"%@",_dataArr);
         
-        [self createTableView];
+       if(_tableView)
+       {
+           [_tableView reloadData];
+       }
         
     } andFailure:^{
         
@@ -199,13 +215,13 @@
         NSArray * arr = dic[@"nameArr"];
         
         //当前cell的信息
-        NSDictionary * rowDic = arr[indexPath.row];
+        PersonModel * model = arr[indexPath.row];
         
-        [cell.imageView setImageWithURL:[NSURL URLWithString:rowDic[@"imgName"]] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [cell.imageView setImageWithURL:[NSURL URLWithString:model.avater] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
         }];
         
-        cell.textLabel.text = rowDic[@"name"];
+        cell.textLabel.text = model.nickName;
         
         UIImage *icon = cell.imageView.image;
         
@@ -322,7 +338,7 @@
 #pragma mark --选中Cell的方法--
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - searchController delegate

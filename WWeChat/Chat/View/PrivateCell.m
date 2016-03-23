@@ -30,7 +30,7 @@
     {
         [_AiConView removeFromSuperview];
         
-        [_BiConView setImageWithURL:[NSURL URLWithString:[[UserInfoManager manager]avaterUrl]] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [_BiConView setImageWithURL:[NSURL URLWithString:[[UserInfoManager manager]avaterUrl]] placeholderImage:[[UserInfoManager manager]avater] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
         }];
         

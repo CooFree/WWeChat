@@ -143,8 +143,10 @@
         
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(220), (cell.frame.size.height - WGiveHeight(64))/2.0, WGiveHeight(64), WGiveHeight(64))];
         
-            [imageView setImageWithURL:[NSURL URLWithString:_valueArr[indexPath.section][indexPath.row]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [imageView setImageWithURL:[NSURL URLWithString:_valueArr[indexPath.section][indexPath.row]] placeholderImage:[[UserInfoManager manager] avater] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 _avaterImg = image;
+                
+                [[UserInfoManager manager]saveImgDataWithImg:image];
             }];
         
         imageView.layer.cornerRadius = 5;
@@ -226,7 +228,7 @@
         if (indexPath.row == 0)
         {
             ChangeDataViewController * changeDataVC = [[ChangeDataViewController alloc]initWithType:ChangeAvater];
-            changeDataVC.avaterView.image = _avaterImg;
+            changeDataVC.avaterView.image = [[UserInfoManager manager]avater];
             [self.navigationController pushViewController:changeDataVC animated:YES];
         }
         //修改用户名

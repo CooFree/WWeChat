@@ -358,6 +358,8 @@
                 _avaterView.image = smallImage;
                 
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                [[UserInfoManager manager]saveImgDataWithImg:smallImage];
 
             } andFailure:^(NSError *error) {
 

@@ -71,4 +71,18 @@
     NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
     return dic[@"password"];
 }
+
+- (UIImage *)avater
+{
+    NSData * data = [[NSUserDefaults standardUserDefaults]objectForKey:@"avater"];
+    
+    return [UIImage imageWithData:data];
+}
+
+- (void)saveImgDataWithImg:(UIImage *)img
+{
+    NSData *imageData = UIImageJPEGRepresentation(img, 1);
+    [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:@"avater"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 @end

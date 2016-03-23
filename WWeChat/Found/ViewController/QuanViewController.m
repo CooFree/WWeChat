@@ -114,7 +114,7 @@
     
     UIImageView * avaterImgView = [[UIImageView alloc]initWithFrame:CGRectMake(WGiveWidth(2), WGiveWidth(2), WGiveHeight(75) - WGiveWidth(4), WGiveHeight(75) - WGiveWidth(4))];
         
-    [avaterImgView setImageWithURL:[NSURL URLWithString:[[UserInfoManager manager]avaterUrl]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [avaterImgView setImageWithURL:[NSURL URLWithString:[[UserInfoManager manager]avaterUrl]] placeholderImage:[[UserInfoManager manager] avater] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         
     }];
         
