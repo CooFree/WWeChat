@@ -136,20 +136,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == _dataArr.count -1)
     {
+        MBProgressHUD * hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[WWeChatApi giveMeApi]LogoutAndSuccess:^(id response) {
             NSLog(@"退出登录成功");
             NSDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:wUserInfo];
             NSMutableDictionary * muDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
-            [muDic setObject:@"" forKey:@"mid"];
-            [muDic setObject:@"" forKey:@"password"];
+            [muDic setValue:nil forKey:@"mid"];
+            [muDic setValue:nil forKey:@"password"];
             [[NSUserDefaults standardUserDefaults]setObject:[muDic copy] forKey:wUserInfo];
             [[NSUserDefaults standardUserDefaults]synchronize];
         
             UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             PreViewController * preVC = [storyBoard instantiateViewControllerWithIdentifier:@"PreViewController"];
-            [UIView animateWithDuration:1 animations:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [UIApplication sharedApplication].keyWindow.rootViewController = preVC;
-            }];
+                [hub hideAnimated:YES];
+            });
         } andFailure:^{
             NSLog(@"退出登录失败");
         } andError:^(NSError *error) {

@@ -33,6 +33,7 @@
     [AVUser logInWithUsernameInBackground:userName password:passWord block:^(AVUser *user, NSError *error) {
         if (error)
         {
+            ShowAlert(@"用户名或密码错误");
              NSLog(@"LeanCloud登录错误:%@",error.localizedDescription);
             errorBlock(error);
             [hub hideAnimated:YES];
@@ -117,7 +118,7 @@
             }
             else
             {
-                NSLog(@"LeanCloud登录失败");
+                ShowAlert(@"LeanCloud登录失败");
                 [hub hideAnimated:YES];
                 failureBlock();
             }

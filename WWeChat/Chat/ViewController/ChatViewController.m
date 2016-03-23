@@ -178,6 +178,7 @@
     
     ChatModel * model = _dataArr[indexPath.row];
     ChatDetailViewController * chatDetailVC = [[ChatDetailViewController alloc]init];
+    chatDetailVC.heAvaterImg = cell.avaterImgView.image;
     chatDetailVC.name = cell.nameLabel.text;
     chatDetailVC.converseID = model.converseID;
     chatDetailVC.conversationType = model.type;

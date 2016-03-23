@@ -43,5 +43,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //屏幕宽
 #define kSceenWidth [UIScreen mainScreen].bounds.size.width
 
+#define ShowAlert(title) {UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:title delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];[alert show];}
+
 #endif /* PrefixHeader_pch */
 

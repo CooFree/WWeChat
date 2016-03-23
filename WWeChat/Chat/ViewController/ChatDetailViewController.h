@@ -25,5 +25,8 @@
  */
 @property(nonatomic,assign)RCConversationType conversationType;
 
-
+/**
+ *  对面头像
+ */
+@property(nonatomic,strong)UIImage * heAvaterImg;
 @end

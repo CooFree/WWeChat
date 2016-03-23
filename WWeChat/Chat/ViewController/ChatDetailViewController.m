@@ -285,7 +285,7 @@
         
         if (model.isMe == NO)
         {
-            [privateCell.AiConView setImageWithURL:[NSURL URLWithString:_avaterUrl] placeholderImage:[UIImage imageNamed:@"avater.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [privateCell.AiConView setImageWithURL:[NSURL URLWithString:_avaterUrl] placeholderImage:_heAvaterImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 
             }];
         }
@@ -307,6 +307,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
