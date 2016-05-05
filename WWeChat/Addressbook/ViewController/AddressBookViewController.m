@@ -11,6 +11,8 @@
 #import "WWeChatApi.h"
 #import "PersonModel.h"
 #import "AddFriendViewController.h"
+#import "ChatDetailViewController.h"
+
 @interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating,UISearchControllerDelegate>
 
 @property(nonatomic,strong)NSMutableArray * dataArr;
@@ -76,6 +78,7 @@
         for (NSDictionary * dic in response)
         {
             PersonModel * model = [[PersonModel alloc]init];
+            model.uid = dic[@"uID"];
             model.nickName = dic[@"name"];
             model.avater = dic[@"avater"];
             model.ObjectID = dic[@"objectID"];
@@ -114,10 +117,12 @@
         
         [otherArr removeObjectsInArray:addArr];
         
-        [_dataArr addObject:@{
-                              @"nameArr" : otherArr,
-                              @"sectionName" : @"#"
-                              }];
+        if (otherArr.count > 0) {
+            [_dataArr addObject:@{
+                                  @"nameArr" : otherArr,
+                                  @"sectionName" : @"#"
+                                  }];
+        }
         
         NSLog(@"%@",_dataArr);
         
@@ -339,13 +344,34 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    NSDictionary * dic =  _dataArr[indexPath.section - 1];
+    NSArray * modelArr  = dic[@"nameArr"];
+    
+    PersonModel * model = modelArr[indexPath.row];
+
+    if (model) {
+        ChatDetailViewController * chatDetailVC = [[ChatDetailViewController alloc]init];
+        chatDetailVC.heAvaterImg = cell.imageView.image;
+        chatDetailVC.name = model.nickName;
+        chatDetailVC.converseID = model.uid;
+        chatDetailVC.conversationType = ConversationType_PRIVATE;
+        chatDetailVC.hidesBottomBarWhenPushed = YES;
+        [[RCIMClient sharedRCIMClient] clearMessagesUnreadStatus:ConversationType_PRIVATE targetId:model.ObjectID];
+        [self.navigationController pushViewController:chatDetailVC animated:YES];
+    }
+    
+    
+    
 }
 
 #pragma mark - searchController delegate
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-
+    
 }
 
 

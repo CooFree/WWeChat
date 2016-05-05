@@ -10,6 +10,11 @@
 
 @interface PersonModel : NSObject
 
+
+/**
+ *  用户uid
+ */
+@property (nonatomic,copy)NSString * uid;
 /**
  *  用户头像
  */
