@@ -1,7 +1,6 @@
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)
-[![download](https://img.shields.io/github/downloads/Wzxhaha/WWeChat/total.svg)](https://github.com/Wzxhaha/WWeChat/releases)
 - 2016.1.28开始，仿做一个微信，将持续更新直至完成.(事情太多，所以至少在十月份之前，WWeChat停止更新)。
 - 另外请别在这个项目里面通过改头像来打广告!谢谢!
 - 更新的同时将在简书上讲解,[简书:WzxJiang](http://www.jianshu.com/users/389c20d5a244).
