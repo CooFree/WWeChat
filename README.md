@@ -1,5 +1,6 @@
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
+# 提前预告，WWeChat启动重构.
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)
 - 2016.1.28开始，仿做一个微信，将持续更新直至完成.(事情太多，所以至少在十月份之前，WWeChat停止更新)。
 - 另外请别在这个项目里面通过改头像来打广告!谢谢!
