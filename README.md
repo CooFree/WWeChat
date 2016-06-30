@@ -1,17 +1,10 @@
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
-# 提前预告，WWeChat启动重构.
+# 重构中ing.
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)
-- 2016.1.28开始，仿做一个微信，将持续更新直至完成.(事情太多，所以至少在十月份之前，WWeChat停止更新)。
-- 另外请别在这个项目里面通过改头像来打广告!谢谢!
-- 更新的同时将在简书上讲解,[简书:WzxJiang](http://www.jianshu.com/users/389c20d5a244).
+- 2016.1.28开始，仿做一个微信，将持续更新直至完成.
 - 如果你喜欢，欢迎Star、Fork!
 - **如果在模拟器上进入聊天页面发现聊天栏位置不对..那就是你没开键盘..**
-- **注册功能页面太多还没加，先直接用测试帐号来体验吧**
-
-##测试帐号
- * 测试帐号1: 手机号:11111111111 密码:123456
- * 测试帐号2: 手机号:00000000000 密码:123456
 
 ##目录
 - [更新日志](#更新日志)
