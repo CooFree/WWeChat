@@ -1,7 +1,7 @@
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
-**[Verson 1.1]**
-[![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)
+[![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)<br>
+**[Verson 1.1]**<br>
 - 如果你喜欢，欢迎Star、Fork!
 - **如果在模拟器上进入聊天页面发现聊天栏位置不对..那就是你没开键盘..**
 
