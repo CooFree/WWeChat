@@ -1,23 +1,19 @@
 ![image](https://github.com/Wzxhaha/WWeChat/raw/master/WWeChat.png)
 # WWeChat
-# 重构中ing.
+**[Verson 1.1]**
 [![License](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Wzxhaha/WWeChat/blob/master/LICENSE)
-- 2016.1.28开始，仿做一个微信，将持续更新直至完成.
 - 如果你喜欢，欢迎Star、Fork!
 - **如果在模拟器上进入聊天页面发现聊天栏位置不对..那就是你没开键盘..**
 
 ##目录
 - [更新日志](#更新日志)
-- [GIF](#GIF)
-  - [UI部分](#UI部分)
-  - [更改资料部分](#更改资料部分)
-  - [登陆注册部分](#登陆注册部分)
-  - [IM部分](#IM部分)
+- [TODO](#TODO)
 - [Bug反馈](#Bug反馈)
 - [联系我](#联系我) 
 
 
 ##<a id="更新日志"></a>更新日志
+- Verson 1.0
  * 2016.1.28 完成基本框架
  * 2016.1.29 搭建三个界面的UI
  * 2016.1.31 完成全部主界面UI
@@ -38,22 +34,14 @@
  * 2016.3.17 在登陆模块加入弹框自适应（暂时先用AutoLayout的隐式动画），优化朋友圈UI，明天考虑加入完整朋友圈功能。
  * 2016.3.23 修复好友列表属于#组的不显示，优化头像缓存。
  * 2016.5.05 还是更新了...在后台给0帐号加了两个好友，并加入从通讯录页面点击好友头像聊天的功能。 
+- Verson 1.1
+ * 2016.7.01 第一部分重构完成,开放注册，虽然IM还没加上.
 
- 
-
-##<a id="GIF"></a>GIF
-
-###<a id="IM部分"></a>IM部分
-![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0304.gif)
-<div>
-</div>
-![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0307.gif)
-###<a id="登陆注册部分"></a>登陆注册部分
-![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0302.gif)
-###<a id="更改资料部分"></a>更改资料部分
- ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0215.gif)
-###<a id="UI部分"></a>UI部分
- ![image](https://github.com/Wzxhaha/WWeChat/raw/master/wechat0131.gif)
+##<a id="TODO">TODO</a> 
+- 恢复IM.
+- 朋友圈.
+- 语音
+- ...
 
 ##<a id="Bug反馈"></a>Bug反馈
 [Bug反馈](https://github.com/Wzxhaha/WWeChat/issues/new)
