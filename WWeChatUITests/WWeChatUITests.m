@@ -2,8 +2,8 @@
 //  WWeChatUITests.m
 //  WWeChatUITests
 //
-//  Created by wordoor－z on 16/1/28.
-//  Copyright © 2016年 wzx. All rights reserved.
+//  Created by WzxJiang on 16/6/27.
+//  Copyright © 2016年 WzxJiang. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
