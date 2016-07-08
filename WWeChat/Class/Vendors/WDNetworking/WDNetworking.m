@@ -11,7 +11,7 @@
 
 @implementation WDNetworking
 
-NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
+- (NSString *)_baseUrl:(NSString *)url apiVersion:(WDApiVersion)apiVersion {
     NSString * version = @"";
     switch (apiVersion) {
         case V1_0: version = @"1.0";
@@ -20,19 +20,25 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
             break;
         case V1_2: version = @"1.2";
             break;
+        case NONE: version = @"";
+            break;
         default:
             break;
     }
-    return [NSString stringWithFormat:@"%@/%@/%@",SITE_Formal_URL,version,url];
+    if (_baseURL == nil || _baseURL.length == 0) {
+        _baseURL = SITE_Formal_URL;
+    }
+    
+    if (version.length > 0) {
+        return [NSString stringWithFormat:@"%@/%@/%@",_baseURL,version,url];
+    } else {
+        return [NSString stringWithFormat:@"%@/%@",_baseURL,url];
+    }
 }
 
 + (instancetype)manager {
-    static WDNetworking * manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[WDNetworking alloc]init];
-        [manager _checkNetworkStateSetUp];
-    });
+    WDNetworking * manager = [[WDNetworking alloc]init];
+    [manager _checkNetworkStateSetUp];
     manager.session = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requests = [NSMutableArray array];
     manager.currentRequestIndex = 0;
@@ -88,21 +94,25 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
                     [bodyString appendString:@"&"];
                 }
             }
-            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_baseUrl(url, apiVersion),bodyString]];
+            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[self _baseUrl:url apiVersion:apiVersion],bodyString]];
         } else if ([parameters isKindOfClass:[NSString class]]){
-            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_baseUrl(url, apiVersion),parameters]];
+            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[self _baseUrl:url apiVersion:apiVersion],parameters]];
         } else {
-            return [NSURL URLWithString:_baseUrl(url, apiVersion)];
+            return [NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]];
         }
     } else {
-        return [NSURL URLWithString:_baseUrl(url, apiVersion)];
+        return [NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]];
     }
 }
 
 //MARK: 填充body的方式
 - (NSData *)_parametersToBody:(id)parameters {
     if (parameters) {
-        return [parameters yy_modelToJSONData];
+        if ([parameters isKindOfClass:[NSData class]]) {
+            return parameters;
+        } else {
+            return [parameters yy_modelToJSONData];
+        }
     } else {
         return nil;
     }
@@ -111,13 +121,15 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 #pragma mark -- 网络请求
 - (void)GET:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-    WDURLRequest * request = [WDURLRequest requestWithURL:[self _GETURL:url version:apiVersion parameters:parameters]];
+    WDURLRequest * request = [WDURLRequest requestWithURL:[self _GETURL:url version:apiVersion parameters:parameters] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"GET"];
     if ([parameters isKindOfClass:[NSData class]]) {
         [request setHTTPBody:parameters];
     }
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionDataTask * dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -133,10 +145,12 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 - (void)DELETE:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-    WDURLRequest * request = [WDURLRequest requestWithURL:[self _GETURL:url version:apiVersion parameters:parameters]];
+    WDURLRequest * request = [WDURLRequest requestWithURL:[self _GETURL:url version:apiVersion parameters:parameters] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"DELETE"];
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -152,11 +166,13 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 - (void)POST:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:_baseUrl(url, apiVersion)]];
+    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[self _parametersToBody:parameters]];
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -172,11 +188,13 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 - (void)PUT:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-     WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:_baseUrl(url, apiVersion)]];
+     WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"PUT"];
     [request setHTTPBody:[self _parametersToBody:parameters]];
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -192,11 +210,13 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 - (void)PATCH:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:_baseUrl(url, apiVersion)]];
+    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"PATCH"];
     [request setHTTPBody:[self _parametersToBody:parameters]];
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -212,13 +232,15 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 - (void)UPLOAD:(NSString *)url version:(WDApiVersion)apiVersion parameters:(id)parameters contentType:(NSString *)contentType progress:(void (^)(NSProgress *))progress success:(SuccessBlock)success failure:(FailureBlock)failure {
     [self _showHUD];
-    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:_baseUrl(url, apiVersion)]];
+    WDURLRequest * request = [WDURLRequest requestWithURL:[NSURL URLWithString:[self _baseUrl:url apiVersion:apiVersion]] headerDic:_HTTPHeaderFieldDic];
     [request setHTTPMethod:@"POST"];
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    @weakify(self)
     [_requests addObject:request];
     NSURLSessionUploadTask *dataTask = [self.session uploadTaskWithRequest:request fromData:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         progress(uploadProgress);
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        @strongify(self)
         _currentRequestIndex ++;
         NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
         if (error) {
@@ -275,21 +297,26 @@ NSString * _baseUrl(NSString * url, WDApiVersion apiVersion) {
 
 @implementation WDURLRequest
 
-+ (instancetype)requestWithURL:(NSURL *)URL {
++ (instancetype)requestWithURL:(NSURL *)URL headerDic:(NSDictionary *)headerDic{
     WDURLRequest * request = [super requestWithURL:URL];
-    [request setHttpHeader];
+    [request setHttpHeader:headerDic];
     return request;
 }
 
-- (void)setHttpHeader {
-    [self setValue:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz" forHTTPHeaderField:@"X-LC-Id"];
-    [self setValue:@"nPIl7IkH9LtvsnUK7b8hxlS4" forHTTPHeaderField:@"X-LC-Key"];
-    [self setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-     NSString * token = [WZXKeyChain loadToken];
-    if (token) {
-        [self setValue:token forHTTPHeaderField:@"X-LC-Session"];
+- (void)setHttpHeader:(NSDictionary *)headerDic {
+    if (headerDic) {
+        for (NSString * key in headerDic.allKeys) {
+            [self setValue:headerDic[key] forHTTPHeaderField:key];
+        }
+    } else {
+        [self setValue:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz" forHTTPHeaderField:@"X-LC-Id"];
+        [self setValue:@"nPIl7IkH9LtvsnUK7b8hxlS4" forHTTPHeaderField:@"X-LC-Key"];
+        [self setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSString * token = [WZXKeyChain loadToken];
+        if (token) {
+            [self setValue:token forHTTPHeaderField:@"X-LC-Session"];
+        }
     }
-    
 }
 
 @end

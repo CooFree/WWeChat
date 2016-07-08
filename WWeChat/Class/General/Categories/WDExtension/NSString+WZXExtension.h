@@ -16,6 +16,8 @@
 
 - (NSString *)wzx_MD5String;
 
+- (NSString *)wzx_SHA1String;
+
 - (NSUInteger)wzx_getBytesLength;
 
 - (NSString *)wzx_stringByDeletingPictureResolution;

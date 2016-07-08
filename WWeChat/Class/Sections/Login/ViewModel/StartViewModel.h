@@ -6,9 +6,9 @@
 //  Copyright © 2016年 WzxJiang. All rights reserved.
 //
 
-#import "BaseViewModel.h"
+#import "LoginViewModel.h"
 
-@interface StartViewModel : BaseViewModel
+@interface StartViewModel : LoginViewModel
 
 - (void)autoLoginWithSuccess:(SuccessBlock)successBlock
                      failure:(FailureBlock)failureBlock;

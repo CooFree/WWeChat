@@ -15,4 +15,14 @@
                   success:(SuccessBlock)successBlock
                   failure:(FailureBlock)failureBlock;
 
+- (void)getRongCloudTokenWithUserId:(NSString *)userId
+                            success:(SuccessBlock)successBlock
+                            failure:(FailureBlock)failureBlock;
+
+- (void)loginRongCloudWithToken:(NSString *)Token
+                        success:(SuccessBlock)successBlock
+                        failure:(FailureBlock)failureBlock;
+
+- (void)getRongCloudTokenAndLoginWithSuccess:(SuccessBlock)successBlock
+                                     failure:(FailureBlock)failureBlock;
 @end

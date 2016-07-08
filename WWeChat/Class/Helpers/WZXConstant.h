@@ -12,4 +12,7 @@
 
 extern NSString * const WZX_CURRENT_USER;
 
+extern NSString * const WZX_RONG_KEY;
+
+extern NSString * const WZX_RONG_SECRET_KEY;
 @end

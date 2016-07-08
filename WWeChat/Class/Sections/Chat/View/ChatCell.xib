@@ -29,19 +29,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6E-J9-2rz">
-                        <rect key="frame" x="202" y="8" width="110" height="15"/>
+                        <rect key="frame" x="202" y="13" width="110" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="2J5-Zb-qgP"/>
                             <constraint firstAttribute="height" constant="15" id="cXe-Dp-R8K"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.56607086489898983" green="0.56607086489898983" blue="0.56607086489898983" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-ej-Abo">
-                        <rect key="frame" x="65" y="15" width="237" height="40.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.31788589015151514" green="0.31788589015151514" blue="0.31788589015151514" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3E-pH-qq3">
@@ -51,12 +45,18 @@
                             <constraint firstAttribute="height" constant="1" id="e3M-NQ-Pme"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-ej-Abo">
+                        <rect key="frame" x="65" y="15" width="237" height="40.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.31788589015151514" green="0.31788589015151514" blue="0.31788589015151514" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="s3E-pH-qq3" secondAttribute="trailing" constant="-8" id="2CU-3d-rGR"/>
                     <constraint firstItem="O6E-J9-2rz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2lt-hn-Srd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Fts-WT-eOb" secondAttribute="trailing" constant="94" id="D1y-hs-9LI"/>
-                    <constraint firstItem="O6E-J9-2rz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NBf-Pr-CAS"/>
+                    <constraint firstItem="O6E-J9-2rz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="NBf-Pr-CAS"/>
                     <constraint firstItem="s3E-pH-qq3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="R2n-b4-3Il"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4MN-ej-Abo" secondAttribute="trailing" constant="10" id="Wce-lX-IfS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4MN-ej-Abo" secondAttribute="bottom" constant="0.5" id="Yax-yr-5lR"/>

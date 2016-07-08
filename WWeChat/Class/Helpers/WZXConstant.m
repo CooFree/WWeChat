@@ -12,4 +12,7 @@
 
 NSString * const WZX_CURRENT_USER = @"WZX_CURRENT_USER";
 
+NSString * const WZX_RONG_KEY = @"x4vkb1qpvduzk";
+
+NSString * const WZX_RONG_SECRET_KEY = @"5zFVUIKdgT8";
 @end

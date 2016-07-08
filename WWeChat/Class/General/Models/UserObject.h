@@ -16,31 +16,43 @@
 @end
 RLM_ARRAY_TYPE(FriendObject);
 
+@interface ConversationObject : RLMObject
+
+@property(nonatomic,copy)NSString * conversationId;
+
+@end
+RLM_ARRAY_TYPE(ConversationObject);
+
 @interface UserObject : RLMObject
 
 /** ID */
-@property(nonatomic,copy)NSString * objectId;
+@property(nonatomic, copy)NSString * objectId;
 
 /** 手机号 */
-@property(nonatomic,copy)NSString * phoneNum;
+@property(nonatomic, copy)NSString * phoneNum;
 
 /** 昵称 */
-@property(nonatomic,copy)NSString * nickName;
+@property(nonatomic, copy)NSString * nickName;
 
 /** 微信号 */
-@property(nonatomic,copy)NSString * wxID;
+@property(nonatomic, copy)NSString * wxID;
 
 /** 头像链接 */
-@property(nonatomic,copy)NSString * avaterUrl;
+@property(nonatomic, copy)NSString * avaterUrl;
 
 /** 简介 */
-@property(nonatomic,copy)NSString * sign;
+@property(nonatomic, copy)NSString * sign;
 
 /** 性别 */
-@property(nonatomic,assign)BOOL sex;
+@property(nonatomic, assign)BOOL sex;
 
-/** 朋友 */
-@property(nonatomic,copy)RLMArray<FriendObject>* friends;
+/** 朋友s */
+@property(nonatomic, copy)RLMArray<FriendObject>* friends;
+
+/** 会话s */
+@property(nonatomic, copy)RLMArray<ConversationObject>* conversations;
+
+- (NSArray *)conversationIds;
 
 - (NSArray *)friendObjectIds;
 

@@ -16,11 +16,16 @@
             [WZXKeyChain savePhoneNum:phoneNum password:password];
             [WZXKeyChain saveToken:response[@"sessionToken"]];
             [Statics saveCurrentUserWithDic:response];
+            [self getRongCloudTokenAndLoginWithSuccess:^(id response, NSInteger code) {
+                successBlock(response, code);
+            } failure:^(NSError *error) {
+                failureBlock(error);
+            }];
         }
-        successBlock(response, code);
     } failure:^(NSError *error) {
         failureBlock(error);
     }];
 }
+
 
 @end

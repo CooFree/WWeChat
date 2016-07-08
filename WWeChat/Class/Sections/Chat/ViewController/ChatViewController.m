@@ -8,18 +8,20 @@
 
 #import "ChatViewController.h"
 #import "ChatCell.h"
+#import "ChatDetailViewController.h"
 
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate>
 @end
 
 @implementation ChatViewController {
-    UITableView    * _tableView;
-    NSArray        * _dataArr;
+    UITableView        * _tableView;
+    NSArray            * _dataArr;
     UISearchController * _searchController;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self preData];
     [self createUI];
 }
 
@@ -29,14 +31,14 @@
 
 //获取会话列表
 - (void)getConversationData {
-    
+     _dataArr = [self.chatViewModel getConversationList];
+    [[self tableView] reloadData];
 }
 
 - (void)createUI {
     [self changeTitle];
     [self.view addSubview:self.tableView];
 }
-
 
 #pragma mark -- tableView --
 
@@ -55,9 +57,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     ChatCell * chatCell = (ChatCell *)cell;
-    
-    ChatModel * model = _dataArr[indexPath.row];
-    
+    WZXConversation * model = _dataArr[indexPath.row];
     [chatCell setModel:model];
 }
 
@@ -72,11 +72,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    ChatDetailViewController * chatDetailVC = [[ChatDetailViewController alloc]init];
+    chatDetailVC.conversationModel = _dataArr[indexPath.row];
+    [self.navigationController pushViewController:chatDetailVC animated:YES];
 }
 
 - (void)changeTitle {
@@ -94,13 +92,9 @@
         _tableView = ({
             
             UITableView * tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 44) style:UITableViewStyleGrouped];
-            
             tableview.delegate = self;
-            
             tableview.dataSource = self;
-            
             tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-            
             [tableview registerNib:[UINib nibWithNibName:@"ChatCell" bundle:nil] forCellReuseIdentifier:@"ChatCell"];
             
             tableview;
@@ -112,32 +106,22 @@
 - (UISearchController *)searchController {
     if (!_searchController) {
         _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-        
         //self.searchController.searchResultsUpdater = self;
         //    self.searchController.delegate = self;
-        
         _searchController.dimsBackgroundDuringPresentation = NO;
-        
         [_searchController.searchBar sizeToFit];
-        
         _searchController.searchBar.backgroundImage = [[UIImage alloc]init];
-        
         _searchController.searchBar.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1];
-        
         _searchController.searchBar.tintColor = BASE_COLOR;
-        
         _searchController.searchBar.placeholder = @"搜索";
     }
     return _searchController;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-*/
+
 
 @end

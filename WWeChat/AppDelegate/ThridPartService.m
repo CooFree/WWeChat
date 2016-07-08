@@ -8,7 +8,6 @@
 
 #import "ThridPartService.h"
 
-#import <RongIMLib/RongIMLib.h>
 #import <AVOSCloud/AVOSCloud.h>
 @implementation ThridPartService
 
@@ -17,17 +16,12 @@
     dispatch_once(&onceToken, ^{
         [[self class] initNav];
         [[self class] initAVOS];
-        [[self class] initRongIM];
     });
 }
 
 + (void)initAVOS {
     [AVOSCloud setApplicationId:@"YavVlGleImoT5XVkekX0kyGm-gzGzoHsz"
                       clientKey:@"nPIl7IkH9LtvsnUK7b8hxlS4"];
-}
-
-+ (void)initRongIM {
-    [[RCIMClient sharedRCIMClient] initWithAppKey:@"x4vkb1qpvduzk"];
 }
 
 + (void)initNav {

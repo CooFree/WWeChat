@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark - localString
-//#import "UIButton+LocalString.h"
-//#import "UITextField+LocalString.h"
-//#import "UITextView+LocalString.h"
-//#import "UILabel+LocalString.h"
-//
+
 #import "UIView+WZXExtension.h"
 #import "UIScrollView+WZXExtension.h"
 #import "NSString+WZXExtension.h"

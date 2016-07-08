@@ -6,9 +6,9 @@
 //  Copyright © 2016年 WzxJiang. All rights reserved.
 //
 
-#import "BaseViewModel.h"
+#import "LoginViewModel.h"
 
-@interface RegisterViewModel : BaseViewModel
+@interface RegisterViewModel : LoginViewModel
 
 - (void)registerWithPhoneNum:(NSString *)phoneNum
                     password:(NSString *)password

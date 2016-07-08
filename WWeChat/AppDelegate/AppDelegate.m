@@ -11,6 +11,7 @@
 
 #import "StartViewController.h"
 
+#import <RongIMLib/RongIMLib.h>
 @interface AppDelegate ()
 
 @end
@@ -24,8 +25,14 @@
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = [StartViewController new];
-
+    
+    [self initRongCloud];
+    
     return YES;
+}
+
+- (void)initRongCloud {
+    [[RCIMClient sharedRCIMClient] initWithAppKey:WZX_RONG_KEY];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

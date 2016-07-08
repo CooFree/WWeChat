@@ -10,12 +10,11 @@
 
 @implementation FriendObject
 
-- (void)setObjectId:(NSString *)objectId {
-    _objectId = objectId;
-}
-
 @end
 
+@implementation ConversationObject
+
+@end
 
 @implementation UserObject
 
@@ -40,9 +39,26 @@
             [friendObjects addObject:friendObject];
         }
         _friends = friendObjects;
+    } else if ([key isEqualToString:@"conversations"]) {
+        NSArray * conversations = value;
+        RLMArray<ConversationObject> * conversationObjects = (RLMArray<ConversationObject> *)[[RLMArray alloc]initWithObjectClassName:@"ConversationObject"];
+        for (id conversation in conversations) {
+            ConversationObject * conversationObject = [ConversationObject new];
+            conversationObject.conversationId = conversation;
+            [conversationObjects addObject:conversationObject];
+        }
+        _conversations = conversationObjects;
     } else {
         [super setValue:value forKey:key];
     }
+}
+
+- (NSArray *)conversationIds {
+    NSMutableArray * conversations = [NSMutableArray array];
+    for (ConversationObject * conversationObj in _conversations) {
+        [conversations addObject:conversationObj.conversationId];
+    }
+    return conversations;
 }
 
 - (NSArray *)friendObjectIds {

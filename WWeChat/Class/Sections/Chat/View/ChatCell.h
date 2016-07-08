@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChatModel.h"
+#import "WZXConversation.h"
 @interface ChatCell : UITableViewCell
 
 /**
@@ -33,7 +33,7 @@
 /**
  *  model
  */
-@property (nonatomic,strong)ChatModel * model;
+@property (nonatomic,strong)WZXConversation * model;
 
 /**
  *  avaterImgView高度约束
@@ -45,5 +45,4 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avaterImgViewWidth;
 
-- (void)setModel:(ChatModel *)model;
 @end

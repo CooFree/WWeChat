@@ -12,18 +12,21 @@
 extern NSString * const WZX_KEY_CHAIN_PHONENUM;
 extern NSString * const WZX_KEY_CHAIN_PASSWORD;
 extern NSString * const WZX_KEY_CHAIN_TOKEN;
+extern NSString * const WZX_KEY_CHAIN_RONGTOKEN;
 
 + (void)save:(NSString *)service data:(id)data;
 + (id)load:(NSString *)service;
 + (void)deleteKey:(NSString *)service;
 
 + (void)saveToken:(id)token;
++ (void)saveRongToken:(id)rongToken;
 + (void)savePhoneNum:(id)phoneNum password:(id)password;
+
 
 + (NSString *)loadPhoneNum;
 + (NSString *)loadPassword;
 + (NSString *)loadToken;
-
++ (NSString *)loadRongToken;
 
 
 

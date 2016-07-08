@@ -22,26 +22,6 @@
     }
 
     [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
-    [self preData];
-}
-
-- (void)preData {}
-
-#pragma mark -- IM --
-- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object {
-    
-    if ([message.content isMemberOfClass:[RCTextMessage class]]) {
-        RCTextMessage *testMessage = (RCTextMessage *)message.content;
-        NSLog(@"消息内容：%@", testMessage.content);
-    }
-    //没有未接受的消息时刷新
-    if (nLeft == 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self preData];
-        });
-    }
-    
-    NSLog(@"还剩余的未接收的消息数：%d", nLeft);
 }
 
 - (void)viewDidLoad {
@@ -49,11 +29,44 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)preData {}
+
+#pragma mark - delegate
+- (void)onTypingStatusChanged:(RCConversationType)conversationType targetId:(NSString *)targetId status:(NSArray *)userTypingStatusList {
+    
+}
+
+- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object {
+    if ([message.content isMemberOfClass:[RCTextMessage class]]) {
+        RCTextMessage *testMessage = (RCTextMessage *)message.content;
+        NSLog(@"消息内容：%@", testMessage.content);
+    } else if ([message.content isMemberOfClass:[RCImageMessage class]]) {
+        NSLog(@"消息内容：图片");
+    }
+    //没有未接受的消息时刷新
+    if (nLeft == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self preData];
+        });
+    }
+    NSLog(@"还剩余的未接收的消息数：%d", nLeft);
+}
+
+
+
+#pragma mark - lazy load
+
+- (ChatViewModel *)chatViewModel {
+    if (!_chatViewModel) {
+        _chatViewModel = [[ChatViewModel alloc]init];
+    }
+    return _chatViewModel;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

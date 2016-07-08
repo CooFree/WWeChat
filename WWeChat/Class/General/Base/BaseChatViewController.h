@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "ChatViewModel.h"
 @interface BaseChatViewController : BaseViewController
+
+@property(nonatomic, strong)ChatViewModel * chatViewModel;
 
 @end

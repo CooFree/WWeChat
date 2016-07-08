@@ -16,13 +16,14 @@ typedef void(^progressBlock)();
 typedef void(^FailureBlock)(NSError * error);
 
 typedef NS_ENUM(NSInteger,WDApiVersion) {
-    V1_0 = 1,
+    NONE = -1,
+    V1_0,
     V1_1,
     V1_2,
 };
 
 /**
- *  WDNetworking对象是单例，但是它的AFHTTPSessionManager成员对象不是单例
+ *  WDNetworking对象非单例
  *
  *  @return WDNetworking对象
  */
@@ -34,6 +35,8 @@ typedef NS_ENUM(NSInteger,WDApiVersion) {
 
 @property(nonatomic,strong)AFURLSessionManager * session;
 
+@property(nonatomic,copy)NSString * baseURL;
+@property(nonatomic,copy)NSDictionary * HTTPHeaderFieldDic;
 /**
  *  当前session最大并发数
  */
@@ -99,5 +102,7 @@ typedef NS_ENUM(NSInteger,WDApiVersion) {
 @end
 
 @interface WDURLRequest : NSMutableURLRequest
+
++ (instancetype)requestWithURL:(NSURL *)URL headerDic:(NSDictionary *)headerDic;
 
 @end

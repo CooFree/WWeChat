@@ -9,9 +9,10 @@
 #import "WZXKeyChain.h"
 #import <Security/Security.h>
 
-NSString * const WZX_KEY_CHAIN_PHONENUM    = @"WZX_KEY_CHAIN_PHONENUM";
-NSString * const WZX_KEY_CHAIN_PASSWORD = @"WZX_KEY_CHAIN_PASSWORD";
-NSString * const WZX_KEY_CHAIN_TOKEN    = @"WZX_KEY_CHAIN_TOKEN";
+NSString * const WZX_KEY_CHAIN_PHONENUM  = @"WZX_KEY_CHAIN_PHONENUM";
+NSString * const WZX_KEY_CHAIN_PASSWORD  = @"WZX_KEY_CHAIN_PASSWORD";
+NSString * const WZX_KEY_CHAIN_TOKEN     = @"WZX_KEY_CHAIN_TOKEN";
+NSString * const WZX_KEY_CHAIN_RONGTOKEN = @"WZX_KEY_CHAIN_RONGTOKEN";
 @implementation WZXKeyChain
 
 + (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
@@ -63,6 +64,10 @@ NSString * const WZX_KEY_CHAIN_TOKEN    = @"WZX_KEY_CHAIN_TOKEN";
     [self save:WZX_KEY_CHAIN_TOKEN data:token];
 }
 
++ (void)saveRongToken:(id)rongToken {
+    [self save:WZX_KEY_CHAIN_RONGTOKEN data:rongToken];
+}
+
 + (NSString *)loadPhoneNum {
     return [self load:WZX_KEY_CHAIN_PHONENUM];
 }
@@ -73,5 +78,9 @@ NSString * const WZX_KEY_CHAIN_TOKEN    = @"WZX_KEY_CHAIN_TOKEN";
 
 + (NSString *)loadToken {
     return [self load:WZX_KEY_CHAIN_TOKEN];
+}
+
++ (NSString *)loadRongToken {
+    return [self load:WZX_KEY_CHAIN_RONGTOKEN];
 }
 @end

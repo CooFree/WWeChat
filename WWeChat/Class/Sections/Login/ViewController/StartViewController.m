@@ -29,8 +29,10 @@
     // 判断是否自动登录
     if ([WZXKeyChain loadToken].length > 0) {
         [[self viewModel] autoLoginWithSuccess:^(id response, NSInteger code) {
-            if (code == 200) {
-                the_Application.keyWindow.rootViewController = [TabBarViewController new];
+            if ([response isEqualToString:[Statics currentUser].objectId]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    the_Application.keyWindow.rootViewController = [TabBarViewController new];
+                });
             }
         } failure:^(NSError *error) {
             

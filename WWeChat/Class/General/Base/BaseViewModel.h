@@ -12,4 +12,6 @@
 
 @property(nonatomic, strong)WDNetworking * manager;
 
+@property(nonatomic, strong)WDNetworking * rongCloudManager;
+
 @end
