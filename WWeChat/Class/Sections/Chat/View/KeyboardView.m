@@ -186,7 +186,7 @@ CGFloat defaultHeight = 55;
     if (!_soundBtn) {
         _soundBtn = ({
             UIButton * soundBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [soundBtn setBackgroundImage:UIImageForKitBundle(@"chat_setmode_voice_btn_normal") forState:UIControlStateNormal];
+            [soundBtn setBackgroundImage:[UIImage imageNamed:@"chat_setmode_voice_btn_normal"] forState:UIControlStateNormal];
             soundBtn;
         });
     }
@@ -215,8 +215,8 @@ CGFloat defaultHeight = 55;
     if (!_faceBtn) {
         _faceBtn = ({
             UIButton * faceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [faceBtn setBackgroundImage:UIImageForKitBundle(@"Album_ToolViewEmotion") forState:UIControlStateNormal];
-            [faceBtn setBackgroundImage:UIImageForKitBundle(@"Album_ToolViewEmotionHL") forState:UIControlStateHighlighted];
+            [faceBtn setBackgroundImage:[UIImage imageNamed:@"Album_ToolViewEmotion"] forState:UIControlStateNormal];
+            [faceBtn setBackgroundImage:[UIImage imageNamed:@"Album_ToolViewEmotionHL"] forState:UIControlStateHighlighted];
             faceBtn;
         });
     }
@@ -227,7 +227,7 @@ CGFloat defaultHeight = 55;
     if (!_moreBtn) {
         _moreBtn = ({
             UIButton * moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [moreBtn setBackgroundImage:UIImageForKitBundle(@"chat_setmode_add_btn_normal") forState:UIControlStateNormal];
+            [moreBtn setBackgroundImage:[UIImage imageNamed:@"chat_setmode_add_btn_normal"] forState:UIControlStateNormal];
             moreBtn;
         });
     }

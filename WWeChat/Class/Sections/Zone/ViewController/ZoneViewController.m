@@ -25,12 +25,12 @@ NSArray * ZoneTableTitles() {
 };
 
 NSArray * ZoneTableImgs() {
-    return @[@[@"Found/found_quan"],
-             @[@"Found/found_saoyisao",
-               @"Found/found_yao",],
-             @[@"Found/found_nearby"],
-             @[@"Found/found_shop",
-               @"Found/found_game"]];
+    return @[@[@"found_quan"],
+             @[@"found_saoyisao",
+               @"found_yao",],
+             @[@"found_nearby"],
+             @[@"found_shop",
+               @"found_game"]];
 };
 
 - (void)viewDidLoad {
@@ -56,6 +56,10 @@ NSArray * ZoneTableImgs() {
     return ZoneTableTitles().count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ZoneCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -65,7 +69,7 @@ NSArray * ZoneTableImgs() {
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.textLabel.text = ZoneTableTitles()[indexPath.section][indexPath.row];
-    cell.imageView.image = UIImageForKitBundle(ZoneTableImgs()[indexPath.section][indexPath.row]);
+    cell.imageView.image = [UIImage imageNamed:ZoneTableImgs()[indexPath.section][indexPath.row]];
 }
 
 - (void)didReceiveMemoryWarning {

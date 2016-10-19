@@ -7,8 +7,8 @@
 //
 
 #import "ChatDetailViewController.h"
-#import "PrivateChatCell.h"
 #import "KeyboardView.h"
+#import "PrivateChatCell.h"
 
 @interface ChatDetailViewController()<UITableViewDataSource,UITableViewDelegate>
 @end
@@ -16,7 +16,7 @@
 CGFloat const defaultKeyViewHeight = 55;
 
 @implementation ChatDetailViewController {
-    NSArray * _dataArr;
+    NSMutableArray * _dataArr;
     NSInteger  _num;
     UITableView * _tableView;
     KeyboardView * _keyboardView;
@@ -27,11 +27,26 @@ CGFloat const defaultKeyViewHeight = 55;
     [super viewDidLoad];
     _num = 20;
     self.title = _conversationModel.conversationTitle;
+    
+    [self preData];
+    
     [self createUI];
 }
 
 - (void)preData {
-    _dataArr = [self.chatViewModel getLatestMessages:_conversationModel.conversationType targetId:_conversationModel.conversationID count:20];
+//    _dataArr = [self.chatViewModel getLatestMessages:_conversationModel.conversationType targetId:_conversationModel.conversationID count:20];
+    MessageModel * message1 = [MessageModel new];
+    message1.isLeft = YES;
+    message1.message = @"你好啊";
+    message1.timestamp = [[NSDate date] timeIntervalSince1970];
+    
+    MessageModel * message2 = [MessageModel new];
+    message2.isLeft = NO;
+    message2.message = @"很好";
+    message2.timestamp = [[NSDate date] timeIntervalSince1970];
+    
+    _dataArr = [NSMutableArray arrayWithArray:@[message1, message2]];
+    
     [[self tableView] reloadData];
 }
 
@@ -94,15 +109,22 @@ CGFloat const defaultKeyViewHeight = 55;
             @strongify(self)
             [UIView animateWithDuration:duration delay:0 options:animationType animations:^{
                 [self->_keyboardView mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.height.equalTo(@(ABS(_currentKeyboardViewHeight - kbHeight)));
+                    make.height.equalTo(@(self->_currentKeyboardViewHeight));
                 }];
             } completion:^(BOOL finished) {
                 self->_keyboardView.currentTextViewHeight -= kbHeight;
             }];
             [self->_keyboardView layoutIfNeeded];
         }];
+        
         [_keyboardView setSentMessageBlock:^(NSString * title) {
-            
+            @strongify(self)
+            MessageModel * message = [MessageModel new];
+            message.isLeft = NO;
+            message.message = title;
+            message.timestamp = [[NSDate date] timeIntervalSince1970];
+            [self->_dataArr addObject:message];
+            [self->_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self->_dataArr.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _keyboardView;
@@ -128,7 +150,7 @@ CGFloat const defaultKeyViewHeight = 55;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.01;
+    return ((MessageModel *)_dataArr[indexPath.row]).size.height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
@@ -142,31 +164,31 @@ CGFloat const defaultKeyViewHeight = 55;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-    
-    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 60)/2.0, 10, 60, 20)];
-    
-    NSDictionary * dic = _dataArr[section];
-    
-    timeLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
-    timeLabel.layer.cornerRadius = 5;
-    timeLabel.clipsToBounds = YES;
-    
-    double times = [dic[@"timestamp"]doubleValue];
-    
-//    timeLabel.text = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:times andScale:3]];
-    
-    timeLabel.font = [UIFont systemFontOfSize:12];
-    
-    timeLabel.textColor = [UIColor whiteColor];
-    
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    
-    [headerView addSubview:timeLabel];
-    
-    return nil;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+//    
+//    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 60)/2.0, 10, 60, 20)];
+//    
+//    MessageModel * model = _dataArr[section];
+//    
+//    timeLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+//    timeLabel.layer.cornerRadius = 5;
+//    timeLabel.clipsToBounds = YES;
+//    
+//    NSTimeInterval time = model.timestamp;
+//    
+////    timeLabel.text = [[WZXTimeStampToTimeTool tool]compareWithTimeDic:[[WZXTimeStampToTimeTool tool]timeStampToTimeToolWithTimeStamp:times andScale:3]];
+//    
+//    timeLabel.font = [UIFont systemFontOfSize:12];
+//    
+//    timeLabel.textColor = [UIColor whiteColor];
+//    
+//    timeLabel.textAlignment = NSTextAlignmentCenter;
+//    
+//    [headerView addSubview:timeLabel];
+//    
+//    return nil;
+//}
 
 /** tableview滑到底部 */
 - (void)refresh {

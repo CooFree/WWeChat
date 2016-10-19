@@ -27,8 +27,8 @@
 - (void)setUp {
     self.title = @"个人头像";
     self.view.backgroundColor = [UIColor blackColor];
-    [self.avaterView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:UIImageForKitBundle(@"default_avater")];
-    [self addRightBtnWithImgName:UIImagePathForKitBundle(@"barbuttonicon_more") Action:@selector(showAlertView)];
+    [self.avaterView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:[UIImage imageNamed:@"default_avater"]];
+    [self addRightBtnWithImgName:@"barbuttonicon_more" Action:@selector(showAlertView)];
 }
 
 #pragma mark -- 修改头像部分 --

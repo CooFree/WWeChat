@@ -10,7 +10,7 @@
 #import "ThridPartService.h"
 
 #import "StartViewController.h"
-
+#import "TabBarViewController.h"
 #import <RongIMLib/RongIMLib.h>
 @interface AppDelegate ()
 
@@ -24,7 +24,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [StartViewController new];
+    self.window.rootViewController = [TabBarViewController new];
     
     [self initRongCloud];
     

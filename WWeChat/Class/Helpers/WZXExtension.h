@@ -45,13 +45,6 @@ BOOL PhoneIs6p();
 
 id PhoneValue(id iPhone6p, id iPhone6, id iPhone5, id iPhone4);
 
-//MARK: imageForBundle
-//** KitUIBundle */
-NSString * UIImagePathForKitBundle(NSString * imgName);
-UIImage * UIImageForKitBundle(NSString * imgName);
-NSString * UIImagePathForBundle(NSString * imgName, NSString * bundlename);
-UIImage * UIImageForBundle(NSString * imgName, NSString * bundlename);
-
 void NotificationAdd(id observer, SEL selector, NSString * name, NSString * alias);
 
 void NotificationPost(NSString * name, NSString * alias, NSDictionary * userInfo);

@@ -28,12 +28,12 @@ NSArray * MeTableTitles() {
 
 NSArray * MeTableImgs() {
     return @[@[@""],
-             @[@"Setting/me_photo",
-               @"Setting/me_collect",
-               @"Setting/me_money",
-               @"Setting/me_collect"],
-             @[@"Setting/MoreExpressionShops"],
-             @[@"Setting/me_setting"]];
+             @[@"me_photo",
+               @"me_collect",
+               @"me_money",
+               @"me_collect"],
+             @[@"MoreExpressionShops"],
+             @[@"me_setting"]];
 };
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,20 +88,20 @@ NSArray * MeTableImgs() {
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         MeCell * meCell = (MeCell *)cell;
-        [meCell.avaterImgView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:UIImageForKitBundle(@"default_avater")];
+        [meCell.avaterImgView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:[UIImage imageNamed:@"default_avater"]];
         meCell.nameLabel.text = [Statics currentUser].nickName;
         meCell.wechatIDLabel.text = [NSString stringWithFormat:@"微信号:%@",[Statics currentUser].wxID ? [Statics currentUser].wxID : @""];
     } else {
         cell.textLabel.text = MeTableTitles()[indexPath.section][indexPath.row];
-        cell.imageView.image = UIImageForKitBundle(MeTableImgs()[indexPath.section][indexPath.row]);
+        cell.imageView.image = [UIImage imageNamed:MeTableImgs()[indexPath.section][indexPath.row]];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        [self.navigationController pushViewController:[EditMeanViewController new] animated:YES];
-    }
+//    if (indexPath.section == 0) {
+//        [self.navigationController pushViewController:[EditMeanViewController new] animated:YES];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

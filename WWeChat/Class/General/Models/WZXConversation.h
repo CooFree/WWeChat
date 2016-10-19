@@ -35,7 +35,7 @@
 // 会话avaterUrl
 @property(nonatomic, copy)NSString * conversationAvaterUrl;
 
-// 未读信息
+// 未读信息数
 @property(nonatomic, assign)NSInteger unreadMessageCount;
 
 @property(nonatomic, copy)void(^loadUserComplete)();

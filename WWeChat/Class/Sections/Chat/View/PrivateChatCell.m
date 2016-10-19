@@ -11,43 +11,75 @@
 
 @implementation PrivateChatCell {
     BubbleView * _bubbleView;
+    // 上次是B 默认为
+    BOOL _lastIsA;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        _lastIsA = YES;
+        [self createUI];
+    }
+    return self;
+}
+
+- (void)createUI {
+    self.backgroundColor = [UIColor clearColor];
+    
+    self.avaterView = [UIImageView new];
+    [self.avaterView wzx_addCornerRadius:2];
+    [self.contentView addSubview:self.avaterView];
+    [self.avaterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView);
+        make.left.equalTo(self.contentView).offset(5);
+        make.size.mas_equalTo(CGSizeMake(45, 45));
+    }];
 }
 
 - (void)setModel:(MessageModel *)model {
     _model = model;
-    if (_model.isA) {
-        [_BAvaterImgView removeFromSuperview];
+    [self.avaterView yy_setImageWithURL:[NSURL URLWithString:@""] placeholder:[UIImage imageNamed:@"default_avater"]];
+    
+    if (_lastIsA == _model.isLeft) {
+        
     } else {
-        [_AAvaterImgView removeFromSuperview];
+        if (_model.isLeft) {
+            [self.avaterView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.contentView);
+                make.left.equalTo(self.contentView).offset(5);
+                make.size.mas_equalTo(CGSizeMake(45, 45));
+            }];
+        } else {
+            [self.avaterView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.contentView);
+                make.right.equalTo(self.contentView).offset(-5);
+                make.size.mas_equalTo(CGSizeMake(45, 45));
+            }];
+        }
     }
-    [self.contentView addSubview:self.bubbleView];
+    
+    CGSize size = model.size;
+    
+    [self.contentView addSubview:[self bubbleView]];
+    [_bubbleView setStatus:model.isLeft title:model.message];
+    [_bubbleView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.avaterView);
+        
+        if (_model.isLeft) {
+            make.left.equalTo(self.avaterView.mas_right).offset(5);
+        } else {
+            make.right.equalTo(self.avaterView.mas_left).offset(-5);
+        }
+        
+        make.size.mas_equalTo(size);
+    }];
 }
 
 - (BubbleView *)bubbleView {
     if (!_bubbleView) {
-        _bubbleView = ({
-            NSString * title = nil;
-            UIImage  * img = nil;
-            if(_model.messageType == MessageTypeNone) {
-                title = _model.message;
-            } else if (_model.messageType == MessageTypeImg) {
-                img   = _model.message;
-            }
-            BubbleView * bubbleView = [BubbleView bubbleWithIsA:_model.isA title:title img:img];
-            bubbleView;
-        });
+        _bubbleView = [BubbleView new];
     }
     return _bubbleView;
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

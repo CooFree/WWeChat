@@ -22,11 +22,27 @@
             self.message = textMessage.imageUrl;
         }
         
-        self.isA = [message.senderUserId isEqualToString:[Statics currentUser].objectId];
-        self.timestamp = [NSString stringWithFormat:@"%lld",message.sentTime];
+        self.isLeft = [message.senderUserId isEqualToString:[Statics currentUser].objectId];
+        self.timestamp = message.sentTime;
         self.sentID = message.senderUserId;
     }
     return self;
+}
+
+- (void)setMessage:(id)message {
+    _message = message;
+    CGSize textSize = [message boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil].size;
+    
+    _size = CGSizeMake(textSize.width + 2 * 5 + 15, textSize.height + 2 * 5);
+    
+    if (_size.height < 45) {
+        _size = CGSizeMake(_size.width, 45);
+    }
+    
+    if (_size.width < 60) {
+        _size = CGSizeMake(60, _size.height);
+    }
+    
 }
 
 @end

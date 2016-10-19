@@ -39,20 +39,17 @@
 		1E442E561D224974003BD8BD /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E442E551D224974003BD8BD /* UserObject.m */; };
 		1E443CCD1D225B55003BD8BD /* RLMRealm+WZXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E443CCC1D225B55003BD8BD /* RLMRealm+WZXExtension.m */; };
 		1E68AC5D1D2CAD8600AC63E9 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E68AC5C1D2CAD8600AC63E9 /* ChatDetailViewController.m */; };
-		1E68ACB31D2D2DFA00AC63E9 /* PrivateChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E68ACB11D2D2DFA00AC63E9 /* PrivateChatCell.m */; };
-		1E68ACB41D2D2DFA00AC63E9 /* PrivateChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E68ACB21D2D2DFA00AC63E9 /* PrivateChatCell.xib */; };
 		1E68ACBF1D2D2FDE00AC63E9 /* BubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E68ACBE1D2D2FDE00AC63E9 /* BubbleView.m */; };
 		1E68ACC21D2DF66D00AC63E9 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E68ACC11D2DF66D00AC63E9 /* MessageModel.m */; };
 		1EA5C7391D2F915300627DC0 /* WZXTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C7381D2F915300627DC0 /* WZXTimeTool.m */; };
 		1EA5C73C1D2F990800627DC0 /* KeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA5C73B1D2F990800627DC0 /* KeyboardView.m */; };
+		1EA692E21DB719F80066610F /* PrivateChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA692E11DB719F80066610F /* PrivateChatCell.m */; };
 		1EE1E6AD1D2500ED00579978 /* BaseImgPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E6AC1D2500ED00579978 /* BaseImgPickerViewController.m */; };
 		1EE1E6FB1D25284200579978 /* AddressBookViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E6FA1D25284200579978 /* AddressBookViewModel.m */; };
 		1EE1E7451D26563800579978 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E7421D26563800579978 /* ChatViewController.m */; };
 		1EE1E7491D2656FA00579978 /* BaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E7481D2656FA00579978 /* BaseChatViewController.m */; };
-		1EE1E74D1D26577B00579978 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E74B1D26577B00579978 /* ChatCell.m */; };
-		1EE1E74E1D26577B00579978 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EE1E74C1D26577B00579978 /* ChatCell.xib */; };
+		1EE1E74D1D26577B00579978 /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E74B1D26577B00579978 /* ConversationCell.m */; };
 		1EE1E7551D265A6800579978 /* AddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1E7531D265A6800579978 /* AddressBookCell.m */; };
-		1EE1E7561D265A6800579978 /* AddressBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EE1E7541D265A6800579978 /* AddressBookCell.xib */; };
 		1EE28CFB1D22671A00DD1C6A /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE28CFA1D22671A00DD1C6A /* StartViewController.m */; };
 		1EE28CFE1D22673900DD1C6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE28CFD1D22673900DD1C6A /* LoginViewController.m */; };
 		1EE28D011D22674500DD1C6A /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE28D001D22674500DD1C6A /* RegisterViewController.m */; };
@@ -106,7 +103,6 @@
 		1EE293AA1D22091900FBB308 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE293A91D22091900FBB308 /* AddressBookViewController.m */; };
 		1EE293AD1D22092400FBB308 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE293AC1D22092400FBB308 /* MeViewController.m */; };
 		1EE293B01D22093000FBB308 /* ZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE293AF1D22093000FBB308 /* ZoneViewController.m */; };
-		1EE293B21D2209D400FBB308 /* WWeChatKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1EE293B11D2209D400FBB308 /* WWeChatKit.bundle */; };
 		B10701D1A69C149F957ABCBB /* Pods_WWeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847C42E86E7F4B642353B329 /* Pods_WWeChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -182,9 +178,6 @@
 		1E443CCC1D225B55003BD8BD /* RLMRealm+WZXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RLMRealm+WZXExtension.m"; sourceTree = "<group>"; };
 		1E68AC5B1D2CAD8600AC63E9 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		1E68AC5C1D2CAD8600AC63E9 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
-		1E68ACB01D2D2DFA00AC63E9 /* PrivateChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatCell.h; sourceTree = "<group>"; };
-		1E68ACB11D2D2DFA00AC63E9 /* PrivateChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatCell.m; sourceTree = "<group>"; };
-		1E68ACB21D2D2DFA00AC63E9 /* PrivateChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateChatCell.xib; sourceTree = "<group>"; };
 		1E68ACBD1D2D2FDE00AC63E9 /* BubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleView.h; sourceTree = "<group>"; };
 		1E68ACBE1D2D2FDE00AC63E9 /* BubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleView.m; sourceTree = "<group>"; };
 		1E68ACC01D2DF66D00AC63E9 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
@@ -193,6 +186,8 @@
 		1EA5C7381D2F915300627DC0 /* WZXTimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZXTimeTool.m; sourceTree = "<group>"; };
 		1EA5C73A1D2F990800627DC0 /* KeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardView.h; sourceTree = "<group>"; };
 		1EA5C73B1D2F990800627DC0 /* KeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardView.m; sourceTree = "<group>"; };
+		1EA692E01DB719F80066610F /* PrivateChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateChatCell.h; sourceTree = "<group>"; };
+		1EA692E11DB719F80066610F /* PrivateChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateChatCell.m; sourceTree = "<group>"; };
 		1EE1E6AB1D2500ED00579978 /* BaseImgPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImgPickerViewController.h; sourceTree = "<group>"; };
 		1EE1E6AC1D2500ED00579978 /* BaseImgPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseImgPickerViewController.m; sourceTree = "<group>"; };
 		1EE1E6F91D25284200579978 /* AddressBookViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewModel.h; sourceTree = "<group>"; };
@@ -201,12 +196,10 @@
 		1EE1E7421D26563800579978 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		1EE1E7471D2656FA00579978 /* BaseChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChatViewController.h; sourceTree = "<group>"; };
 		1EE1E7481D2656FA00579978 /* BaseChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChatViewController.m; sourceTree = "<group>"; };
-		1EE1E74A1D26577B00579978 /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
-		1EE1E74B1D26577B00579978 /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
-		1EE1E74C1D26577B00579978 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		1EE1E74A1D26577B00579978 /* ConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCell.h; sourceTree = "<group>"; };
+		1EE1E74B1D26577B00579978 /* ConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCell.m; sourceTree = "<group>"; };
 		1EE1E7521D265A6800579978 /* AddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookCell.h; sourceTree = "<group>"; };
 		1EE1E7531D265A6800579978 /* AddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookCell.m; sourceTree = "<group>"; };
-		1EE1E7541D265A6800579978 /* AddressBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookCell.xib; sourceTree = "<group>"; };
 		1EE28CF91D22671A00DD1C6A /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		1EE28CFA1D22671A00DD1C6A /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		1EE28CFC1D22673900DD1C6A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -320,7 +313,6 @@
 		1EE293AC1D22092400FBB308 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		1EE293AE1D22093000FBB308 /* ZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneViewController.h; sourceTree = "<group>"; };
 		1EE293AF1D22093000FBB308 /* ZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneViewController.m; sourceTree = "<group>"; };
-		1EE293B11D2209D400FBB308 /* WWeChatKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WWeChatKit.bundle; sourceTree = "<group>"; };
 		847C42E86E7F4B642353B329 /* Pods_WWeChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWeChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75BB25DE3786209E2E68CF7 /* Pods-WWeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWeChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWeChat/Pods-WWeChat.release.xcconfig"; sourceTree = "<group>"; };
 		F38F835FEBCD5017AE183DD8 /* Pods-WWeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWeChat/Pods-WWeChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -746,7 +738,6 @@
 		1EE2920E1D21442000FBB308 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1EE293B11D2209D400FBB308 /* WWeChatKit.bundle */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -918,7 +909,6 @@
 			children = (
 				1EE1E7521D265A6800579978 /* AddressBookCell.h */,
 				1EE1E7531D265A6800579978 /* AddressBookCell.m */,
-				1EE1E7541D265A6800579978 /* AddressBookCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1016,14 +1006,12 @@
 		1EE2939D1D2208FA00FBB308 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1EA692E01DB719F80066610F /* PrivateChatCell.h */,
+				1EA692E11DB719F80066610F /* PrivateChatCell.m */,
 				1EA5C73A1D2F990800627DC0 /* KeyboardView.h */,
 				1EA5C73B1D2F990800627DC0 /* KeyboardView.m */,
-				1E68ACB01D2D2DFA00AC63E9 /* PrivateChatCell.h */,
-				1E68ACB11D2D2DFA00AC63E9 /* PrivateChatCell.m */,
-				1E68ACB21D2D2DFA00AC63E9 /* PrivateChatCell.xib */,
-				1EE1E74A1D26577B00579978 /* ChatCell.h */,
-				1EE1E74B1D26577B00579978 /* ChatCell.m */,
-				1EE1E74C1D26577B00579978 /* ChatCell.xib */,
+				1EE1E74A1D26577B00579978 /* ConversationCell.h */,
+				1EE1E74B1D26577B00579978 /* ConversationCell.m */,
 				1E68ACBD1D2D2FDE00AC63E9 /* BubbleView.h */,
 				1E68ACBE1D2D2FDE00AC63E9 /* BubbleView.m */,
 			);
@@ -1209,13 +1197,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EE293B21D2209D400FBB308 /* WWeChatKit.bundle in Resources */,
-				1EE1E74E1D26577B00579978 /* ChatCell.xib in Resources */,
 				1EE2902B1D2143DD00FBB308 /* LaunchScreen.storyboard in Resources */,
-				1E68ACB41D2D2DFA00AC63E9 /* PrivateChatCell.xib in Resources */,
 				1E442E531D2244DF003BD8BD /* MeCell.xib in Resources */,
 				1EE293531D21442000FBB308 /* ProgressHUD.bundle in Resources */,
-				1EE1E7561D265A6800579978 /* AddressBookCell.xib in Resources */,
 				1EE290281D2143DD00FBB308 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1300,6 +1284,7 @@
 				1EE2921C1D21442000FBB308 /* BaseViewModel.m in Sources */,
 				1EE1E7551D265A6800579978 /* AddressBookCell.m in Sources */,
 				1E442E4E1D222251003BD8BD /* WZXExtension.m in Sources */,
+				1EA692E21DB719F80066610F /* PrivateChatCell.m in Sources */,
 				1EE28D041D22744000DD1C6A /* RootViewController.m in Sources */,
 				1EE292181D21442000FBB308 /* BaseModel.m in Sources */,
 				1EE293541D21442000FBB308 /* ProgressHUD.m in Sources */,
@@ -1308,10 +1293,9 @@
 				1EE292211D21442000FBB308 /* UIScrollView+WZXExtension.m in Sources */,
 				1E1751081D27C75D000E6D56 /* WZXConversation.m in Sources */,
 				1EE28D1D1D23A6C700DD1C6A /* StartViewModel.m in Sources */,
-				1E68ACB31D2D2DFA00AC63E9 /* PrivateChatCell.m in Sources */,
 				1EE28D361D24B0CA00DD1C6A /* ChangeAvaterViewController.m in Sources */,
 				1EE1E6FB1D25284200579978 /* AddressBookViewModel.m in Sources */,
-				1EE1E74D1D26577B00579978 /* ChatCell.m in Sources */,
+				1EE1E74D1D26577B00579978 /* ConversationCell.m in Sources */,
 				1EE292221D21442000FBB308 /* UITextField+LocalString.m in Sources */,
 				1EE1E7491D2656FA00579978 /* BaseChatViewController.m in Sources */,
 				1EE292151D21442000FBB308 /* ThridPartService.m in Sources */,

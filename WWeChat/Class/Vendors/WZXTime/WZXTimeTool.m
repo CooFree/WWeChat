@@ -25,8 +25,10 @@ NSDateFormatter * StaticFormatter() {
     return [self timeStrToTimeDic:[StaticFormatter() stringFromDate:datenow]];
 }
 
-+ (NSDictionary *)timeStampToTimeStr:(NSTimeInterval)timeStamp scale:(NSInteger)scale {
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timeStamp/pow(10, scale)];
++ (NSDictionary *)timeStampToTimeStr:(NSTimeInterval)timeStamp {
+    NSTimeInterval realTimeStamp = [[[NSString stringWithFormat:@"%f", timeStamp] componentsSeparatedByString:@"."].firstObject doubleValue];
+    
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:realTimeStamp];
     return [self timeStrToTimeDic:[StaticFormatter() stringFromDate:confromTimesp]];
 }
 
@@ -80,6 +82,6 @@ NSDateFormatter * StaticFormatter() {
 }
 
 + (NSString *)compareWithTime:(NSTimeInterval)time {
-    return [self compareWithTimeDic:[self timeStampToTimeStr:time scale:3]];
+    return [self compareWithTimeDic:[self timeStampToTimeStr:time]];
 }
 @end

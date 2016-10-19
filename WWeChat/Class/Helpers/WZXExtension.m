@@ -87,23 +87,6 @@ id PhoneValue(id iPhone6p, id iPhone6, id iPhone5, id iPhone4) {
 
 //--------------------------------------------------------------------------
 
-NSString * UIImagePathForBundle(NSString * imgName, NSString * bundlename) {
-    return [NSString stringWithFormat:@"%@.bundle/%@",bundlename,imgName];
-}
-
-UIImage * UIImageForBundle(NSString * imgName, NSString * bundlename) {
-    NSString * imgPath = UIImagePathForBundle(imgName, bundlename);
-    return [UIImage imageNamed:imgPath];
-}
-
-NSString * UIImagePathForKitBundle(NSString * imgName) {
-    return UIImagePathForBundle(imgName, @"WWeChatKit");
-}
-
-UIImage * UIImageForKitBundle(NSString * imgName) {
-    NSString * imgPath = UIImagePathForKitBundle(imgName);
-    return [UIImage imageNamed:imgPath];
-}
 
 //--------------------------------------------------------------------------
 

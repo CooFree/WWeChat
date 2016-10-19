@@ -20,8 +20,7 @@ typedef NS_ENUM(NSInteger,MessageType)
     MessageTypeImg
 };
 
-/** 是否是你 */
-@property(nonatomic,assign)BOOL isA;
+@property(nonatomic,assign)BOOL isLeft;
 
 /** 发送者ID */
 @property(nonatomic,copy)NSString * sentID;
@@ -33,7 +32,9 @@ typedef NS_ENUM(NSInteger,MessageType)
 @property(nonatomic,assign)MessageType messageType;
 
 /** 信息时间 */
-@property(nonatomic,copy)NSString * timestamp;
+@property(nonatomic, assign)NSTimeInterval timestamp;
+
+@property(nonatomic, assign)CGSize size;
 
 - (instancetype)initWithMessage:(RCMessage *)message;
 

@@ -11,8 +11,7 @@
 
 @interface PrivateChatCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView * BAvaterImgView;
-@property (weak, nonatomic) IBOutlet UIImageView *AAvaterImgView;
+@property (strong, nonatomic) UIImageView * avaterView;
 
 @property(nonatomic, strong)MessageModel * model;
 @end

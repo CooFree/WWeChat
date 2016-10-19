@@ -91,7 +91,7 @@ NSArray * EditMeanTableTitles() {
                     make.right.equalTo(cell.contentView).offset(-10);
                 }];
             }
-            [avaterImgView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:UIImageForKitBundle(@"default_avater")];
+            [avaterImgView yy_setImageWithURL:[NSURL URLWithString:[Statics currentUser].avaterUrl] placeholder:[UIImage imageNamed:@"default_avater"]];
             
         } else if (indexPath.row == 1) {
             cell.detailTextLabel.text = [Statics currentUser].nickName;

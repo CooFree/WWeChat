@@ -10,6 +10,6 @@
 
 @interface BubbleView : UIImageView
 
-+ (instancetype)bubbleWithIsA:(BOOL)isA title:(NSString *)title img:(UIImage *)img;
+- (void)setStatus:(BOOL)isA title:(NSString *)title;
 
 @end

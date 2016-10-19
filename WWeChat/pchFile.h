@@ -2,8 +2,8 @@
 //  pchFile.h
 //  PopIn
 //
-//  Created by 魏帅 on 15/12/21.
-//  Copyright © 2015年 Lois_soul. All rights reserved.
+//  Created by wzxjiang on 15/12/21.
+//  Copyright © 2015年 wzxjiang. All rights reserved.
 //
 
 

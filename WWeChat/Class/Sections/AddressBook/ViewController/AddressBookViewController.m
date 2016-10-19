@@ -27,10 +27,10 @@ NSArray * AddressBookTableTitles() {
 };
 
 NSArray * AddressBookTableImgs() {
-    return @[@"AddressBook/plugins_FriendNotify",
-             @"AddressBook/add_friend_icon_addgroup",
-             @"AddressBook/Contact_icon_ContactTag",
-             @"AddressBook/add_friend_icon_offical"];
+    return @[@"plugins_FriendNotify",
+             @"add_friend_icon_addgroup",
+             @"Contact_icon_ContactTag",
+             @"add_friend_icon_offical"];
 };
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,20 +45,33 @@ NSArray * AddressBookTableImgs() {
 }
 
 - (void)getData {
-    @weakify(self)
-    [[self viewModel] searchFriend:[[Statics currentUser] friendObjectIds] success:^(id response, NSInteger code) {
-        @strongify(self)
-        NSMutableArray * users = [NSMutableArray array];
-        for (NSDictionary * result in response[@"results"]) {
-            UserObject * user = [[UserObject alloc]init];
-            [user setValuesForKeysWithDictionary:result];
-            [users addObject:user];
-        }
-        _dataArr = [[self viewModel] addressBookDivideGroup:users];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+//    @weakify(self)
+//    [[self viewModel] searchFriend:[[Statics currentUser] friendObjectIds] success:^(id response, NSInteger code) {
+//        @strongify(self)
+//        NSMutableArray * users = [NSMutableArray array];
+//        for (NSDictionary * result in response[@"results"]) {
+//            UserObject * user = [[UserObject alloc]init];
+//            [user setValuesForKeysWithDictionary:result];
+//            [users addObject:user];
+//        }
+//        _dataArr = [[self viewModel] addressBookDivideGroup:users];
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    NSMutableArray * users = [NSMutableArray array];
+    NSArray * addresss = @[@{@"nickName": @"wzx"},
+                           @{@"nickName": @"jxr"},
+                           @{@"nickName": @"罗永浩"},
+                           @{@"nickName": @"锤子"},];
+    for (NSDictionary * result in addresss) {
+        UserObject * user = [[UserObject alloc]init];
+        [user setValuesForKeysWithDictionary:result];
+        [users addObject:user];
+    }
+    _dataArr = [[self viewModel] addressBookDivideGroup:users];
+    [self.tableView reloadData];
 }
 
 - (void)createUI {
@@ -66,7 +79,8 @@ NSArray * AddressBookTableImgs() {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = ScaleHeight(45);
-    [self.tableView registerNib:[UINib nibWithNibName:@"AddressBookCell" bundle:nil] forCellReuseIdentifier:@"AddressBookCell"];
+    [self.tableView registerClass:[AddressBookCell class]  forCellReuseIdentifier:@"AddressBookCell"];
+    [self.tableView registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"AddressBookDefaultCell"];
 }
 
 #pragma mark - table datasource
@@ -125,22 +139,16 @@ NSArray * AddressBookTableImgs() {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        static NSString * identifier = @"AddressBookDefaultCell";
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        return cell;
+        return [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddressBookDefaultCell"];
     } else {
-        AddressBookCell * cell = [tableView dequeueReusableCellWithIdentifier:@"AddressBookCell"];
-        return cell;
+        return [tableView dequeueReusableCellWithIdentifier:@"AddressBookCell"];
     }
 }
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        cell.imageView.image = UIImageForKitBundle(AddressBookTableImgs()[indexPath.row]);
+        cell.imageView.image = [UIImage imageNamed:AddressBookTableImgs()[indexPath.row]];
         cell.textLabel.text = AddressBookTableTitles()[indexPath.row];
     } else {
         AddressBookCell * addressBookCell = (AddressBookCell *)cell;

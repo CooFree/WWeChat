@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UserObject.h"
 @interface AddressBookCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *avaterImgView;
-@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewWidthLayout;
+@property (strong, nonatomic)  UIImageView *avaterImgView;
+@property (strong, nonatomic)  UILabel *nickNameLabel;
+
 @property(nonatomic, strong)UserObject * model;
 @end

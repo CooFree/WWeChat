@@ -21,8 +21,8 @@
 
 UINavigationController * NavInTabbar(UIViewController * vc, NSString * imgName, NSString * selectImgName) {
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
-    UIImage * image = UIImageForKitBundle(imgName);
-    UIImage * selectImage = UIImageForKitBundle(selectImgName);
+    UIImage * image = [UIImage imageNamed:imgName];
+    UIImage * selectImage = [UIImage imageNamed:selectImgName];
     nav.tabBarItem = [[UITabBarItem alloc]initWithTitle:vc.tabBarItem.title image:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:
     [selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     return nav;
@@ -45,10 +45,10 @@ UINavigationController * NavInTabbar(UIViewController * vc, NSString * imgName, 
     meVC.title = @"我";
     
     self.viewControllers = @[
-      NavInTabbar(chatVC, @"Tabbar/tabbar_mainframe", @"Tabbar/tabbar_mainframeHL"),
-      NavInTabbar(addbkVC,@"Tabbar/tabbar_contacts",  @"Tabbar/tabbar_contactsHL"),
-      NavInTabbar(zoneVC, @"Tabbar/tabbar_discover",  @"Tabbar/tabbar_discoverHL"),
-      NavInTabbar(meVC,   @"Tabbar/tabbar_me",        @"Tabbar/tabbar_meHL")];
+      NavInTabbar(chatVC, @"tabbar_mainframe", @"tabbar_mainframeHL"),
+      NavInTabbar(addbkVC,@"tabbar_contacts",  @"tabbar_contactsHL"),
+      NavInTabbar(zoneVC, @"tabbar_discover",  @"tabbar_discoverHL"),
+      NavInTabbar(meVC,   @"tabbar_me",        @"tabbar_meHL")];
     
     self.tabBar.tintColor = BASE_COLOR;
 }

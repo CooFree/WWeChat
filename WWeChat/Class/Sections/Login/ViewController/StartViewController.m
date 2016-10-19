@@ -44,7 +44,7 @@
 
 - (void)setUp {
     [self.view addSubview:[self backgroundImgView]];
-    _backgroundImgView.image = UIImageForKitBundle(PhoneValue(@"LaunchImage-800-Portrait-736h", @"LaunchImage-800-667h", @"LaunchImage-700-568h", @"LaunchImage"));
+    _backgroundImgView.image = [UIImage imageNamed:PhoneValue(@"LaunchImage-800-Portrait-736h", @"LaunchImage-800-667h", @"LaunchImage-700-568h", @"LaunchImage")];
 }
 
 - (void)createUI {

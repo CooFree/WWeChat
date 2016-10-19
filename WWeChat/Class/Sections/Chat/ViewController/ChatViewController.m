@@ -7,7 +7,7 @@
 //
 
 #import "ChatViewController.h"
-#import "ChatCell.h"
+#import "ConversationCell.h"
 #import "ChatDetailViewController.h"
 
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate>
@@ -31,7 +31,33 @@
 
 //获取会话列表
 - (void)getConversationData {
-     _dataArr = [self.chatViewModel getConversationList];
+//     _dataArr = [self.chatViewModel getConversationList];
+    WZXConversation * conversation1 = [WZXConversation new];
+    conversation1.conversationType = ConversationType_PRIVATE;
+    conversation1.isTop = NO;
+    conversation1.lastMessage = @"你好啊！";
+    conversation1.lastMessageTime = [[NSDate date] timeIntervalSince1970];
+    conversation1.conversationTitle = @"信息1";
+    conversation1.unreadMessageCount = 10;
+    
+    WZXConversation * conversation2 = [WZXConversation new];
+    conversation2.conversationType = ConversationType_PRIVATE;
+    conversation2.isTop = NO;
+    conversation2.lastMessage = @"你好啊！";
+    conversation2.lastMessageTime = [[NSDate date] timeIntervalSince1970];
+    conversation2.conversationTitle = @"信息2";
+    conversation2.unreadMessageCount = 0;
+    
+    WZXConversation * conversation3 = [WZXConversation new];
+    conversation3.conversationType = ConversationType_PRIVATE;
+    conversation3.isTop = NO;
+    conversation3.lastMessage = @"你好啊！";
+    conversation3.lastMessageTime = [[NSDate date] timeIntervalSince1970];
+    conversation3.conversationTitle = @"消息3";
+    conversation3.unreadMessageCount = 0;
+    
+    _dataArr = @[conversation1, conversation2, conversation3];
+    
     [[self tableView] reloadData];
 }
 
@@ -47,18 +73,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChatCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ScaleHeight(65);
+    return [tableView dequeueReusableCellWithIdentifier:@"conversationCell"];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChatCell * chatCell = (ChatCell *)cell;
+    ConversationCell * conversationCell = (ConversationCell *)cell;
     WZXConversation * model = _dataArr[indexPath.row];
-    [chatCell setModel:model];
+    [conversationCell setModel:model];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -67,7 +88,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-   return ScaleHeight(44);
+   return 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,8 +116,8 @@
             tableview.delegate = self;
             tableview.dataSource = self;
             tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-            [tableview registerNib:[UINib nibWithNibName:@"ChatCell" bundle:nil] forCellReuseIdentifier:@"ChatCell"];
-            
+            tableview.rowHeight = 65;
+            [tableview registerClass:[ConversationCell class] forCellReuseIdentifier:@"conversationCell"];
             tableview;
         });
     }

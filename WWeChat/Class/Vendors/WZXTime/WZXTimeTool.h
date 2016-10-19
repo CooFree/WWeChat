@@ -10,8 +10,7 @@
 
 @interface WZXTimeTool : NSObject
 
-+ (NSDictionary *)timeStampToTimeStr:(NSTimeInterval)timeStamp
-                               scale:(NSInteger)scale;
++ (NSDictionary *)timeStampToTimeStr:(NSTimeInterval)timeStamp;
 
 + (NSDictionary *)locationTime;
 
